@@ -7,7 +7,9 @@ const Index: NextPage = () => {
       <Head>
         <title>Home Page</title>
       </Head>
-      <div>I&apos;m happy with your</div>
+      <div className="text-blue-500 font-bold text-xl">
+        I&apos;m happy with your
+      </div>
     </div>
   )
 }
