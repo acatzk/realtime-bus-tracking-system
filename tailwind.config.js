@@ -1,3 +1,5 @@
+const defaultTheme = require("tailwindcss/defaultTheme")
+
 module.exports = {
   content: [
     "./public/**/*.html", 
@@ -8,7 +10,14 @@ module.exports = {
     "./components/**/*.{js,jsx,ts,tsx}"
   ],
   theme: {
-    extend: {},
+    container: {
+      center: true
+    },
+    extend: {
+      fontFamily: {
+        sans: ["Inter", ...defaultTheme.fontFamily.sans],
+      }
+    },
   },
   plugins: [],
 }
