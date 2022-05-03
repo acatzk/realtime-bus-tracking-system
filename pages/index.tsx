@@ -1,16 +1,16 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import React from 'react'
+import Header from 'components/Header'
 
 const Index: NextPage = () => {
   return (
-    <div>
+    <React.Fragment>
       <Head>
-        <title>Home Page</title>
+        <title>Welcome to Davao Metro Shuttle</title>
       </Head>
-      <div className="text-blue-500 font-bold text-xl">
-        I&apos;m happy with your
-      </div>
-    </div>
+      <Header />
+    </React.Fragment>
   )
 }
 
