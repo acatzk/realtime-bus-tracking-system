@@ -1,0 +1,45 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.5.10",
+    "@headlessui/react": "^1.4.1",
+    "@heroicons/react": "^1.0.5",
+    "@nhost/nextjs": "^1.0.18",
+    "@nhost/react": "^0.5.7",
+    "@nhost/react-apollo": "^4.0.17",
+    "@tailwindcss/forms": "^0.4.0",
+    "framer-motion": "^6.0.0",
+    "graphql": "^16.3.0",
+    "graphql-request": "^3.7.0",
+    "jsonwebtoken": "^8.5.1",
+    "next": "^12.1.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-hook-form": "^7.30.0",
+    "react-icons": "^4.2.0",
+    "react-toastify": "^8.1.0",
+    "sharp": "^0.30.4",
+    "swr": "^1.2.0",
+    "tailwindcss-scrollbar": "^0.1.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.26",
+    "@types/react": "17.0.24",
+    "autoprefixer": "^10.3.5",
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.2",
+    "postcss": "^8.3.8",
+    "prettier": "^2.4.1",
+    "tailwindcss": "^2.2.15",
+    "typescript": "4.4.3"
+  }
+}
