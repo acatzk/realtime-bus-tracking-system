@@ -99,14 +99,14 @@ const TrackMe: NextPage = () => {
               </label>
               <div className="w-full flex items-center space-x-4">
                 <input
-                  type="hidden"
+                  type="text"
                   placeholder="Longitude"
                   value={`Longitude: ${longitude}`}
                   disabled
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 />
                 <input
-                  type="hidden"
+                  type="text"
                   placeholder="Latitude"
                   value={`Latitude: ${latitude}`}
                   disabled
