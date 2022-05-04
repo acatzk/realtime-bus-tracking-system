@@ -19,11 +19,6 @@ const Login: NextPage = () => {
     formState: { isSubmitting, errors },
   } = useForm()
 
-  // Check if user is authenticated
-  useEffect(() => {
-    if (isAuthenticated) router.push('/dashboard')
-  }, [isAuthenticated])
-
   const onSubmitForm = async (data) => {
     const { email, password } = data
 
@@ -82,6 +77,11 @@ const Login: NextPage = () => {
       })
     }
   }
+
+  // Check if user is authenticated
+  React.useEffect(() => {
+    if (isAuthenticated) router.push('/dashboard')
+  }, [isAuthenticated])
 
   if (isLoading)
     return (

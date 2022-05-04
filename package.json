@@ -11,6 +11,7 @@
   "dependencies": {
     "@apollo/client": "^3.5.10",
     "@headlessui/react": "^1.6.1",
+    "@heroicons/react": "^1.0.6",
     "@nhost/nextjs": "^1.1.1",
     "@nhost/react": "^0.6.1",
     "@nhost/react-apollo": "^4.0.17",
