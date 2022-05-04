@@ -8,10 +8,12 @@ import { ToastContainer } from 'react-toastify'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <NhostNextProvider nhost={nhost} initial={pageProps.nhostSession}>
-      <ToastContainer />
-      <Component {...pageProps} />
-    </NhostNextProvider>
+    <React.StrictMode>
+      <NhostNextProvider nhost={nhost} initial={pageProps.nhostSession}>
+        <ToastContainer />
+        <Component {...pageProps} />
+      </NhostNextProvider>
+    </React.StrictMode>
   )
 }
 

@@ -35,12 +35,12 @@ const Login: NextPage = () => {
       email: email.toString(),
     })
 
-    const loginRole = roles[0].roles[0].role
+    const loginRole = roles[0]?.roles[0]?.role
 
     if (loginRole !== 'employee') {
-      return toast.warning(``, {
+      return toast.warning(`Only Employee Driver's can login this page!`, {
         position: 'top-right',
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -60,7 +60,7 @@ const Login: NextPage = () => {
     if (error) {
       toast.error(`Invalid credentials!`, {
         position: 'top-right',
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -71,9 +71,9 @@ const Login: NextPage = () => {
       const {
         user: { displayName },
       } = session
-      toast.success(`🦄 Welcome back ${displayName}`, {
+      toast.success(`Good day, ${displayName}`, {
         position: 'top-right',
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
