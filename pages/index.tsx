@@ -1,9 +1,8 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
 import React from 'react'
-import Header from 'components/Header'
-import Footer from 'components/Footer'
 import ScheduleTable from 'components/ScheduleTable'
+import PageLayout from 'layouts/pageLayout'
+import { AiOutlineSchedule } from 'react-icons/ai'
 
 const Index: NextPage = () => {
   const busSchedule = [
@@ -37,17 +36,16 @@ const Index: NextPage = () => {
   ]
 
   return (
-    <React.Fragment>
-      <Head>
-        <title>Welcome to Davao Metro Shuttle</title>
-      </Head>
-      <Header />
+    <PageLayout metaHead="">
       <main className="min-h-[91vh] px-4 md:px-8 lg:px-16 md:max-w-2xl lg:max-w-7xl mx-auto">
-        <section className="py-8 lg:py-[120px]">
+        <section className="py-8 lg:py-14">
           <div className="container">
-            <h1 className="text-xl font-bold py-3 text-gray-700">
-              Daily Bus Schedules
-            </h1>
+            <div className="flex items-center space-x-2">
+              <AiOutlineSchedule className="w-6 md:w-8 h-6 md:h-8 text-gray-700" />
+              <h1 className="text-base md:text-xl font-bold py-3 text-gray-700">
+                Daily Bus Schedules
+              </h1>
+            </div>
             <div className="flex flex-wrap -mx-4">
               <div className="w-full px-4">
                 <div className="max-w-full overflow-x-auto">
@@ -58,8 +56,7 @@ const Index: NextPage = () => {
           </div>
         </section>
       </main>
-      <Footer />
-    </React.Fragment>
+    </PageLayout>
   )
 }
 

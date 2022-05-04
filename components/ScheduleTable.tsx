@@ -15,7 +15,8 @@ const ScheduleTable: React.FC<props> = (props) => {
             className="
               w-1/3
               min-w-[160px]
-              text-lg
+              text-base
+              md:text-lg
               font-semibold
               text-white
               py-4
@@ -25,13 +26,14 @@ const ScheduleTable: React.FC<props> = (props) => {
               border-l border-transparent
             "
           >
-            Fullname
+            Driver&apos;s Name
           </th>
           <th
             className="
               w-1/3
               min-w-[160px]
-              text-lg
+              text-base
+              md:text-lg
               font-semibold
               text-white
               py-4
@@ -46,7 +48,8 @@ const ScheduleTable: React.FC<props> = (props) => {
             className="
               w-1/6
               min-w-[160px]
-              text-lg
+              text-base
+              md:text-lg
               font-semibold
               text-white
               py-4
@@ -66,19 +69,20 @@ const ScheduleTable: React.FC<props> = (props) => {
               className="
                 text-center text-dark
                 font-medium
-                text-base
+                text-sm
+                md:text-base
                 py-5
                 px-2
                 bg-[#F3F6FF]
                 border-b border-l border-[#E8E8E8]
-                flex items-center space-x-3 justify-center
+                flex items-center flex-wrap space-x-1 md:space-x-3 justify-center
               "
             >
               <div className="relative">
                 <Image
                   src={schedule.avatar}
-                  width={32}
-                  height={32}
+                  width={40}
+                  height={40}
                   className="rounded-full border"
                   alt="avatar"
                 />
@@ -88,7 +92,7 @@ const ScheduleTable: React.FC<props> = (props) => {
             <td
               className="
                 text-center text-dark
-                font-medium
+                font-bold
                 text-base
                 py-5
                 px-2
@@ -109,7 +113,10 @@ const ScheduleTable: React.FC<props> = (props) => {
                 border-b border-[#E8E8E8]
               "
             >
-              <a href={`/${schedule.id}`} className="text-sm hover:underline">
+              <a
+                href={`/${schedule.id}`}
+                className="text-sm hover:underline text-blue-500"
+              >
                 See live map
               </a>
             </td>
