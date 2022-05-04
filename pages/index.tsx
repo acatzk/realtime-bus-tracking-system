@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import React from 'react'
 import ScheduleTable from 'components/ScheduleTable'
-import PageLayout from 'layouts/pageLayout'
+import PageLayout from 'layouts/PageLayout'
 import { AiOutlineSchedule } from 'react-icons/ai'
 
 const Index: NextPage = () => {

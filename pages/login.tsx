@@ -1,20 +1,95 @@
-import React from 'react'
-import PageLayout from 'layouts/pageLayout'
+import React, { useEffect } from 'react'
+import PageLayout from 'layouts/PageLayout'
 import { NextPage } from 'next'
 import { useForm } from 'react-hook-form'
 import { classNames } from 'utils/classNames'
+import { useAuthenticationStatus } from '@nhost/react'
+import router from 'next/router'
+import { toast } from 'react-toastify'
+import { Spinner } from 'utils/Icons'
+import { nhost } from 'lib/nhost-client'
+import { GET_USER_ROLE_BY_EMAIL } from 'graphql/queries'
 
 const Login: NextPage = () => {
+  const { isAuthenticated, isLoading } = useAuthenticationStatus()
+
   const {
     register,
     handleSubmit,
     formState: { isSubmitting, errors },
   } = useForm()
 
+  // Check if user is authenticated
+  useEffect(() => {
+    if (isAuthenticated) router.push('/dashboard')
+  }, [isAuthenticated])
+
   const onSubmitForm = async (data) => {
     const { email, password } = data
-    alert({ email, password })
+
+    const {
+      data: {
+        users: { ...roles },
+      },
+    } = await nhost.graphql.request(GET_USER_ROLE_BY_EMAIL, {
+      email: email.toString(),
+    })
+
+    const loginRole = roles[0].roles[0].role
+
+    if (loginRole !== 'employee') {
+      return toast.warning(``, {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+    } else {
+      const { session, error } = await nhost.auth.signIn({
+        email: email,
+        password: password,
+      })
+      isSuccess(session, error)
+    }
   }
+
+  const isSuccess = (session, error) => {
+    if (error) {
+      toast.error(`Invalid credentials!`, {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+    } else {
+      const {
+        user: { displayName },
+      } = session
+      toast.success(`🦄 Welcome back ${displayName}`, {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+    }
+  }
+
+  if (isLoading)
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <Spinner className="w-14 h-14" />
+        <p className="text-xs mt-1">Loading...</p>
+      </div>
+    )
 
   return (
     <PageLayout metaHead="| Login">
@@ -24,7 +99,7 @@ const Login: NextPage = () => {
           <div className="card bg-[#d73f49]/80 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div>
           <div className="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
             <label className="block mt-3 text-base text-gray-700 text-center font-semibold">
-              Employee&apos;s Login Page
+              Metro Driver&apos;s Login Page
             </label>
             <form className="py-10" onSubmit={handleSubmit(onSubmitForm)}>
               <div className="mt-4">
