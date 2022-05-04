@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { RiLoginCircleLine } from 'react-icons/ri'
@@ -22,7 +22,7 @@ const Header: React.FC = () => {
           <Link href="#">
             <a className="flex items-center space-x-1 hover:text-gray-200 transition ease-in-out duration-150">
               <RiLoginCircleLine className="w-4 lg:w-5 h-4 lg:h-5" />
-              <span className="text-sm lg:text-base font-medium">Login</span>
+              <span className="text-sm md:text-base font-medium">Login</span>
             </a>
           </Link>
         </div>
