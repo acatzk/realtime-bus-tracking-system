@@ -2,7 +2,7 @@ import DashboardLayout from 'layouts/DashboardLayout'
 import { NextPage } from 'next'
 import React from 'react'
 
-const Dashboard: NextPage = () => {
+const TrackMe: NextPage = () => {
   return (
     <DashboardLayout metaHead="| Dashboard">
       <main className="min-h-[81vh] px-4 md:px-8 lg:px-16 md:max-w-2xl lg:max-w-7xl mx-auto">
@@ -17,4 +17,4 @@ const Dashboard: NextPage = () => {
   )
 }
 
-export default Dashboard
+export default TrackMe
