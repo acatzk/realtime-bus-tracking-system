@@ -8,8 +8,6 @@ type props = {
 const ScheduleTable: React.FC<props> = (props) => {
   const trackers = props?.data?.data?.trackers
 
-  console.log(trackers.length)
-
   return (
     <table className="table-auto w-full">
       <thead>
