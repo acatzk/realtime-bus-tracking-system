@@ -188,7 +188,7 @@ const Login: NextPage = () => {
                     'disabled:cursor-not-allowed disabled:opacity-50',
                     'bg-gradient-to-r from-[#1f1b58] via-pink-600 to-[#d73f49]'
                   )}>
-                  Login
+                  {isSubmitting ? 'Logging in...' : 'Login'}
                 </button>
               </div>
             </form>
