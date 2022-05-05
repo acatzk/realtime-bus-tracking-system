@@ -33,7 +33,7 @@ const Login: NextPage = () => {
     const loginRole = roles[0]?.roles[0]?.role
 
     if (loginRole !== 'employee') {
-      return toast.warning(`Only Employee Driver's can login this page!`, {
+      return toast.warning(`Only Bus Driver can login this page!`, {
         position: 'top-right',
         autoClose: 3000,
         hideProgressBar: false,
@@ -95,8 +95,8 @@ const Login: NextPage = () => {
     <PageLayout metaHead="| Login">
       <main className="min-h-[91vh] px-4 md:px-8 lg:px-16 md:max-w-2xl lg:max-w-7xl mx-auto flex justify-center place-items-center">
         <div className="relative max-w-sm w-full">
-          <div className="card bg-[#1f1b58]/80 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
-          <div className="card bg-[#d73f49]/80 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div>
+          <div className="card bg-[#1f1b58] shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
+          <div className="card bg-[#d73f49] shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div>
           <div className="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
             <label className="block mt-3 text-base text-gray-700 text-center font-semibold">
               Metro Driver&apos;s Login Page
