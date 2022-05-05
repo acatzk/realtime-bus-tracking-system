@@ -35,11 +35,11 @@ const DashboardLayout: React.FC<props> = (props) => {
           <button
             type="button"
             className={classNames(
-              'text-white bg-green-500 py-1 rounded-full px-2 font-medium flex items-center space-x-1',
+              'text-white bg-gray-500 py-1 rounded-md px-2 font-medium flex items-center space-x-1',
               'transition ease-in-out duration-150 hover:shadow-lg active:bg-green-600'
             )}>
             <HiStatusOnline className="w-4 lg:w-5 h-4 lg:h-5" />
-            <span>Active</span>
+            <span>Inactive</span>
           </button>
         </div>
       </header>
@@ -66,10 +66,8 @@ function DashboardSubLinks({ dashboardLink }) {
                     ? 'text-gray-800  border-gray-500'
                     : 'text-gray-600 border-transparent'
                 )}>
-                {/* <div className="flex items-center space-x-2"> */}
                 <Icon className="w-4 lg:w-5 h-4 lg:h-5" />
                 <span>{name}</span>
-                {/* </div> */}
               </a>
             </Link>
           </li>

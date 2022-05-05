@@ -25,9 +25,9 @@ const Header: React.FC = () => {
             <h1 className="hidden lg:block text-lg font-bold uppercase">Metro Bus Tracker</h1>
             <h1 className="block lg:hidden text-sm font-bold uppercase">Bus </h1>
             {isAuthenticated && (
-              <span className="bg-green-500 rounded-full text-xs md:text-sm py-0.5 px-1 font-medium flex items-center space-x-1">
+              <span className="bg-gray-500 rounded-full text-xs md:text-sm py-0.5 px-1 font-medium flex items-center space-x-1">
                 <HiStatusOnline className="w-4 h-4" />
-                <span>Active</span>
+                <span>Inactive</span>
               </span>
             )}
           </a>
