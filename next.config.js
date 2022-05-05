@@ -10,7 +10,8 @@ module.exports = {
       'scontent.fceb1-2.fna.fbcdn.net',
       'avatars.githubusercontent.com',
       's.gravatar.com',
-      'scontent.fceb1-1.fna.fbcdn.net'
+      'scontent.fceb1-1.fna.fbcdn.net',
+      'avatars.githubusercontent.com'
     ]
   }
 }

@@ -9,11 +9,19 @@ import { toast } from 'react-toastify'
 import { CREATE_BUS_TRACKER_MUTATION } from 'graphql/mutations'
 import { nhost } from 'lib/nhost-client'
 import { useUserData } from '@nhost/react'
+import { CHECK_EMPLOYEE_IF_ALREADY_TRACK } from 'graphql/queries'
+import Moment from 'moment'
+import { useRouter } from 'next/router'
 
-const direction = [{ name: 'Sogod -> Ormoc City' }, { name: 'Ormoc City -> Sogod' }]
+const direction = [
+  { name: 'Sogod -> Ormoc City' },
+  { name: 'Ormoc City -> Sogod' },
+  { name: 'Sogod -> Tacloban' }
+]
 
 const TrackMe: NextPage = () => {
   const user = useUserData()
+  const router = useRouter()
   const [selected, setSelected] = useState(direction[0])
   const [latitude, setLatitude] = useState(0)
   const [longitude, setLongitude] = useState(0)
@@ -40,8 +48,6 @@ const TrackMe: NextPage = () => {
   const onSubmitForm = async (data) => {
     const { plate_number } = data
 
-    console.log(user)
-
     if (latitude === 0 || longitude === 0) {
       toast.error(`Your location is invalid, open GPS and Location Info`, {
         position: 'top-right',
@@ -53,21 +59,46 @@ const TrackMe: NextPage = () => {
         progress: undefined
       })
     } else {
+      // Check employee if already been tracked!
       const {
-        data: { insert_trackers }
-      } = await nhost.graphql.request(CREATE_BUS_TRACKER_MUTATION, {
-        user_id: user?.id,
-        plate_number,
-        longitude: longitude,
-        latitude: latitude,
-        destination: selected.name
+        data: {
+          trackers_aggregate: {
+            aggregate: { count }
+          }
+        }
+      } = await nhost.graphql.request(CHECK_EMPLOYEE_IF_ALREADY_TRACK, {
+        created_at: Moment().format('YYYY-MM-DD')
       })
 
-      const { affected_rows } = insert_trackers
+      if (count === 0) {
+        // Insert the actual insert of the trackers table
+        const {
+          data: { insert_trackers }
+        } = await nhost.graphql.request(CREATE_BUS_TRACKER_MUTATION, {
+          user_id: user?.id,
+          plate_number,
+          longitude: longitude,
+          latitude: latitude,
+          destination: selected.name
+        })
 
-      if (affected_rows === 1) {
-        reset()
-        toast.success(`Success, keep safe while driving!`, {
+        const { affected_rows } = insert_trackers
+
+        if (affected_rows === 1) {
+          reset()
+          toast.success(`Success, keep safe while driving!`, {
+            position: 'top-right',
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined
+          })
+          router.push('/dashboard')
+        }
+      } else {
+        toast.warning(`You already saved data for today.`, {
           position: 'top-right',
           autoClose: 3000,
           hideProgressBar: false,
@@ -185,11 +216,11 @@ const TrackMe: NextPage = () => {
                 />
               </div>
               <div className="mt-2">
-                <iframe
+                {/* <iframe
                   src={`https://maps.google.com/maps?q=${latitude},${longitude}&z=15&output=embed`}
                   width="100%"
                   className="shadow-lg"
-                  height="280"></iframe>
+                  height="280"></iframe> */}
                 {/* https://maps.google.com/maps?q=10.3435804,124.8675566&z=15 
                   https://www.google.com/maps/embed?pb=!1m39!1m12!1m3!1d236980.84138606823!2d124.74864759244088!3d10.500108770558938!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m24!3e0!4m5!1s0x330711db96aa79ff%3A0xc658142f36148f6c!2sSogod%2C%20Southern%20Leyte!3m2!1d10.4329228!2d124.994751!4m5!1s0x33076bea6b4811f1%3A0x343065e793f56d53!2sBato%2C%20Leyte!3m2!1d10.339768699999999!2d124.84953039999999!4m5!1s0x3307f08752b5cbf1%3A0x7f3f844d6109f37b!2sOrmoc%20City%2C%20Leyte!3m2!1d11.0384275!2d124.61927019999999!4m4!2s10.3435804%2C124.8675566!3m2!1d${latitude}!2d${longitude}!5e0!3m2!1sen!2sph!4v1651720299960!5m2!1sen!2sph&z=15&output=embed
                 */}

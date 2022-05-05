@@ -3,6 +3,7 @@ import React from 'react'
 import ScheduleTable from 'components/ScheduleTable'
 import PageLayout from 'layouts/PageLayout'
 import { AiOutlineSchedule } from 'react-icons/ai'
+import Header from 'components/Header'
 
 const Index: NextPage = () => {
   const busSchedule = [
@@ -37,6 +38,7 @@ const Index: NextPage = () => {
 
   return (
     <PageLayout>
+      <Header />
       <main className="min-h-[91vh] px-4 md:px-8 lg:px-16 md:max-w-2xl lg:max-w-7xl mx-auto">
         <section className="py-8 lg:py-14">
           <div className="container">

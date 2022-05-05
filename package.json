@@ -20,6 +20,7 @@
     "graphql": "^16.3.0",
     "graphql-request": "^3.7.0",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.3",
     "next": "^12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -29,6 +30,7 @@
     "sharp": "^0.30.4",
     "swr": "^1.2.0",
     "tailwindcss-scrollbar": "^0.1.0",
+    "use-persisted-state": "^0.3.3",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

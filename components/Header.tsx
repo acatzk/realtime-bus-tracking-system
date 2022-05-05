@@ -7,12 +7,18 @@ import { Menu, Transition } from '@headlessui/react'
 import { userNavigation } from 'mock/object-list'
 import { classNames } from 'utils/classNames'
 import { BsCardChecklist } from 'react-icons/bs'
-import { HiStatusOnline } from 'react-icons/hi'
+import { HiOutlineStatusOffline, HiStatusOnline } from 'react-icons/hi'
 
-const Header: React.FC = () => {
+type props = {
+  isActive?: boolean
+  isSubmitting?: boolean
+}
+
+const Header: React.FC<props> = (props) => {
   const signOut = useSignOut()
   const { isAuthenticated } = useAuthenticationStatus()
   const user = useUserData()
+  const { isActive, isSubmitting } = props
 
   return (
     <header className="border-b-2 py-4 bg-[#1f1b58] text-white">
@@ -25,9 +31,24 @@ const Header: React.FC = () => {
             <h1 className="hidden lg:block text-lg font-bold uppercase">Metro Bus Tracker</h1>
             <h1 className="block lg:hidden text-sm font-bold uppercase">Bus </h1>
             {isAuthenticated && (
-              <span className="bg-gray-500 rounded-full text-xs md:text-sm py-0.5 px-1 font-medium flex items-center space-x-1">
-                <HiStatusOnline className="w-4 h-4" />
-                <span>Inactive</span>
+              <span
+                className={classNames(
+                  'rounded-full text-xs md:text-sm',
+                  'py-0.5 px-1 font-medium flex items-center space-x-1',
+                  !isActive ? 'bg-green-500' : 'bg-gray-500'
+                )}>
+                {isSubmitting ? (
+                  <span>Loading</span>
+                ) : (
+                  <>
+                    {!isActive ? (
+                      <HiStatusOnline className="w-4 h-4" />
+                    ) : (
+                      <HiOutlineStatusOffline className="w-4 h-4" />
+                    )}
+                    <span>{!isActive ? 'Active' : 'Inactive'}</span>
+                  </>
+                )}
               </span>
             )}
           </a>
@@ -46,7 +67,7 @@ const Header: React.FC = () => {
               <Link href="/dashboard">
                 <a className="flex items-center space-x-1 hover:text-gray-300 transition ease-in-out duration-150">
                   <BsCardChecklist className="w-4 lg:w-5 h-4 lg:h-5" />
-                  <span className="text-sm md:text-base font-medium">Dashbaord</span>
+                  <span className="text-sm md:text-base font-medium">Dashboard</span>
                 </a>
               </Link>
               {/* Profile dropdown */}
