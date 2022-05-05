@@ -12,3 +12,15 @@ export const CREATE_BUS_TRACKER_MUTATION = gql`
     }
   }
 `
+
+export const UPDATE_BUS_DRIVER_STATUS_MUTATION = gql`
+  mutation updateEmployeeStatus($isActive: Boolean!, $user_id: uuid!, $date: date!) {
+    update_trackers(_set: {isActive: $isActive}, where: {user_id: {_eq: $user_id}, created_at: {_eq: $date}}) {
+      affected_rows
+      returning {
+        id
+        isActive
+      }
+    }
+  }
+`

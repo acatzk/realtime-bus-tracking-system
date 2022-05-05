@@ -16,7 +16,6 @@ const PageLayout: React.FC<props> = (props) => {
       <Head>
         <title>Davao Metro Shuttle {metaHead}</title>
       </Head>
-      <Header />
       <div className="antialiased">{children}</div>
       <Footer />
     </React.Fragment>
