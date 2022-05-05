@@ -4,37 +4,22 @@ import ScheduleTable from 'components/ScheduleTable'
 import PageLayout from 'layouts/PageLayout'
 import { AiOutlineSchedule } from 'react-icons/ai'
 import Header from 'components/Header'
+import { GET_DRIVER_LOCATION_BY_CURRENT_DATE } from 'graphql/queries'
+import useSWR from 'swr'
+import { nhost } from 'lib/nhost-client'
+import Moment from 'moment'
 
 const Index: NextPage = () => {
-  const busSchedule = [
+  const { data } = useSWR(
+    GET_DRIVER_LOCATION_BY_CURRENT_DATE,
+    async (query) =>
+      await nhost.graphql.request(query, {
+        created_at: Moment().format('YYYY-MM-DD')
+      }),
     {
-      id: 1,
-      avatar:
-        'https://th.bing.com/th/id/OIP.o5hnVgDkhrAIKPAUMAtzcAHaHa?w=162&h=180&c=7&r=0&o=5&pid=1.7',
-      display_name: 'Joshua Galit',
-      placeNumber: 'BBM5648',
-      longitude: '',
-      latitude: ''
-    },
-    {
-      id: 2,
-      avatar:
-        'https://th.bing.com/th/id/OIP.o5hnVgDkhrAIKPAUMAtzcAHaHa?w=162&h=180&c=7&r=0&o=5&pid=1.7',
-      display_name: 'Gilchrist Calunia',
-      placeNumber: 'LENIKO46242',
-      longitude: '',
-      latitude: ''
-    },
-    {
-      id: 3,
-      avatar:
-        'https://th.bing.com/th/id/OIP.o5hnVgDkhrAIKPAUMAtzcAHaHa?w=162&h=180&c=7&r=0&o=5&pid=1.7',
-      display_name: 'Ken Faller',
-      placeNumber: 'SARA4648',
-      longitude: '',
-      latitude: ''
+      revalidateOnMount: true
     }
-  ]
+  )
 
   return (
     <PageLayout>
@@ -51,7 +36,7 @@ const Index: NextPage = () => {
             <div className="flex flex-wrap -mx-4">
               <div className="w-full px-4">
                 <div className="max-w-full overflow-x-auto">
-                  <ScheduleTable schedules={busSchedule} />
+                  <ScheduleTable data={data} />
                 </div>
               </div>
             </div>

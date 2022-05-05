@@ -30,3 +30,20 @@ export const GET_TRACKER_STATUS = gql`
     }
   }
 `
+
+export const GET_DRIVER_LOCATION_BY_CURRENT_DATE = gql`
+  query getDriverLocation($created_at: date!) {
+    trackers(where: {created_at: {_eq: $created_at}, isActive: {_eq: true}}) {
+      id
+      user_id
+      plate_number
+      latitude
+      longitude
+      user {
+        id
+        displayName
+        avatarUrl
+      }
+    }
+  }
+`
