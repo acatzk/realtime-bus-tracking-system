@@ -2,9 +2,9 @@ import React, { Fragment } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { RiLoginCircleLine } from 'react-icons/ri'
-import { useAuthenticationStatus, useSignOut } from '@nhost/react'
+import { useAuthenticationStatus, useSignOut, useUserData } from '@nhost/react'
 import { Menu, Transition } from '@headlessui/react'
-import { user, userNavigation } from 'mock/object-list'
+import { userNavigation } from 'mock/object-list'
 import { classNames } from 'utils/classNames'
 import { BsCardChecklist } from 'react-icons/bs'
 import { HiStatusOnline } from 'react-icons/hi'
@@ -12,6 +12,7 @@ import { HiStatusOnline } from 'react-icons/hi'
 const Header: React.FC = () => {
   const signOut = useSignOut()
   const { isAuthenticated } = useAuthenticationStatus()
+  const user = useUserData()
 
   return (
     <header className="border-b-2 py-4 bg-[#1f1b58] text-white">

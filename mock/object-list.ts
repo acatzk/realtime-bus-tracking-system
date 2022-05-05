@@ -4,7 +4,7 @@ import { MdLocationPin } from 'react-icons/md'
 export const user = {
   name: 'Joshua Galit',
   email: 'joshuaimalay@gmail.com',
-  imageUrl: 'https://avatars.githubusercontent.com/u/38458781?v=4'
+  avatarUrl: 'https://avatars.githubusercontent.com/u/38458781?v=4'
 }
 
 export const navigation = [

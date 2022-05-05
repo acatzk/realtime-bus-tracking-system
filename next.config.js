@@ -7,6 +7,9 @@ module.exports = {
   images: {
     domains: [
       'th.bing.com',
+      'scontent.fceb1-2.fna.fbcdn.net',
+      'avatars.githubusercontent.com',
+      's.gravatar.com'
     ]
   }
 }
