@@ -67,6 +67,7 @@ const TrackMe: NextPage = () => {
           }
         }
       } = await nhost.graphql.request(CHECK_EMPLOYEE_IF_ALREADY_TRACK, {
+        user_id: user?.id,
         created_at: Moment().format('YYYY-MM-DD')
       })
 

@@ -29,7 +29,7 @@ const Header: React.FC<props> = (props) => {
               <Image src="/assets/logo2.png" width={32} height={32} alt="Logo" />
             </div>
             <h1 className="hidden lg:block text-lg font-bold uppercase">Metro Bus Tracker</h1>
-            <h1 className="block lg:hidden text-sm font-bold uppercase">Bus </h1>
+            <h1 className="block lg:hidden text-sm font-bold uppercase">Track</h1>
             {isAuthenticated && (
               <span
                 className={classNames(
