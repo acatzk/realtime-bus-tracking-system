@@ -11,7 +11,8 @@ module.exports = {
       'avatars.githubusercontent.com',
       's.gravatar.com',
       'scontent.fceb1-1.fna.fbcdn.net',
-      'avatars.githubusercontent.com'
+      'avatars.githubusercontent.com',
+      'scontent.fceb1-3.fna.fbcdn.net'
     ]
   }
 }
