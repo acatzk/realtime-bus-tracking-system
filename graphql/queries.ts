@@ -13,8 +13,8 @@ export const GET_USER_ROLE_BY_EMAIL = gql`
 `
 
 export const CHECK_EMPLOYEE_IF_ALREADY_TRACK = gql`
-  query checkIfDriverAlreadyTracked($created_at: date!) {
-    trackers_aggregate(where: {created_at: {_eq: $created_at}}) {
+  query checkIfDriverAlreadyTracked($user_id: uuid!, $created_at: date!) {
+    trackers_aggregate(where: {user_id: {_eq: $user_id}, created_at: {_eq: $created_at}}) {
       aggregate {
         count
       }
@@ -33,7 +33,7 @@ export const GET_TRACKER_STATUS = gql`
 
 export const GET_DRIVER_LOCATION_BY_CURRENT_DATE = gql`
   query getDriverLocation($created_at: date!) {
-    trackers(where: {created_at: {_eq: $created_at}, isActive: {_eq: true}}) {
+    trackers(where: {created_at: {_eq: $created_at}, isActive: {_eq: true}}, order_by: {created_at: desc}) {
       id
       user_id
       plate_number
@@ -43,6 +43,20 @@ export const GET_DRIVER_LOCATION_BY_CURRENT_DATE = gql`
         id
         displayName
         avatarUrl
+      }
+    }
+  }
+`
+
+export const GET_TRACK_IF_EXIST_AND_STATUS = gql`
+  query getTracker($user_id: uuid!, $created_at: date!) {
+    trackers(where: {user_id: {_eq: $user_id}, created_at: {_eq: $created_at}}) {
+      id
+      isActive
+    }
+    trackers_aggregate(where: {user_id: {_eq: $user_id}, created_at: {_eq: $created_at}}) {
+      aggregate {
+        count
       }
     }
   }

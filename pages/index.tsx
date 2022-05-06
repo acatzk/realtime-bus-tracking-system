@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import React from 'react'
 import ScheduleTable from 'components/ScheduleTable'
 import PageLayout from 'layouts/PageLayout'
@@ -17,6 +17,7 @@ const Index: NextPage = () => {
         created_at: Moment().format('YYYY-MM-DD')
       }),
     {
+      refreshInterval: 1000,
       revalidateOnMount: true
     }
   )
