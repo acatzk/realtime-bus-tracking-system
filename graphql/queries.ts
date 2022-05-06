@@ -63,3 +63,14 @@ export const GET_TRACK_IF_EXIST_AND_STATUS = gql`
     }
   }
 `
+
+export const GET_TRACKER_RECORDS_BY_USER_ID = gql`
+  query getTrackerRecordByUserId($user_id: uuid!) {
+    trackers(where: {isDeleted: {_eq: false}, user_id: {_eq: $user_id}}, order_by: {created_at_with_time: desc}, limit: 35) {
+      id
+      destination
+      created_at_with_time
+      plate_number
+    }
+  }
+`
