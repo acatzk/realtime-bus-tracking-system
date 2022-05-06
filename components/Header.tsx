@@ -9,7 +9,7 @@ import { classNames } from 'utils/classNames'
 import { BsCardChecklist } from 'react-icons/bs'
 import { HiOutlineStatusOffline, HiStatusOnline } from 'react-icons/hi'
 import { useForm } from 'react-hook-form'
-import { Router, useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 
 type props = {
   isActive?: boolean
@@ -31,6 +31,7 @@ const Header: React.FC<props> = (props) => {
 
   const isActiveDriverStatus = driverData?.data?.trackers[0]?.isActive
   const isDriverCount = driverData?.data?.trackers_aggregate?.aggregate?.count
+  const isNotAuthenticatedUser = router.pathname !== '/' && router.pathname !== '/login'
 
   return (
     <React.Fragment>
@@ -123,7 +124,7 @@ const Header: React.FC<props> = (props) => {
           </div>
         </div>
       </header>
-      {router.pathname !== '/' && (
+      {isNotAuthenticatedUser && (
         <section className="bg-white shadow">
           <div className="flex items-center justify-between  px-4 md:px-8 lg:px-16 md:max-w-2xl lg:max-w-7xl mx-auto">
             <DashboardSubLinks dashboardLink={dashboardLink} />
@@ -139,7 +140,7 @@ const Header: React.FC<props> = (props) => {
                     'focus:outline-none focus:ring-0  active:shadow-lg focus:shadow-lg',
                     isActiveDriverStatus
                       ? 'bg-green-500 hover:bg-green-600 hover:shadow-lg focus:bg-green-600 active:bg-green-700'
-                      : 'bg-gray-500 hover:bg-gray-600 hover:shadow-lg focus:bg-gray-600 active:bg-gray-700'
+                      : 'bg-gray-500 hover:bg-gray-600 hover:shadow-lg focus:bg-gray-600 active:bg-gray-700 animate-bounce'
                   )}>
                   {isSubmitting ? (
                     <span>Loading</span>
