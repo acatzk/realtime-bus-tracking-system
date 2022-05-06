@@ -132,11 +132,9 @@ const Header: React.FC<props> = (props) => {
                 <button
                   type="submit"
                   className={classNames(
-                    'text-white bg-gray-500 py-0.5 rounded-md px-2 font-medium flex items-center space-x-1',
+                    'text-white py-0.5 rounded-md px-2 font-medium flex items-center space-x-1',
                     'transition ease-in-out duration-150 hover:shadow-lg text-sm md:text-base',
-                    driverData?.data?.trackers[0]?.isActive
-                      ? 'bg-green-500 active:bg-green-600'
-                      : 'bg-gray-500 active:bg-gray-600'
+                    isActiveDriverStatus ? 'bg-green-500' : 'bg-gray-500'
                   )}>
                   {isSubmitting ? (
                     <span>Loading</span>
