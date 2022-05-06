@@ -8,7 +8,8 @@ module.exports = {
     "./utils/**/*.{js,jsx,ts,tsx}",
     "./pages/**/*.{js,jsx,ts,tsx}",
     "./layouts/**/*.{js,jsx,ts,tsx}",
-    "./components/**/*.{js,jsx,ts,tsx}"
+    "./components/**/*.{js,jsx,ts,tsx}",
+    "./node_modules/tw-elements/dist/js/**/*.js"
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -26,6 +27,7 @@ module.exports = {
   },
   plugins: [
     require("tailwindcss-scrollbar"),
-    require('@tailwindcss/forms')
+    require('@tailwindcss/forms'),
+    require('tw-elements/dist/plugin')
   ],
 }

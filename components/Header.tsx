@@ -131,10 +131,15 @@ const Header: React.FC<props> = (props) => {
               <form onSubmit={handleSubmit(onSubmitForm)}>
                 <button
                   type="submit"
+                  data-mdb-ripple="true"
+                  data-mdb-ripple-color="light"
                   className={classNames(
-                    'text-white py-0.5 rounded-md px-2 font-medium flex items-center space-x-1',
+                    'text-white py-0.5 rounded px-2 font-medium flex items-center space-x-1',
                     'transition ease-in-out duration-150 hover:shadow-lg text-sm md:text-base',
-                    isActiveDriverStatus ? 'bg-green-500' : 'bg-gray-500'
+                    'focus:outline-none focus:ring-0  active:shadow-lg focus:shadow-lg',
+                    isActiveDriverStatus
+                      ? 'bg-green-500 hover:bg-green-600 hover:shadow-lg focus:bg-green-600 active:bg-green-700'
+                      : 'bg-gray-500 hover:bg-gray-600 hover:shadow-lg focus:bg-gray-600 active:bg-gray-700'
                   )}>
                   {isSubmitting ? (
                     <span>Loading</span>

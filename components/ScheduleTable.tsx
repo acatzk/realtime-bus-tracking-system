@@ -73,13 +73,13 @@ const ScheduleTable: React.FC<props> = (props) => {
                   px-2
                   bg-[#F3F6FF]
                   border-b border-l border-[#E8E8E8]
-                  flex items-center flex-wrap space-x-1 md:space-x-3 justify-center
+                  flex flex-col md:flex-row items-center space-x-1 md:space-x-3 justify-center
                 ">
               <div className="relative">
                 <Image
                   src={user.avatarUrl}
-                  width={40}
-                  height={40}
+                  width={44}
+                  height={44}
                   className="rounded-full border"
                   alt="avatar"
                 />
