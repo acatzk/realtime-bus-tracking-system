@@ -42,12 +42,11 @@ const NotFound: NextPage = () => {
             </div>
           </div>
           <div>
-            <motion.button
-              whileHover={{ y: -4 }}
+            <button
               onClick={() => router.push('/')}
               className="px-6 py-3 rounded-full bg-yellow-500 hover:bg-yellow-400 text-white font-semibold hover:shadow-xl transition ease-in-out duration-150 focus:outline-none">
               Back to Homepage
-            </motion.button>
+            </button>
           </div>
         </div>
       </div>

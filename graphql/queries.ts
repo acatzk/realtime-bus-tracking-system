@@ -37,6 +37,8 @@ export const GET_DRIVER_LOCATION_BY_CURRENT_DATE = gql`
       id
       user_id
       plate_number
+      destination
+      created_at_with_time
       latitude
       longitude
       user {

@@ -1,5 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
+import Moment from 'moment'
+import { FaMapMarkedAlt } from 'react-icons/fa'
 
 type props = {
   data?: any
@@ -40,6 +42,38 @@ const ScheduleTable: React.FC<props> = (props) => {
               lg:py-7
               px-3
               lg:px-4
+              border-l border-transparent
+            ">
+            Destination
+          </th>
+          <th
+            className="
+              w-1/3
+              min-w-[160px]
+              text-base
+              md:text-lg
+              font-semibold
+              text-white
+              py-4
+              lg:py-7
+              px-3
+              lg:px-4
+              border-l border-transparent
+            ">
+            Departure Time
+          </th>
+          <th
+            className="
+              w-1/3
+              min-w-[160px]
+              text-base
+              md:text-lg
+              font-semibold
+              text-white
+              py-4
+              lg:py-7
+              px-3
+              lg:px-4
             ">
             Plate Number
           </th>
@@ -61,7 +95,7 @@ const ScheduleTable: React.FC<props> = (props) => {
         </tr>
       </thead>
       <tbody>
-        {trackers?.map(({ id, user, plate_number }) => (
+        {trackers?.map(({ id, user, plate_number, destination, created_at_with_time }) => (
           <tr key={id}>
             <td
               className="
@@ -89,8 +123,35 @@ const ScheduleTable: React.FC<props> = (props) => {
             <td
               className="
                   text-center text-dark
-                  font-bold
-                  text-base
+                  text-sm
+                  md:text-base
+                  font-semibold
+                  py-5
+                  px-2
+                  bg-white
+                  border-b border-[#E8E8E8]
+                ">
+              {destination}
+            </td>
+            <td
+              className="
+                  text-center text-dark
+                  text-sm
+                  md:text-base
+                  font-semibold
+                  py-5
+                  px-2
+                  bg-[#F3F6FF]
+                  border-b border-[#E8E8E8]
+                ">
+              {Moment(created_at_with_time).format('HH:mm:ss')}
+            </td>
+            <td
+              className="
+                  text-center text-dark
+                  text-sm
+                  md:text-base
+                  font-semibold
                   py-5
                   px-2
                   bg-white
@@ -100,16 +161,20 @@ const ScheduleTable: React.FC<props> = (props) => {
             </td>
             <td
               className="
-                  text-center text-dark
-                  font-medium
-                  text-base
+                  text-center
+                  text-sm
+                  md:text-base
+                  font-semibold
                   py-5
                   px-2
                   bg-[#F3F6FF]
                   border-b border-[#E8E8E8]
                 ">
-              <a href={`/map/${id}`} className="text-sm hover:underline text-blue-500">
-                See live map
+              <a
+                href={`/map/${id}`}
+                className="flex  justify-center space-x-2 text-sm hover:underline text-blue-500">
+                <FaMapMarkedAlt className="w-5 h-5" />
+                <span>See Live Map</span>
               </a>
             </td>
           </tr>

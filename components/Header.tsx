@@ -141,7 +141,10 @@ const Header: React.FC<props> = (props) => {
                     isActiveDriverStatus
                       ? 'bg-green-500 hover:bg-green-600 hover:shadow-lg focus:bg-green-600 active:bg-green-700'
                       : 'bg-gray-500 hover:bg-gray-600 hover:shadow-lg focus:bg-gray-600 active:bg-gray-700 animate-bounce'
-                  )}>
+                  )}
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  title="Status if you are driving...">
                   {isSubmitting ? (
                     <span>Loading</span>
                   ) : (
