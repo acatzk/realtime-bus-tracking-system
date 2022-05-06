@@ -9,7 +9,6 @@ import { toast } from 'react-toastify'
 import { Spinner } from 'utils/Icons'
 import { nhost } from 'lib/nhost-client'
 import { GET_USER_ROLE_BY_EMAIL } from 'graphql/queries'
-import Header from 'components/Header'
 
 const Login: NextPage = () => {
   const { isAuthenticated, isLoading } = useAuthenticationStatus()
@@ -94,7 +93,6 @@ const Login: NextPage = () => {
 
   return (
     <PageLayout metaHead="| Login">
-      <Header />
       <main className="min-h-[91vh] px-4 md:px-8 lg:px-16 md:max-w-2xl lg:max-w-7xl mx-auto flex justify-center place-items-center">
         <div className="relative max-w-sm w-full">
           <div className="card bg-[#1f1b58] shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
