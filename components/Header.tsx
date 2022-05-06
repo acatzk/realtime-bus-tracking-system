@@ -168,18 +168,9 @@ const Header: React.FC<props> = (props) => {
 }
 
 function UserAvatar({ user }) {
-  return user?.avatarUrl ? (
+  return (
     <Image
       src={user?.avatarUrl}
-      width={32}
-      height={32}
-      className="rounded-full"
-      layout="intrinsic"
-      alt="avatar"
-    />
-  ) : (
-    <Image
-      src="https://th.bing.com/th/id/OIP.o5hnVgDkhrAIKPAUMAtzcAHaHa?w=166&h=180&c=7&r=0&o=5&pid=1.7"
       width={32}
       height={32}
       className="rounded-full"

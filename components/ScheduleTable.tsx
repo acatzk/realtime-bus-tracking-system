@@ -28,7 +28,7 @@ const ScheduleTable: React.FC<props> = (props) => {
               lg:px-4
               border-l border-transparent
             ">
-            Driver&apos;s Name
+            Driver
           </th>
           <th
             className="
