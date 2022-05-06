@@ -11,7 +11,7 @@ const DashboardTable: React.FC<props> = (props) => {
 
   return (
     <table className="min-w-full border ">
-      <thead className="bg-white border-b">
+      <thead className="bg-white border-b shadow">
         <tr className="bg-gray-100 border-blue-20">
           <th
             scope="col"
@@ -59,7 +59,7 @@ const DashboardTable: React.FC<props> = (props) => {
                 {plate_number}
               </td>
               <td className="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap border-r">
-                <div className="flex items-center justify-center mb-3">
+                <div className="flex items-center justify-start mb-3">
                   <div className="inline-flex" role="group">
                     <button
                       type="button"

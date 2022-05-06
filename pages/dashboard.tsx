@@ -32,7 +32,7 @@ const Dashboard: NextPage = () => {
           </div>
           <div className="bg-white w-full border rounded-lg overflow-hidden">
             <div className="py-3 px-6 border-b border-gray-300">Your Track Records</div>
-            <div className="flex flex-col p-2">
+            <div className="flex flex-col -px-2 -mt-2">
               <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8 min-h-[50vh]">
                   <div className="overflow-hidden">
