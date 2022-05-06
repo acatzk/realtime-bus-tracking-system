@@ -75,6 +75,7 @@ const Login: NextPage = () => {
         draggable: true,
         progress: undefined
       })
+      router.push('/dashboard')
     }
   }
 
