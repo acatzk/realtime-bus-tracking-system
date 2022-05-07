@@ -22,3 +22,9 @@ export const dashboardLink = [
   { name: 'Dashboard', href: 'dashboard', Icon: BsCardChecklist },
   { name: 'Track Me', href: 'track-me', Icon: MdLocationPin }
 ]
+
+export const direction = [
+  { name: 'Sogod -> Ormoc City' },
+  { name: 'Ormoc City -> Sogod' },
+  { name: 'Sogod -> Tacloban' }
+]

@@ -1,16 +1,51 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Moment from 'moment'
 import { classNames } from 'utils'
+import UpdateTrackerDialog from './UpdateTrackerDialog'
+import { UPDATE_DRIVERS_TRACK } from 'graphql/mutations'
+import { nhost } from 'lib/nhost-client'
+import { direction } from 'mock/object-list'
+import { mutate } from 'swr'
+import { toast } from 'react-toastify'
+import { useUserData } from '@nhost/react'
 
 type props = {
   driverData: any
 }
 
 const DashboardTable: React.FC<props> = (props) => {
+  const user = useUserData()
   const { driverData } = props
+  let [isOpen, setIsOpen] = useState(false)
+  const [selected, setSelected] = useState(direction[0])
+
+  const closeModal = () => setIsOpen(false)
+  const openModal = () => setIsOpen(true)
+
+  const handleSubmitForm = async ({ plate_number }) => {
+    const {
+      data: { update_trackers }
+    } = await nhost.graphql.request(UPDATE_DRIVERS_TRACK, {
+      user_id: user?.id,
+      plate_number,
+      destination: selected?.name.toString()
+    })
+
+    mutate({ ...update_trackers })
+    toast.success(`Successfully Updated.`, {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined
+    })
+    closeModal()
+  }
 
   return (
-    <table className="min-w-full border ">
+    <table className="min-w-full border-b ">
       <thead className="bg-white border-b shadow">
         <tr className="bg-gray-100 border-blue-20">
           <th
@@ -41,28 +76,37 @@ const DashboardTable: React.FC<props> = (props) => {
         </tr>
       </thead>
       <tbody>
-        {driverData?.data?.trackers?.map(
-          ({ id, destination, plate_number, created_at_with_time }) => (
-            <tr
-              key={id}
-              className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-50">
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-r">
-                {Moment(created_at_with_time).format('MMM DD, YYYY')}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-r">
-                {destination}
-              </td>
-              <td className="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap border-r">
-                {Moment(created_at_with_time).format('HH:mm:ss')}
-              </td>
-              <td className="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap border-r">
-                {plate_number}
-              </td>
-              <td className="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap border-r">
-                <div className="flex items-center justify-start mb-3">
-                  <div className="inline-flex" role="group">
+        {driverData?.data?.trackers?.map((track) => (
+          <tr
+            key={track.id}
+            className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-50">
+            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-r">
+              {Moment(track?.created_at_with_time).format('MMM DD, YYYY')}
+            </td>
+            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-r">
+              {track?.destination}
+            </td>
+            <td className="text-sm text-gray-900 font-medium px-6 whitespace-nowrap border-r">
+              {Moment(track?.created_at_with_time).format('HH:mm:ss')}
+            </td>
+            <td className="text-sm text-gray-900 font-medium px-6 whitespace-nowrap border-r">
+              {track?.plate_number}
+            </td>
+            <td className="mt-text-sm text-gray-900 font-medium px-6 whitespace-nowrap border-r">
+              <div className="flex items-center justify-start">
+                <div className="inline-flex" role="group">
+                  <div>
+                    <UpdateTrackerDialog
+                      isOpen={isOpen}
+                      closeModal={closeModal}
+                      track={track}
+                      onSubmitForm={handleSubmitForm}
+                      selected={selected}
+                      setSelected={setSelected}
+                    />
                     <button
                       type="button"
+                      onClick={openModal}
                       className={classNames(
                         'rounded-l inline-block px-3 py-1.5 bg-yellow-500 text-white font-medium text-xs leading-tight',
                         'hover:bg-yellow-600 focus:bg-yellow-600 focus:outline-none focus:ring-0 active:bg-yellow-700',
@@ -70,21 +114,21 @@ const DashboardTable: React.FC<props> = (props) => {
                       )}>
                       Edit
                     </button>
-                    <button
-                      type="button"
-                      className={classNames(
-                        'rounded-r inline-block px-2 py-0.5 bg-red-500 text-white font-medium text-xs leading-tight',
-                        'hover:bg-red-600 focus:bg-red-600 focus:outline-none focus:ring-0 active:bg-red-700',
-                        'transition duration-150 ease-in-out'
-                      )}>
-                      Delete
-                    </button>
                   </div>
+                  <button
+                    type="button"
+                    className={classNames(
+                      'rounded-r inline-block px-2 py-0.5 bg-red-500 text-white font-medium text-xs leading-tight',
+                      'hover:bg-red-600 focus:bg-red-600 focus:outline-none focus:ring-0 active:bg-red-700',
+                      'transition duration-150 ease-in-out'
+                    )}>
+                    Delete
+                  </button>
                 </div>
-              </td>
-            </tr>
-          )
-        )}
+              </div>
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   )

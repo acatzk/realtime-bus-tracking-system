@@ -85,7 +85,7 @@ const PageLayout: React.FC<props> = (props) => {
   return (
     <React.Fragment>
       <Head>
-        <title>Davao Metro Shuttle {metaHead}</title>
+        <title>Clementina {metaHead}</title>
       </Head>
       <Header driverData={driverData} onSubmitForm={onSubmitForm} />
       <div className="antialiased">{children}</div>

@@ -181,8 +181,9 @@ const ScheduleTable: React.FC<props> = (props) => {
         ))}
       </tbody>
       {trackers?.length === 0 && (
-        <tfoot>
+        <tfoot className="border">
           <tr className="bg-gray-200 text-center">
+            <td></td>
             <td></td>
             <td
               className="
@@ -194,6 +195,7 @@ const ScheduleTable: React.FC<props> = (props) => {
               ">
               No Active Driver
             </td>
+            <td></td>
             <td></td>
           </tr>
         </tfoot>
