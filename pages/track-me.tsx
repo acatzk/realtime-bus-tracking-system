@@ -12,12 +12,7 @@ import { useUserData } from '@nhost/react'
 import { CHECK_EMPLOYEE_IF_ALREADY_TRACK } from 'graphql/queries'
 import Moment from 'moment'
 import { useRouter } from 'next/router'
-
-const direction = [
-  { name: 'Sogod -> Ormoc City' },
-  { name: 'Ormoc City -> Sogod' },
-  { name: 'Sogod -> Tacloban' }
-]
+import { direction } from 'mock/object-list'
 
 const TrackMe: NextPage = () => {
   const user = useUserData()
@@ -73,9 +68,7 @@ const TrackMe: NextPage = () => {
 
       if (count === 0) {
         // Insert the actual insert of the trackers table
-        const {
-          data: { insert_trackers }
-        } = await nhost.graphql.request(CREATE_BUS_TRACKER_MUTATION, {
+        await nhost.graphql.request(CREATE_BUS_TRACKER_MUTATION, {
           user_id: user?.id,
           plate_number,
           longitude: longitude,
@@ -83,21 +76,17 @@ const TrackMe: NextPage = () => {
           destination: selected.name
         })
 
-        const { affected_rows } = insert_trackers
-
-        if (affected_rows === 1) {
-          reset()
-          toast.success(`Success, keep safe while driving!`, {
-            position: 'top-right',
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined
-          })
-          router.push('/dashboard')
-        }
+        reset()
+        toast.success(`Success, keep safe while driving!`, {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined
+        })
+        router.push('/dashboard')
       } else {
         toast.warning(`You already saved data for today.`, {
           position: 'top-right',
@@ -144,7 +133,7 @@ const TrackMe: NextPage = () => {
                         'absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1',
                         'ring-black ring-opacity-5 focus:outline-none sm:text-sm'
                       )}>
-                      {direction.map((location, index) => (
+                      {direction?.map((location, index) => (
                         <Listbox.Option
                           key={index}
                           className={({ active }) =>
