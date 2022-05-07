@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Moment from 'moment'
+import Link from 'next/link'
 import { FaMapMarkedAlt } from 'react-icons/fa'
 
 type props = {
@@ -170,12 +171,12 @@ const ScheduleTable: React.FC<props> = (props) => {
                   bg-[#F3F6FF]
                   border-b border-[#E8E8E8]
                 ">
-              <a
-                href={`/map/${id}`}
-                className="flex  justify-center space-x-2 text-sm hover:underline text-blue-500">
-                <FaMapMarkedAlt className="w-5 h-5" />
-                <span>See Live Map</span>
-              </a>
+              <Link href={`/map/${id}`}>
+                <a className="flex  justify-center space-x-2 text-sm hover:underline text-blue-500">
+                  <FaMapMarkedAlt className="w-5 h-5" />
+                  <span>See Live Map</span>
+                </a>
+              </Link>
             </td>
           </tr>
         ))}
