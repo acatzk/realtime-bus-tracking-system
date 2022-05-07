@@ -22,7 +22,7 @@ const DashboardTable: React.FC<props> = (props) => {
   const closeModal = () => setIsOpen(false)
   const openModal = () => setIsOpen(true)
 
-  const handleSubmitForm = async ({ plate_number }) => {
+  const handleSubmitUpdateForm = async ({ plate_number }) => {
     const {
       data: { update_trackers }
     } = await nhost.graphql.request(UPDATE_DRIVERS_TRACK, {
@@ -100,7 +100,7 @@ const DashboardTable: React.FC<props> = (props) => {
                       isOpen={isOpen}
                       closeModal={closeModal}
                       track={track}
-                      onSubmitForm={handleSubmitForm}
+                      onSubmitForm={handleSubmitUpdateForm}
                       selected={selected}
                       setSelected={setSelected}
                     />

@@ -174,7 +174,7 @@ const ScheduleTable: React.FC<props> = (props) => {
               <Link href={`/map/${id}`}>
                 <a className="flex  justify-center space-x-2 text-sm hover:underline text-blue-500">
                   <FaMapMarkedAlt className="w-5 h-5" />
-                  <span>See Live Map</span>
+                  <span>View Live Map</span>
                 </a>
               </Link>
             </td>
