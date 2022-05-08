@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Moment from 'moment'
 import { classNames } from 'utils'
 import UpdateTrackerDialog from './UpdateTrackerDialog'
-import { UPDATE_DRIVERS_TRACK } from 'graphql/mutations'
+import { UPDATE_DRIVER_BY_PK_ID } from 'graphql/mutations'
 import { nhost } from 'lib/nhost-client'
 import { direction } from 'mock/object-list'
 import { mutate } from 'swr'
@@ -16,17 +16,21 @@ type props = {
 const DashboardTable: React.FC<props> = (props) => {
   const user = useUserData()
   const { driverData } = props
-  let [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const [track, setTrack] = useState(false)
   const [selected, setSelected] = useState(direction[0])
 
   const closeModal = () => setIsOpen(false)
-  const openModal = () => setIsOpen(true)
+  const openModal = (track) => {
+    setIsOpen(true)
+    setTrack(track)
+  }
 
-  const handleSubmitUpdateForm = async ({ plate_number }) => {
+  const handleSubmitUpdateForm = async ({ id, plate_number }) => {
     const {
       data: { update_trackers }
-    } = await nhost.graphql.request(UPDATE_DRIVERS_TRACK, {
-      user_id: user?.id,
+    } = await nhost.graphql.request(UPDATE_DRIVER_BY_PK_ID, {
+      id,
       plate_number,
       destination: selected?.name.toString()
     })
@@ -95,26 +99,16 @@ const DashboardTable: React.FC<props> = (props) => {
             <td className="mt-text-sm text-gray-900 font-medium px-6 whitespace-nowrap border-r">
               <div className="flex items-center justify-start">
                 <div className="inline-flex" role="group">
-                  <div>
-                    <UpdateTrackerDialog
-                      isOpen={isOpen}
-                      closeModal={closeModal}
-                      track={track}
-                      onSubmitForm={handleSubmitUpdateForm}
-                      selected={selected}
-                      setSelected={setSelected}
-                    />
-                    <button
-                      type="button"
-                      onClick={openModal}
-                      className={classNames(
-                        'rounded-l inline-block px-3 py-1.5 bg-yellow-500 text-white font-medium text-xs leading-tight',
-                        'hover:bg-yellow-600 focus:bg-yellow-600 focus:outline-none focus:ring-0 active:bg-yellow-700',
-                        'transition duration-150 ease-in-out'
-                      )}>
-                      Edit
-                    </button>
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => openModal(track)}
+                    className={classNames(
+                      'rounded-l inline-block px-3 py-1.5 bg-yellow-500 text-white font-medium text-xs leading-tight',
+                      'hover:bg-yellow-600 focus:bg-yellow-600 focus:outline-none focus:ring-0 active:bg-yellow-700',
+                      'transition duration-150 ease-in-out'
+                    )}>
+                    Edit
+                  </button>
                   <button
                     type="button"
                     className={classNames(
@@ -129,6 +123,14 @@ const DashboardTable: React.FC<props> = (props) => {
             </td>
           </tr>
         ))}
+        <UpdateTrackerDialog
+          isOpen={isOpen}
+          closeModal={closeModal}
+          track={track}
+          onSubmitForm={handleSubmitUpdateForm}
+          selected={selected}
+          setSelected={setSelected}
+        />
       </tbody>
     </table>
   )

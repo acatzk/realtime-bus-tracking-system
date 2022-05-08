@@ -22,16 +22,14 @@ export const UPDATE_BUS_DRIVER_STATUS_MUTATION = gql`
   }
 `
 
-export const UPDATE_DRIVERS_TRACK = gql`
-  mutation updateDriverInfo($user_id: uuid!, $destination: String!, $plate_number: String!) {
-    update_trackers(where: {user_id: {_eq: $user_id}}, _set: {plate_number: $plate_number, destination: $destination}) {
-      returning {
+export const UPDATE_DRIVER_BY_PK_ID = gql`
+  mutation updateDriverByPkId($id: uuid!, $destination: String!, $plate_number: String!) {
+    update_trackers_by_pk(pk_columns: {id: $id}, _set: {plate_number: $plate_number, destination: $destination}) {
+      id
+      user_id
+      user {
         id
-        user_id
-        user {
-          id
-          email
-        }
+        email
       }
     }
   }
