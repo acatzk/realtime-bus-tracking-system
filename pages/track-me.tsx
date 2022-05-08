@@ -91,7 +91,7 @@ const TrackMe: NextPage = () => {
   }
 
   return (
-    <DashboardLayout metaHead="| Dashboard">
+    <DashboardLayout metaHead="| Track Me">
       <main className="min-h-[81vh] px-4 md:px-8 lg:px-16 pb-8 md:max-w-2xl lg:max-w-7xl mx-auto">
         <div className="mt-8 max-w-lg mx-auto">
           <h1 className="text-lg font-bold text-center">Track Bus Driver</h1>
