@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Moment from 'moment'
 import { classNames } from 'utils'
 import UpdateTrackerDialog from './UpdateTrackerDialog'
@@ -7,24 +7,34 @@ import { nhost } from 'lib/nhost-client'
 import { direction } from 'mock/object-list'
 import { mutate } from 'swr'
 import { toast } from 'react-toastify'
-import { useUserData } from '@nhost/react'
 
 type props = {
   driverData: any
 }
 
 const DashboardTable: React.FC<props> = (props) => {
-  const user = useUserData()
   const { driverData } = props
   const [isOpen, setIsOpen] = useState(false)
-  const [track, setTrack] = useState(false)
+  const [trackData, setTracktrackData] = useState({})
   const [selected, setSelected] = useState(direction[0])
 
-  const closeModal = () => setIsOpen(false)
-  const openModal = (track) => {
-    setIsOpen(true)
-    setTrack(track)
+  const closeModal = () => {
+    setTracktrackData({
+      id: '',
+      plate_number: ''
+    })
+    setIsOpen(false)
   }
+
+  const openModal = (track) => {
+    setTracktrackData(track)
+    // console.log(track)
+    setIsOpen(true)
+  }
+
+  // useEffect(() => {
+  //   console.log(trackData)
+  // }, [trackData])
 
   const handleSubmitUpdateForm = async ({ id, plate_number }) => {
     const {
@@ -75,7 +85,7 @@ const DashboardTable: React.FC<props> = (props) => {
           <th
             scope="col"
             className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
-            Action
+            Options
           </th>
         </tr>
       </thead>
@@ -126,7 +136,7 @@ const DashboardTable: React.FC<props> = (props) => {
         <UpdateTrackerDialog
           isOpen={isOpen}
           closeModal={closeModal}
-          track={track}
+          track={trackData}
           onSubmitForm={handleSubmitUpdateForm}
           selected={selected}
           setSelected={setSelected}

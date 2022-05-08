@@ -21,7 +21,13 @@ const UpdateTrackerDialog: React.FC<props> = (props) => {
     register,
     handleSubmit,
     formState: { isSubmitting, errors }
-  } = useForm()
+  } = useForm({
+    mode: 'onChange',
+    defaultValues: {
+      id: '',
+      plate_number: ''
+    }
+  })
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -59,11 +65,13 @@ const UpdateTrackerDialog: React.FC<props> = (props) => {
                       <label
                         htmlFor="email"
                         className="text-sm font-medium text-gray-900 block mb-2">
-                        Plate Number
+                        ID
                       </label>
                       <input
-                        type="hidden"
+                        type="text"
+                        className="w-full"
                         defaultValue={track?.id}
+                        defaultChecked={track?.id}
                         {...register('id', { required: true })}
                       />
                     </div>
@@ -132,6 +140,7 @@ const UpdateTrackerDialog: React.FC<props> = (props) => {
                     <input
                       type="text"
                       defaultValue={track?.plate_number}
+                      defaultChecked={track?.plate_number}
                       className={classNames(
                         'mt-1 block py-2 w-full shadow-sm sm:text-md rounded-md',
                         'disabled:opacity-50 disabled:cursor-not-allowed',
