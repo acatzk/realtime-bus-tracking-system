@@ -19,22 +19,13 @@ const DashboardTable: React.FC<props> = (props) => {
   const [selected, setSelected] = useState(direction[0])
 
   const closeModal = () => {
-    setTracktrackData({
-      id: '',
-      plate_number: ''
-    })
     setIsOpen(false)
   }
 
   const openModal = (track) => {
     setTracktrackData(track)
-    // console.log(track)
     setIsOpen(true)
   }
-
-  // useEffect(() => {
-  //   console.log(trackData)
-  // }, [trackData])
 
   const handleSubmitUpdateForm = async ({ id, plate_number }) => {
     const {

@@ -48,11 +48,11 @@ const PageLayout: React.FC<props> = (props) => {
 
   const isActiveDriverStatus = driverData?.data?.trackers[0]?.isActive
 
-  useEffect(() => {
-    isAuthenticated && isActiveDriverStatus
-      ? console.log('Update data')
-      : console.log('Remain Stable Data')
-  })
+  // useEffect(() => {
+  //   isAuthenticated && isActiveDriverStatus
+  //     ? console.log('Update data')
+  //     : console.log('Remain Stable Data')
+  // })
 
   const onSubmitForm = async () => {
     const { data: driverData } = await nhost.graphql.request(GET_TRACK_IF_EXIST_AND_STATUS, {
