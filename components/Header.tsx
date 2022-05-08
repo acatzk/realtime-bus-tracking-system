@@ -101,21 +101,21 @@ const Header: React.FC<props> = (props) => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95">
                     <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      {userNavigation.map((item) => (
-                        <Menu.Item key={item.name}>
-                          {({ active }) => (
-                            <a
-                              href={item.href}
-                              onClick={() => item.name === 'Sign out' && signOut.signOut()}
-                              className={classNames(
-                                active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm text-gray-700'
-                              )}>
-                              {item.name}
-                            </a>
-                          )}
-                        </Menu.Item>
-                      ))}
+                      <Menu.Item>
+                        <Link href="/profile">
+                          <a className="hover:bg-gray-100 block px-4 py-2 text-sm text-gray-700">
+                            Profile
+                          </a>
+                        </Link>
+                      </Menu.Item>
+                      <Menu.Item>
+                        <a
+                          href="#"
+                          onClick={() => signOut.signOut()}
+                          className="w-full hover:bg-gray-100 block px-4 py-2 text-sm text-gray-700">
+                          Sign Out
+                        </a>
+                      </Menu.Item>
                     </Menu.Items>
                   </Transition>
                 </Menu>
@@ -126,7 +126,7 @@ const Header: React.FC<props> = (props) => {
       </header>
       {isNotAuthenticatedUser && (
         <section className="bg-white shadow">
-          <div className="flex items-center justify-between  px-4 md:px-8 lg:px-16 md:max-w-2xl lg:max-w-7xl mx-auto">
+          <div className="flex items-center flex-wrap justify-between px-4 md:px-8 lg:px-16 md:max-w-2xl lg:max-w-7xl mx-auto">
             <DashboardSubLinks dashboardLink={dashboardLink} />
             {isDriverCount === 1 && (
               <form onSubmit={handleSubmit(onSubmitForm)}>
@@ -135,7 +135,7 @@ const Header: React.FC<props> = (props) => {
                   data-mdb-ripple="true"
                   data-mdb-ripple-color="light"
                   className={classNames(
-                    'text-white py-0.5 rounded px-2 font-medium flex items-center space-x-1',
+                    'text-white py-0.5 rounded px-2 font-medium flex flex-wrap items-center space-x-1',
                     'transition ease-in-out duration-150 hover:shadow-lg text-sm md:text-base',
                     'focus:outline-none focus:ring-0  active:shadow-lg focus:shadow-lg',
                     isActiveDriverStatus
