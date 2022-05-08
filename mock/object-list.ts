@@ -24,7 +24,6 @@ export const dashboardLink = [
 ]
 
 export const direction = [
-  { name: 'Sogod -> Ormoc City' },
-  { name: 'Ormoc City -> Sogod' },
-  { name: 'Sogod -> Tacloban' }
+  { name: 'Kinachawa San Ricardo -> Maasin City' },
+  { name: 'Maasin City -> Kinachawa San Ricardo ' }
 ]
