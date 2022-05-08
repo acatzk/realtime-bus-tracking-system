@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Head from 'next/head'
 import Footer from 'components/Footer'
 import Header from 'components/Header'
 import useSWR from 'swr'
 import { GET_TRACK_IF_EXIST_AND_STATUS } from 'graphql/queries'
 import { nhost } from 'lib/nhost-client'
-import { useUserData } from '@nhost/react'
+import { useAuthenticationStatus, useUserData } from '@nhost/react'
 import Moment from 'moment'
 import { UPDATE_BUS_DRIVER_STATUS_MUTATION } from 'graphql/mutations'
 import { toast } from 'react-toastify'
@@ -30,6 +30,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 const PageLayout: React.FC<props> = (props) => {
   const { children, metaHead } = props
   const user = useUserData()
+  const { isAuthenticated } = useAuthenticationStatus()
 
   // Check the current Status and check if exist
   const { data: driverData } = useSWR(
@@ -44,6 +45,14 @@ const PageLayout: React.FC<props> = (props) => {
       revalidateOnMount: true
     }
   )
+
+  const isActiveDriverStatus = driverData?.data?.trackers[0]?.isActive
+
+  useEffect(() => {
+    isAuthenticated && isActiveDriverStatus
+      ? console.log('Update data')
+      : console.log('Remain Stable Data')
+  })
 
   const onSubmitForm = async () => {
     const { data: driverData } = await nhost.graphql.request(GET_TRACK_IF_EXIST_AND_STATUS, {

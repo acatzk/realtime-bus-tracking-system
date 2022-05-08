@@ -63,7 +63,7 @@ const TrackMe: NextPage = () => {
           destination: selected.name
         })
 
-        console.log(result)
+        // console.log(result)
 
         reset()
         toast.success(`Success, keep safe while driving!`, {

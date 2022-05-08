@@ -55,6 +55,18 @@ const UpdateTrackerDialog: React.FC<props> = (props) => {
                 </Dialog.Title>
                 <form className="mt-2" onSubmit={handleSubmit(onSubmitForm)}>
                   <div className="mb-6">
+                    <div className="mb-6">
+                      <label
+                        htmlFor="email"
+                        className="text-sm font-medium text-gray-900 block mb-2">
+                        Plate Number
+                      </label>
+                      <input
+                        type="hidden"
+                        defaultValue={track?.id}
+                        {...register('id', { required: true })}
+                      />
+                    </div>
                     <label
                       htmlFor="Destination"
                       className="text-sm font-medium text-gray-900 block mb-2">
