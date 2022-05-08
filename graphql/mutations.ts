@@ -34,3 +34,16 @@ export const UPDATE_DRIVER_BY_PK_ID = gql`
     }
   }
 `
+
+export const DELETE_DRIVER_BY_PK_ID = gql`
+  mutation updateDriverIsDeletedByPkId($id: uuid!) {
+    update_trackers_by_pk(pk_columns: {id: $id}, _set: {isDeleted: true}) {
+      id
+      user_id
+      user {
+        id
+        email
+      }
+    }
+  }
+`

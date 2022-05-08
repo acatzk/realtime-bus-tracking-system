@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Moment from 'moment'
 import { classNames } from 'utils'
 import UpdateTrackerDialog from './UpdateTrackerDialog'
-import { UPDATE_DRIVER_BY_PK_ID } from 'graphql/mutations'
+import { DELETE_DRIVER_BY_PK_ID, UPDATE_DRIVER_BY_PK_ID } from 'graphql/mutations'
 import { nhost } from 'lib/nhost-client'
 import { direction } from 'mock/object-list'
 import { mutate } from 'swr'
@@ -47,6 +47,26 @@ const DashboardTable: React.FC<props> = (props) => {
       progress: undefined
     })
     closeModal()
+  }
+
+  const handleDeleteTrackRecord = async (track) => {
+    let result = confirm('Want to delete?')
+    if (result) {
+      const result = await nhost.graphql.request(DELETE_DRIVER_BY_PK_ID, {
+        id: track?.id
+      })
+      if (result) {
+        toast.success(`Successfully Deleted.`, {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined
+        })
+      }
+    }
   }
 
   return (
@@ -112,6 +132,7 @@ const DashboardTable: React.FC<props> = (props) => {
                   </button>
                   <button
                     type="button"
+                    onClick={() => handleDeleteTrackRecord(track)}
                     className={classNames(
                       'rounded-r inline-block px-2 py-0.5 bg-red-500 text-white font-medium text-xs leading-tight',
                       'hover:bg-red-600 focus:bg-red-600 focus:outline-none focus:ring-0 active:bg-red-700',
