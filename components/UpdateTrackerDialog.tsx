@@ -62,13 +62,8 @@ const UpdateTrackerDialog: React.FC<props> = (props) => {
                 <form className="mt-2" onSubmit={handleSubmit(onSubmitForm)}>
                   <div className="mb-6">
                     <div className="mb-6">
-                      <label
-                        htmlFor="email"
-                        className="text-sm font-medium text-gray-900 block mb-2">
-                        ID
-                      </label>
                       <input
-                        type="text"
+                        type="hidden"
                         className="w-full"
                         defaultValue={track?.id}
                         defaultChecked={track?.id}
