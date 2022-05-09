@@ -25,6 +25,7 @@ const UpdateTrackerDialog: React.FC<props> = (props) => {
     mode: 'onChange',
     defaultValues: {
       id: '',
+      departure_time: '',
       plate_number: ''
     }
   })
@@ -127,6 +128,28 @@ const UpdateTrackerDialog: React.FC<props> = (props) => {
                         </Transition>
                       </div>
                     </Listbox>
+                  </div>
+                  <div className="mb-6">
+                    <label htmlFor="email" className="text-sm font-medium text-gray-900 block mb-2">
+                      Depature Time
+                    </label>
+                    <input
+                      type="time"
+                      defaultValue={track?.departure_time}
+                      defaultChecked={track?.departure_time}
+                      className={classNames(
+                        'mt-1 block py-2 w-full shadow-sm sm:text-md rounded-md',
+                        'disabled:opacity-50 disabled:cursor-not-allowed',
+                        'transition ease-in-out duration-150',
+                        errors.departure_time?.type === 'required'
+                          ? 'border-red-500 ring-red-500 focus:border-red-500 focus:ring-red-500'
+                          : 'ring-indigo-200 focus:ring-indigo-500 border-gray-300'
+                      )}
+                      {...register('departure_time', { required: true })}
+                    />
+                    {errors.departure_time?.type === 'required' && (
+                      <span className="text-xs text-red-500 ml-1">Departure Time is required</span>
+                    )}
                   </div>
                   <div className="mb-6">
                     <label htmlFor="email" className="text-sm font-medium text-gray-900 block mb-2">
