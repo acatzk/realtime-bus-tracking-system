@@ -100,6 +100,7 @@ const Profile = () => {
                   <label className="text-gray-700">Phone Number</label>
                 </div>
                 <button
+                  disabled
                   type="submit"
                   className="
                     w-full
