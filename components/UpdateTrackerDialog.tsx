@@ -131,7 +131,7 @@ const UpdateTrackerDialog: React.FC<props> = (props) => {
                   </div>
                   <div className="mb-6">
                     <label htmlFor="email" className="text-sm font-medium text-gray-900 block mb-2">
-                      Depature Time
+                      Departure Time
                     </label>
                     <input
                       type="time"
