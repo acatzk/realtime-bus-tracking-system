@@ -7,7 +7,10 @@ import { GET_TRACK_IF_EXIST_AND_STATUS } from 'graphql/queries'
 import { nhost } from 'lib/nhost-client'
 import { useAuthenticationStatus, useUserData } from '@nhost/react'
 import Moment from 'moment'
-import { UPDATE_BUS_DRIVER_STATUS_MUTATION } from 'graphql/mutations'
+import {
+  UPDATE_BUS_DRIVER_STATUS_BY_PK,
+  UPDATE_BUS_DRIVER_STATUS_MUTATION
+} from 'graphql/mutations'
 import { toast } from 'react-toastify'
 import { GetServerSidePropsContext } from 'next'
 import { getNhostSession } from '@nhost/nextjs'
@@ -38,7 +41,7 @@ const PageLayout: React.FC<props> = (props) => {
     async (query) =>
       await nhost.graphql.request(query, {
         user_id: user?.id,
-        created_at: Moment().format('YYYY-MM-DD')
+        date_created: Moment().format('YYYY-MM-DD')
       }),
     {
       refreshInterval: 1000,
@@ -57,18 +60,18 @@ const PageLayout: React.FC<props> = (props) => {
   const onSubmitForm = async () => {
     const { data: driverData } = await nhost.graphql.request(GET_TRACK_IF_EXIST_AND_STATUS, {
       user_id: user?.id,
-      created_at: Moment().format('YYYY-MM-DD')
+      date_created: Moment().format('YYYY-MM-DD')
     })
 
     let isDriverActive = driverData?.trackers[0]?.isActive
+    let currentTrackPkId = driverData?.trackers[0]?.id
 
-    await nhost.graphql.request(UPDATE_BUS_DRIVER_STATUS_MUTATION, {
-      user_id: user?.id,
-      isActive: !isDriverActive,
-      date: Moment().format('YYYY-MM-DD')
+    const result = await nhost.graphql.request(UPDATE_BUS_DRIVER_STATUS_BY_PK, {
+      id: currentTrackPkId,
+      isActive: !isDriverActive
     })
 
-    if (!isDriverActive) {
+    if (!isDriverActive && result) {
       toast.success(`Status: ACTIVE`, {
         position: 'top-right',
         autoClose: 3000,

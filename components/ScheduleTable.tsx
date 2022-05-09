@@ -96,7 +96,7 @@ const ScheduleTable: React.FC<props> = (props) => {
         </tr>
       </thead>
       <tbody>
-        {trackers?.map(({ id, user, plate_number, destination, created_at_with_time }) => (
+        {trackers?.map(({ id, user, plate_number, destination, departure_time }) => (
           <tr key={id}>
             <td
               className="
@@ -112,14 +112,14 @@ const ScheduleTable: React.FC<props> = (props) => {
                 ">
               <div className="relative">
                 <Image
-                  src={user.avatarUrl}
+                  src={user?.avatarUrl}
                   width={44}
                   height={44}
                   className="rounded-full border"
                   alt="avatar"
                 />
               </div>
-              <span>{user.displayName}</span>
+              <span>{user?.displayName}</span>
             </td>
             <td
               className="
@@ -145,7 +145,7 @@ const ScheduleTable: React.FC<props> = (props) => {
                   bg-[#F3F6FF]
                   border-b border-[#E8E8E8]
                 ">
-              {Moment(created_at_with_time).format('HH:mm:ss')}
+              {departure_time}
             </td>
             <td
               className="

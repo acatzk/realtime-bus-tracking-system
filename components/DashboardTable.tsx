@@ -27,16 +27,17 @@ const DashboardTable: React.FC<props> = (props) => {
     setIsOpen(true)
   }
 
-  const handleSubmitUpdateForm = async ({ id, plate_number }) => {
+  const handleSubmitUpdateForm = async ({ id, departure_time, plate_number }) => {
     const {
-      data: { update_trackers }
+      data: { update_trackers_by_pk }
     } = await nhost.graphql.request(UPDATE_DRIVER_BY_PK_ID, {
       id,
       plate_number,
+      departure_time,
       destination: selected?.name.toString()
     })
 
-    mutate({ ...update_trackers })
+    mutate({ ...update_trackers_by_pk })
     toast.success(`Successfully Updated.`, {
       position: 'top-right',
       autoClose: 3000,
@@ -106,13 +107,13 @@ const DashboardTable: React.FC<props> = (props) => {
             key={track.id}
             className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-50">
             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-r">
-              {Moment(track?.created_at_with_time).format('MMM DD, YYYY')}
+              {Moment(track?.date_created).format('MMM DD, YYYY')}
             </td>
             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-r">
               {track?.destination}
             </td>
             <td className="text-sm text-gray-900 font-medium px-6 whitespace-nowrap border-r">
-              {Moment(track?.created_at_with_time).format('HH:mm:ss')}
+              {track?.departure_time}
             </td>
             <td className="text-sm text-gray-900 font-medium px-6 whitespace-nowrap border-r">
               {track?.plate_number}

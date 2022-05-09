@@ -13,7 +13,7 @@ const Index: NextPage = () => {
     GET_DRIVER_LOCATION_BY_CURRENT_DATE,
     async (query) =>
       await nhost.graphql.request(query, {
-        created_at: Moment().format('YYYY-MM-DD')
+        date_created: Moment().format('YYYY-MM-DD')
       }),
     {
       refreshInterval: 1000,

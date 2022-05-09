@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { classNames } from 'utils/classNames'
@@ -23,6 +23,7 @@ const TrackMeForm: React.FC<props> = (props) => {
   } = useForm({
     mode: 'onChange',
     defaultValues: {
+      departure_time: '',
       plate_number: ''
     }
   })
@@ -38,7 +39,7 @@ const TrackMeForm: React.FC<props> = (props) => {
             <Listbox.Button
               className={classNames(
                 'relative border border-gray-300 focus:ring-blue-500 focus:border-blue-500 w-full cursor-default rounded-lg',
-                'bg-gray-50 py-2 pl-3 pr-10 text-left focus:outline-none sm:text-sm'
+                'bg-gray-50 py-2 pl-3 pr-10 text-left focus:outline-none sm:text-sm ring-indigo-200 focus:ring-indigo-500 border-gray-300'
               )}>
               <span className="block truncate">{selected.name}</span>
               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
@@ -83,6 +84,26 @@ const TrackMeForm: React.FC<props> = (props) => {
             </Transition>
           </div>
         </Listbox>
+      </div>
+      <div className="mb-6">
+        <label htmlFor="email" className="text-sm font-medium text-gray-900 block mb-2">
+          Depature Time
+        </label>
+        <input
+          type="time"
+          className={classNames(
+            'mt-1 block py-2 w-full shadow-sm sm:text-md rounded-md',
+            'disabled:opacity-50 disabled:cursor-not-allowed',
+            'transition ease-in-out duration-150',
+            errors.departure_time?.type === 'required'
+              ? 'border-red-500 ring-red-500 focus:border-red-500 focus:ring-red-500'
+              : 'ring-indigo-200 focus:ring-indigo-500 border-gray-300'
+          )}
+          {...register('departure_time', { required: true })}
+        />
+        {errors.departure_time?.type === 'required' && (
+          <span className="text-xs text-red-500 ml-1">Departure Time is required</span>
+        )}
       </div>
       <div className="mb-6">
         <label htmlFor="email" className="text-sm font-medium text-gray-900 block mb-2">

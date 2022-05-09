@@ -29,7 +29,7 @@ const TrackMe: NextPage = () => {
   })
 
   const onSubmitForm = async (data) => {
-    const { plate_number } = data
+    const { departure_time, plate_number } = data
 
     if (latitude === 0 || longitude === 0) {
       toast.error(`Your location is invalid, open GPS and Location Info`, {
@@ -51,19 +51,19 @@ const TrackMe: NextPage = () => {
         }
       } = await nhost.graphql.request(CHECK_EMPLOYEE_IF_ALREADY_TRACK, {
         user_id: user?.id,
-        created_at: Moment().format('YYYY-MM-DD')
+        date_created: Moment().format('YYYY-MM-DD')
       })
 
       if (count === 0) {
         // Insert the actual insert of the trackers table
-        const result = await nhost.graphql.request(CREATE_BUS_TRACKER_MUTATION, {
+        await nhost.graphql.request(CREATE_BUS_TRACKER_MUTATION, {
           plate_number,
           longitude: longitude,
           latitude: latitude,
-          destination: selected.name
+          destination: selected.name,
+          departure_time: departure_time,
+          date_created: Moment().format('YYYY-MM-DD')
         })
-
-        // console.log(result)
 
         reset()
         toast.success(`Success, keep safe while driving!`, {
