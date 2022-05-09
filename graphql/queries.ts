@@ -33,7 +33,7 @@ export const GET_TRACKER_STATUS = gql`
 
 export const GET_DRIVER_LOCATION_BY_CURRENT_DATE = gql`
   query getDriverLocation($date_created: date!) {
-    trackers(where: {date_created: {_eq: $date_created}, isActive: {_eq: true}, isDeleted: {_eq: false}}) {
+    trackers(where: {date_created: {_eq: $date_created}, isActive: {_eq: true}, isDeleted: {_eq: false}}, order_by: {departure_time: asc}) {
       id
       user_id
       plate_number
