@@ -52,3 +52,15 @@ export const DELETE_DRIVER_BY_PK_ID = gql`
     }
   }
 `
+
+export const UPDATE_USER_BY_PK_ID = gql`
+  mutation updateUserByPkId($id: uuid!, $avatarUrl: String, $displayName: String!, $email: citext!, $phoneNumber: String) {
+    updateUser(pk_columns: {id: $id}, _set: {avatarUrl: $avatarUrl, displayName: $displayName, email: $email, phoneNumber: $phoneNumber}) {
+      id
+      avatarUrl
+      displayName
+      email
+      phoneNumber
+    }
+  }
+`
