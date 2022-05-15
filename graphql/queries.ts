@@ -56,6 +56,8 @@ export const GET_TRACK_IF_EXIST_AND_STATUS = gql`
     trackers(where: {user_id: {_eq: $user_id}, date_created: {_eq: $date_created}, isDeleted: {_eq: false}}) {
       id
       isActive
+      latitude
+      longitude
     }
     trackers_aggregate(where: {user_id: {_eq: $user_id}, date_created: {_eq: $date_created}, isDeleted: {_eq: false}}) {
       aggregate {

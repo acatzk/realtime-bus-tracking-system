@@ -64,3 +64,13 @@ export const UPDATE_USER_BY_PK_ID = gql`
     }
   }
 `
+
+export const UPDATE_TRACKER_BY_PK_ID = gql`
+  mutation updateTrackByPkId($id: uuid!, $latitude: numeric!, $longitude: numeric!) {
+    update_trackers_by_pk(pk_columns: {id: $id}, _set: {latitude: $latitude, longitude: $longitude}) {
+      user_id
+      latitude
+      longitude
+    }
+  }
+`
