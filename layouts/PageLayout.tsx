@@ -67,8 +67,6 @@ const PageLayout: React.FC<props> = (props) => {
         setLatitude(position.coords.latitude)
         setLongitude(position.coords.longitude)
       })
-    console.log(latitude)
-    console.log(longitude)
   })
 
   const updateBusTrackerLocation = async () => {
