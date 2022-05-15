@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { CREATE_BUS_TRACKER_MUTATION } from 'graphql/mutations'
 import { nhost } from 'lib/nhost-client'
-import { useUserData } from '@nhost/react'
+import { useAuthenticationStatus, useUserData } from '@nhost/react'
 import { CHECK_EMPLOYEE_IF_ALREADY_TRACK } from 'graphql/queries'
 import Moment from 'moment'
 import { useRouter } from 'next/router'
@@ -18,14 +18,16 @@ const TrackMe: NextPage = () => {
   const [latitude, setLatitude] = useState(0)
   const [longitude, setLongitude] = useState(0)
   const [selected, setSelected] = useState(direction[0])
+  const { isAuthenticated } = useAuthenticationStatus()
 
   const { reset } = useForm()
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setLatitude(position.coords.latitude)
-      setLongitude(position.coords.longitude)
-    })
+    isAuthenticated &&
+      navigator.geolocation.getCurrentPosition((position) => {
+        setLatitude(position.coords.latitude)
+        setLongitude(position.coords.longitude)
+      })
   })
 
   const onSubmitForm = async (data) => {

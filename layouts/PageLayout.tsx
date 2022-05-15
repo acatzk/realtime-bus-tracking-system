@@ -62,10 +62,13 @@ const PageLayout: React.FC<props> = (props) => {
   })
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setLatitude(position.coords.latitude)
-      setLongitude(position.coords.longitude)
-    })
+    isAuthenticated &&
+      navigator.geolocation.getCurrentPosition((position) => {
+        setLatitude(position.coords.latitude)
+        setLongitude(position.coords.longitude)
+      })
+    console.log(latitude)
+    console.log(longitude)
   })
 
   const updateBusTrackerLocation = async () => {
