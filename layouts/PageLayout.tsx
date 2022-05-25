@@ -34,18 +34,17 @@ const PageLayout: React.FC<props> = (props) => {
   const { isAuthenticated } = useAuthenticationStatus()
 
   // Check the current Status and check if exist
-  const { data: driverData } = useSWR(
-    GET_TRACK_IF_EXIST_AND_STATUS,
-    async (query) =>
-      await nhost.graphql.request(query, {
-        user_id: user?.id,
-        date_created: Moment().format('YYYY-MM-DD')
-      }),
-    {
-      refreshInterval: 1000,
-      revalidateOnMount: true
-    }
-  )
+  const address = GET_TRACK_IF_EXIST_AND_STATUS
+  const fetcher = async (query) =>
+    await nhost.graphql.request(query, {
+      user_id: user?.id,
+      date_created: Moment().format('YYYY-MM-DD')
+    })
+  const options = {
+    refreshInterval: 1000,
+    revalidateOnMount: true
+  }
+  const { data: driverData } = useSWR(address, fetcher, options)
 
   const isActiveDriverStatus = driverData?.data?.trackers[0]?.isActive
   const getCurrentTrackerId = driverData?.data?.trackers[0]?.id

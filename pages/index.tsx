@@ -1,4 +1,4 @@
-import type { GetStaticProps, NextPage } from 'next'
+import type { GetStaticProps, GetStaticPropsContext, NextPage } from 'next'
 import React from 'react'
 import ScheduleTable from 'components/ScheduleTable'
 import PageLayout from 'layouts/PageLayout'
@@ -8,18 +8,39 @@ import useSWR from 'swr'
 import { nhost } from 'lib/nhost-client'
 import Moment from 'moment'
 
-const Index: NextPage = () => {
-  const { data } = useSWR(
-    GET_DRIVER_LOCATION_BY_CURRENT_DATE,
-    async (query) =>
-      await nhost.graphql.request(query, {
-        date_created: Moment().format('YYYY-MM-DD')
-      }),
-    {
-      refreshInterval: 1000,
-      revalidateOnMount: true
-    }
-  )
+type props = {
+  initialData: any
+}
+
+// export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
+//   const initialData = await fetch(GET_DRIVER_LOCATION_BY_CURRENT_DATE, {})
+//   nhost.graphql.request(GET_DRIVER_LOCATION_BY_CURRENT_DATE, {
+//     date_created: Moment().format('YYYY-MM-DD')
+//   })
+
+//   return {
+//     props: {
+//       initialData
+//     },
+//     revalidate: 1
+//   }
+// }
+
+const Index: NextPage<props> = ({ initialData }) => {
+  const address = GET_DRIVER_LOCATION_BY_CURRENT_DATE
+  const fetcher = async (query) =>
+    await nhost.graphql.request(query, {
+      date_created: Moment().format('YYYY-MM-DD')
+    })
+  const options = {
+    initialData,
+    refreshInterval: 1000,
+    revalidateOnMount: true
+  }
+
+  const { data, error } = useSWR(address, fetcher, options)
+
+  if (error) <p>Loading failed...</p>
 
   return (
     <PageLayout>
@@ -36,6 +57,7 @@ const Index: NextPage = () => {
               <div className="w-full px-4">
                 <div className="max-w-full overflow-x-auto">
                   <ScheduleTable data={data} />
+                  {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
                 </div>
               </div>
             </div>

@@ -11,17 +11,17 @@ import { GET_TRACKER_RECORDS_BY_USER_ID } from 'graphql/queries'
 const Dashboard: NextPage = () => {
   const user = useUserData()
 
-  const { data: driverData } = useSWR(
-    GET_TRACKER_RECORDS_BY_USER_ID,
-    async (query) =>
-      await nhost.graphql.request(query, {
-        user_id: user?.id
-      }),
-    {
-      refreshInterval: 1000,
-      revalidateOnMount: true
-    }
-  )
+  const address = GET_TRACKER_RECORDS_BY_USER_ID
+  const fetcher = async (query) =>
+    await nhost.graphql.request(query, {
+      user_id: user?.id
+    })
+  const options = {
+    refreshInterval: 1000,
+    revalidateOnMount: true
+  }
+
+  const { data: driverData } = useSWR(address, fetcher, options)
 
   return (
     <DashboardLayout metaHead="| Dashboard">
