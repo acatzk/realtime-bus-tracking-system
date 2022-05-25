@@ -34,8 +34,8 @@ const Dashboard: NextPage = () => {
             <div className="py-3 px-6 border-b border-gray-300">Your Track Records</div>
             <div className="flex flex-col -px-2 -mt-2">
               <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8 min-h-[50vh]">
-                  <div className="overflow-hidden">
+                <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                  <div className="overflow-y-auto max-h-[50vh] scrollbar-w-2 scrollbar-thumb-rounded-lg scrollbar-thumb-gray-400 scrollbar-track-gray-100">
                     <DashboardTable driverData={driverData} />
                   </div>
                 </div>

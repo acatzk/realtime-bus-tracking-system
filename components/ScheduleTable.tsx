@@ -12,8 +12,8 @@ const ScheduleTable: React.FC<props> = (props) => {
   const trackers = props?.data?.data?.trackers
 
   return (
-    <table className="table-auto w-full">
-      <thead>
+    <table className="table-auto w-full relative">
+      <thead className="fixed">
         <tr className="bg-[#3f3a83] text-center">
           <th
             className="
