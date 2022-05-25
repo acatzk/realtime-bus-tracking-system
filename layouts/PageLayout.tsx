@@ -30,9 +30,6 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 const PageLayout: React.FC<props> = (props) => {
   const { children, metaHead } = props
 
-  const [latitude, setLatitude] = useState(0)
-  const [longitude, setLongitude] = useState(0)
-
   const user = useUserData()
   const { isAuthenticated } = useAuthenticationStatus()
 
@@ -52,8 +49,8 @@ const PageLayout: React.FC<props> = (props) => {
 
   const isActiveDriverStatus = driverData?.data?.trackers[0]?.isActive
   const getCurrentTrackerId = driverData?.data?.trackers[0]?.id
-  const getCurrentLatitude = driverData?.data?.trackers[0]?.latitude
-  const getCurrentLongitude = driverData?.data?.trackers[0]?.longitude
+  let getCurrentLatitude = driverData?.data?.trackers[0]?.latitude
+  let getCurrentLongitude = driverData?.data?.trackers[0]?.longitude
 
   useEffect(() => {
     isAuthenticated && isActiveDriverStatus
@@ -61,32 +58,32 @@ const PageLayout: React.FC<props> = (props) => {
       : console.log('Stopped Updating location...')
   })
 
-  useEffect(() => {
-    isAuthenticated &&
-      navigator.geolocation.getCurrentPosition((position) => {
-        setLatitude(position.coords.latitude)
-        setLongitude(position.coords.longitude)
-      })
-  })
-
   const updateBusTrackerLocation = async () => {
-    if (latitude !== getCurrentLatitude && longitude !== getCurrentLongitude) {
-      if (getCurrentLatitude !== 0 && getCurrentLongitude !== 0) {
-        const {
-          data: { update_trackers_by_pk }
-        } = await nhost.graphql.request(UPDATE_TRACKER_BY_PK_ID, {
-          id: getCurrentTrackerId,
-          latitude: latitude,
-          longitude: longitude
-        })
-        await mutate({
-          ...update_trackers_by_pk
-        })
-        console.log(update_trackers_by_pk)
+    await navigator.geolocation.getCurrentPosition(async (position) => {
+      let latitude = position.coords.latitude
+      let longitude = position.coords.longitude
+
+      if (latitude !== 0 && longitude !== 0) {
+        if (latitude !== getCurrentLatitude && longitude !== getCurrentLongitude) {
+          const {
+            data: { update_trackers_by_pk }
+          } = await nhost.graphql.request(UPDATE_TRACKER_BY_PK_ID, {
+            id: getCurrentTrackerId,
+            latitude: latitude,
+            longitude: longitude
+          })
+          await mutate({
+            ...driverData,
+            ...update_trackers_by_pk
+          })
+          console.log(latitude)
+          console.log(longitude)
+          console.log(update_trackers_by_pk)
+        }
       } else {
-        console.log('Current location is 0')
+        console.log('Zero geolocation')
       }
-    }
+    })
   }
 
   const onSubmitForm = async () => {
