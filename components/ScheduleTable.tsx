@@ -13,7 +13,7 @@ const ScheduleTable: React.FC<props> = (props) => {
 
   return (
     <table className="table-auto w-full relative">
-      <thead className="fixed">
+      <thead>
         <tr className="bg-[#3f3a83] text-center">
           <th
             className="
