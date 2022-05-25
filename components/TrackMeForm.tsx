@@ -11,10 +11,12 @@ type props = {
   direction: any
   longitude: number
   latitude: number
+  handleReloadPage: any
 }
 
 const TrackMeForm: React.FC<props> = (props) => {
-  const { selected, setSelected, onSubmitForm, direction, latitude, longitude } = props
+  const { selected, setSelected, onSubmitForm, direction, latitude, longitude, handleReloadPage } =
+    props
 
   const {
     register,
@@ -127,9 +129,17 @@ const TrackMeForm: React.FC<props> = (props) => {
         )}
       </div>
       <div className="mb-6">
-        <label htmlFor="password" className="text-sm font-medium text-gray-900 block mb-2">
-          Your Location
-        </label>
+        <div className="flex items-center justify-between space-x-3 mb-2">
+          <label htmlFor="password" className="text-sm font-medium text-gray-900 block">
+            Your Location
+          </label>
+          <button
+            type="button"
+            onClick={handleReloadPage}
+            className="border text-xs p-1 rounded hover:bg-gray-50 active:bg-gray-100">
+            Reload
+          </button>
+        </div>
         <div className="w-full flex items-center space-x-4">
           <input
             type="hidden"

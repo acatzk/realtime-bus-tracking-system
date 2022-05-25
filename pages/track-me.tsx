@@ -92,6 +92,10 @@ const TrackMe: NextPage = () => {
     }
   }
 
+  const onRealodPage = () => {
+    return location.reload()
+  }
+
   return (
     <DashboardLayout metaHead="| Track Me">
       <main className="min-h-[81vh] px-4 md:px-8 lg:px-16 pb-8 md:max-w-2xl lg:max-w-7xl mx-auto">
@@ -104,6 +108,7 @@ const TrackMe: NextPage = () => {
             direction={direction}
             latitude={latitude}
             longitude={longitude}
+            handleReloadPage={onRealodPage}
           />
         </div>
       </main>
