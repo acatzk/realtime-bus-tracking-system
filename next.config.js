@@ -4,6 +4,10 @@ module.exports = {
   env: {
     NEXT_PUBLIC_NHOST_BACKEND: process.env.NEXT_PUBLIC_NHOST_BACKEND
   },
+  webp: {
+    preset: "default",
+    quality: 100,
+  },
   images: {
     domains: [
       'th.bing.com',
