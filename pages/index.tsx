@@ -1,12 +1,12 @@
 import type { GetStaticProps, GetStaticPropsContext, NextPage } from 'next'
 import React from 'react'
-import ScheduleTable from 'components/ScheduleTable'
 import PageLayout from 'layouts/PageLayout'
 import { AiOutlineSchedule } from 'react-icons/ai'
 import { GET_DRIVER_LOCATION_BY_CURRENT_DATE } from 'graphql/queries'
 import useSWR from 'swr'
 import { nhost } from 'lib/nhost-client'
 import Moment from 'moment'
+import ScheduleList from 'components/ScheduleList'
 
 type props = {
   initialData: any
@@ -56,7 +56,7 @@ const Index: NextPage<props> = ({ initialData }) => {
             <div className="flex flex-wrap -mx-4">
               <div className="w-full px-4">
                 <div className="max-w-full overflow-x-auto">
-                  <ScheduleTable data={data} />
+                  <ScheduleList trackers={data?.data?.trackers} />
                   {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
                 </div>
               </div>
