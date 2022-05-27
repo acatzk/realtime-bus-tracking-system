@@ -52,9 +52,13 @@ const PageLayout: React.FC<props> = (props) => {
   let getCurrentLongitude = driverData?.data?.trackers[0]?.longitude
 
   useEffect(() => {
-    isAuthenticated && isActiveDriverStatus
-      ? updateBusTrackerLocation()
-      : console.log('Stopped Updating location...')
+    try {
+      isAuthenticated && isActiveDriverStatus
+        ? updateBusTrackerLocation()
+        : console.log('Stopped Updating location...')
+    } catch (error: any) {
+      console.log(error)
+    }
   })
 
   const updateBusTrackerLocation = async () => {
