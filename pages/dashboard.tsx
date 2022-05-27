@@ -7,9 +7,13 @@ import EmployeeProfile from 'components/EmployeeProfile'
 import useSWR from 'swr'
 import { nhost } from 'lib/nhost-client'
 import { GET_TRACKER_RECORDS_BY_USER_ID } from 'graphql/queries'
+import { classNames } from 'utils'
+import { FiPlus } from 'react-icons/fi'
+import { useRouter } from 'next/router'
 
 const Dashboard: NextPage = () => {
   const user = useUserData()
+  const router = useRouter()
 
   const address = GET_TRACKER_RECORDS_BY_USER_ID
   const fetcher = async (query) =>
@@ -31,7 +35,21 @@ const Dashboard: NextPage = () => {
             <EmployeeProfile user={user} />
           </div>
           <div className="bg-white w-full border rounded-lg overflow-hidden">
-            <div className="py-3 px-6 border-b border-gray-300">Your Track Records</div>
+            <div className="flex items-center justify-between py-3 px-5 border-b border-gray-300">
+              <h2 className="font-medium">Your Track Records</h2>
+              <button
+                type="button"
+                onClick={() => router.push('/track-me')}
+                className={classNames(
+                  'rounded inline-block px-2 py-1.5 bg-green-500 text-white font-medium text-xs leading-tight',
+                  'hover:bg-green-600 focus:bg-green-600 focus:outline-none focus:ring-0 active:bg-green-700',
+                  'transition duration-150 ease-in-out',
+                  'flex items-center space-x-0.5'
+                )}>
+                <FiPlus className="w-4 h-4" />
+                <span>Track</span>
+              </button>
+            </div>
             <div className="flex flex-col -px-2 -mt-2">
               <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
