@@ -71,35 +71,7 @@ const DashboardList: React.FC<props> = (props) => {
 
   return (
     <table className="min-w-full border-b ">
-      <thead className="bg-white border-b shadow">
-        <tr className="bg-gray-100 border-blue-20">
-          <th
-            scope="col"
-            className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
-            Date
-          </th>
-          <th
-            scope="col"
-            className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
-            Destination
-          </th>
-          <th
-            scope="col"
-            className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
-            Departure Time
-          </th>
-          <th
-            scope="col"
-            className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
-            Plate number
-          </th>
-          <th
-            scope="col"
-            className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
-            Options
-          </th>
-        </tr>
-      </thead>
+      <THead />
       <tbody>
         {myTrackers?.map((track) => (
           <DashboardItem
@@ -119,6 +91,40 @@ const DashboardList: React.FC<props> = (props) => {
         />
       </tbody>
     </table>
+  )
+}
+
+function THead() {
+  return (
+    <thead className="bg-white border-b shadow">
+      <tr className="bg-gray-100 border-blue-20">
+        <th
+          scope="col"
+          className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
+          Date
+        </th>
+        <th
+          scope="col"
+          className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
+          Destination
+        </th>
+        <th
+          scope="col"
+          className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
+          Departure Time
+        </th>
+        <th
+          scope="col"
+          className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
+          Plate number
+        </th>
+        <th
+          scope="col"
+          className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
+          Options
+        </th>
+      </tr>
+    </thead>
   )
 }
 
