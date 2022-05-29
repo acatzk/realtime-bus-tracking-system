@@ -87,7 +87,7 @@ const PageLayout: React.FC<props> = (props) => {
     })
   }
 
-  const onSubmitForm = async () => {
+  const handleStatus = async () => {
     const { data: driverData } = await nhost.graphql.request(GET_TRACK_IF_EXIST_AND_STATUS, {
       user_id: user?.id,
       date_created: Moment().format('YYYY-MM-DD')
@@ -99,6 +99,11 @@ const PageLayout: React.FC<props> = (props) => {
     const result = await nhost.graphql.request(UPDATE_BUS_DRIVER_STATUS_BY_PK, {
       id: currentTrackPkId,
       isActive: !isDriverActive
+    })
+
+    mutate({
+      ...driverData,
+      ...driverData?.trackers
     })
 
     if (!isDriverActive && result) {
@@ -129,7 +134,7 @@ const PageLayout: React.FC<props> = (props) => {
       <Head>
         <title>Clementina {metaHead}</title>
       </Head>
-      <Header driverData={driverData} onSubmitForm={onSubmitForm} />
+      <Header driverData={driverData} actions={{ handleStatus }} />
       <div className="antialiased">{children}</div>
       <Footer />
     </React.Fragment>

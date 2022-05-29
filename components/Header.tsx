@@ -14,7 +14,7 @@ import { useRouter } from 'next/router'
 type props = {
   isActive?: boolean
   driverData?: any
-  onSubmitForm?: any
+  actions?: any
 }
 
 const Header: React.FC<props> = (props) => {
@@ -22,7 +22,8 @@ const Header: React.FC<props> = (props) => {
   const router = useRouter()
   const user = useUserData()
   const { isAuthenticated } = useAuthenticationStatus()
-  const { driverData, onSubmitForm } = props
+  const { driverData, actions } = props
+  const { handleStatus } = actions
 
   const {
     handleSubmit,
@@ -129,7 +130,7 @@ const Header: React.FC<props> = (props) => {
           <div className="flex items-center flex-wrap justify-between px-4 md:px-8 lg:px-16 md:max-w-2xl lg:max-w-7xl mx-auto">
             <DashboardSubLinks dashboardLink={dashboardLink} />
             {isDriverCount === 1 && (
-              <form onSubmit={handleSubmit(onSubmitForm)}>
+              <form onSubmit={handleSubmit(handleStatus)}>
                 <button
                   type="submit"
                   data-mdb-ripple="true"
