@@ -7,13 +7,14 @@ import { nhost } from 'lib/nhost-client'
 import { direction } from 'mock/object-list'
 import { mutate } from 'swr'
 import { toast } from 'react-toastify'
+import DashboardItem from './DashboardItem'
 
 type props = {
-  driverData: any
+  myTrackers: any
 }
 
-const DashboardTable: React.FC<props> = (props) => {
-  const { driverData } = props
+const DashboardList: React.FC<props> = (props) => {
+  const { myTrackers } = props
   const [isOpen, setIsOpen] = useState(false)
   const [trackData, setTracktrackData] = useState({})
   const [selected, setSelected] = useState(direction[0])
@@ -50,7 +51,7 @@ const DashboardTable: React.FC<props> = (props) => {
     closeModal()
   }
 
-  const handleDeleteTrackRecord = async (track) => {
+  const handleDelete = async (track) => {
     let result = confirm('Want to delete?')
     if (result) {
       const result = await nhost.graphql.request(DELETE_DRIVER_BY_PK_ID, {
@@ -102,49 +103,13 @@ const DashboardTable: React.FC<props> = (props) => {
         </tr>
       </thead>
       <tbody>
-        {driverData?.data?.trackers?.map((track) => (
-          <tr
-            key={track.id}
-            className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-50">
-            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-r">
-              {Moment(track?.date_created).format('MMM DD, YYYY')}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-r">
-              {track?.destination}
-            </td>
-            <td className="text-sm text-gray-900 font-medium px-6 whitespace-nowrap border-r">
-              {track?.departure_time}
-            </td>
-            <td className="text-sm text-gray-900 font-medium px-6 whitespace-nowrap border-r">
-              {track?.plate_number}
-            </td>
-            <td className="mt-text-sm text-gray-900 font-medium px-6 whitespace-nowrap border-r">
-              <div className="flex items-center justify-start">
-                <div className="inline-flex" role="group">
-                  <button
-                    type="button"
-                    onClick={() => openModal(track)}
-                    className={classNames(
-                      'rounded-l inline-block px-3 py-1.5 bg-yellow-500 text-white font-medium text-xs leading-tight',
-                      'hover:bg-yellow-600 focus:bg-yellow-600 focus:outline-none focus:ring-0 active:bg-yellow-700',
-                      'transition duration-150 ease-in-out'
-                    )}>
-                    Edit
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleDeleteTrackRecord(track)}
-                    className={classNames(
-                      'rounded-r inline-block px-2 py-0.5 bg-red-500 text-white font-medium text-xs leading-tight',
-                      'hover:bg-red-600 focus:bg-red-600 focus:outline-none focus:ring-0 active:bg-red-700',
-                      'transition duration-150 ease-in-out'
-                    )}>
-                    Delete
-                  </button>
-                </div>
-              </div>
-            </td>
-          </tr>
+        {myTrackers?.map((track) => (
+          <DashboardItem
+            key={track?.id}
+            track={track}
+            actions={{ handleDelete }}
+            openModal={openModal}
+          />
         ))}
         <UpdateTrackerDialog
           isOpen={isOpen}
@@ -159,4 +124,4 @@ const DashboardTable: React.FC<props> = (props) => {
   )
 }
 
-export default DashboardTable
+export default DashboardList
