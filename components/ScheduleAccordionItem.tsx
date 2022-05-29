@@ -5,6 +5,7 @@ import { ChevronUpIcon } from '@heroicons/react/solid'
 import Image from 'next/image'
 import { FaMapMarkedAlt } from 'react-icons/fa'
 import Link from 'next/link'
+import Moment from 'moment'
 
 type props = {
   id: string
@@ -21,7 +22,7 @@ const ScheduleAccordionItem: React.FC<props> = ({
   plate_number,
   destination
 }) => {
-  const { avatarUrl, displayName } = user
+  const { avatarUrl, displayName, lastSeen } = user
 
   return (
     <Disclosure key={id}>
@@ -48,7 +49,9 @@ const ScheduleAccordionItem: React.FC<props> = ({
                 </div>
                 <div className="flex flex-col">
                   <h4 className="text-md font-medium">{displayName}</h4>
-                  <span className="text-xs font-light">Active &bull; 25 mins ago</span>
+                  <span className="text-xs font-normal">
+                    Active &bull; {Moment(lastSeen).fromNow()}
+                  </span>
                 </div>
               </div>
             </div>

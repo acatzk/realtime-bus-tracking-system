@@ -46,6 +46,7 @@ export const GET_DRIVER_LOCATION_BY_CURRENT_DATE = gql`
         id
         displayName
         avatarUrl
+        lastSeen
       }
     }
   }
