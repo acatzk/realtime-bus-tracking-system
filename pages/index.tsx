@@ -60,7 +60,7 @@ const Index: NextPage<props> = ({ initialData }) => {
             <div className="flex flex-wrap -mx-4">
               <div className="w-full px-4">
                 <div className="max-w-full overflow-x-auto">
-                  {!data ? (
+                  {data ? (
                     <ScheduleList trackers={data?.data?.trackers} />
                   ) : (
                     <div className="flex items-center justify-center py-10">
