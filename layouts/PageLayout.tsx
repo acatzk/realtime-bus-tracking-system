@@ -79,9 +79,7 @@ const PageLayout: React.FC<props> = (props) => {
             ...driverData,
             ...update_trackers_by_pk
           })
-          console.log(latitude)
-          console.log(longitude)
-          console.log(update_trackers_by_pk)
+          console.log(`Info: Update Location`)
         }
       } else {
         console.log('Zero geolocation')
