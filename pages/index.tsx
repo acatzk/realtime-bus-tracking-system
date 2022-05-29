@@ -9,6 +9,7 @@ import ScheduleList from 'components/ScheduleList'
 import type { GetStaticProps, NextPage } from 'next'
 import { GET_DRIVER_LOCATION_BY_CURRENT_DATE } from 'graphql/queries'
 import { Spinner } from 'utils'
+import ScheduleAccordionList from 'components/ScheduleAccordionList'
 
 type props = {
   initialData: any
@@ -44,12 +45,17 @@ const Index: NextPage<props> = ({ initialData }) => {
 
   const { data, error } = useSWR(address, fetcher, options)
 
-  if (error) <p>Loading failed...</p>
+  if (error)
+    return (
+      <p className="text-sm font-medium py-2 text-center bg-yellow-300 px-4 rounded">
+        Loading failed...
+      </p>
+    )
 
   return (
     <PageLayout>
       <main className="min-h-[91vh] px-4 md:px-8 lg:px-16 md:max-w-2xl lg:max-w-7xl mx-auto">
-        <section className="py-8 lg:py-14">
+        <section className="py-2 md:py-8 lg:py-14">
           <div className="container">
             <div className="flex items-center space-x-2">
               <AiOutlineSchedule className="w-6 md:w-8 h-6 md:h-8 text-gray-700" />
@@ -57,11 +63,24 @@ const Index: NextPage<props> = ({ initialData }) => {
                 Daily Bus Schedules
               </h1>
             </div>
-            <div className="flex flex-wrap -mx-4">
-              <div className="w-full px-4">
+            <div className="flex flex-wrap">
+              <div className="w-full">
                 <div className="max-w-full overflow-x-auto">
                   {data ? (
-                    <ScheduleList trackers={data?.data?.trackers} />
+                    <>
+                      <div className="hidden md:block">
+                        <ScheduleList trackers={data?.data?.trackers} />
+                      </div>
+                      <div className="block md:hidden">
+                        {data?.data?.trackers?.length !== 0 ? (
+                          <ScheduleAccordionList trackers={data?.data?.trackers} />
+                        ) : (
+                          <h1 className="text-sm font-medium py-2 text-center bg-yellow-300 px-4 rounded">
+                            No Active Driver
+                          </h1>
+                        )}
+                      </div>
+                    </>
                   ) : (
                     <div className="flex items-center justify-center py-10">
                       <Spinner className="w-6 h-6 md:w-8 md:h-8" />
