@@ -1,30 +1,34 @@
-import type { GetStaticProps, GetStaticPropsContext, NextPage } from 'next'
 import React from 'react'
+import useSWR from 'swr'
+import Moment from 'moment'
+import { nhost } from 'lib/nhost-client'
+import { NhostClient } from '@nhost/react'
 import PageLayout from 'layouts/PageLayout'
 import { AiOutlineSchedule } from 'react-icons/ai'
-import { GET_DRIVER_LOCATION_BY_CURRENT_DATE } from 'graphql/queries'
-import useSWR from 'swr'
-import { nhost } from 'lib/nhost-client'
-import Moment from 'moment'
 import ScheduleList from 'components/ScheduleList'
+import type { GetStaticProps, NextPage } from 'next'
+import { GET_DRIVER_LOCATION_BY_CURRENT_DATE } from 'graphql/queries'
+import { Spinner } from 'utils'
 
 type props = {
   initialData: any
 }
 
-// export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
-//   const initialData = await fetch(GET_DRIVER_LOCATION_BY_CURRENT_DATE, {})
-//   nhost.graphql.request(GET_DRIVER_LOCATION_BY_CURRENT_DATE, {
-//     date_created: Moment().format('YYYY-MM-DD')
-//   })
+export const getStaticProps: GetStaticProps = async () => {
+  const nhostServer = new NhostClient({
+    backendUrl: `${process.env.NEXT_PUBLIC_NHOST_BACKEND}`
+  })
+  const { data } = await nhostServer.graphql.request(GET_DRIVER_LOCATION_BY_CURRENT_DATE, {
+    date_created: Moment().format('YYYY-MM-DD')
+  })
 
-//   return {
-//     props: {
-//       initialData
-//     },
-//     revalidate: 1
-//   }
-// }
+  return {
+    props: {
+      initialData: data
+    },
+    revalidate: 1
+  }
+}
 
 const Index: NextPage<props> = ({ initialData }) => {
   const address = GET_DRIVER_LOCATION_BY_CURRENT_DATE
@@ -56,8 +60,13 @@ const Index: NextPage<props> = ({ initialData }) => {
             <div className="flex flex-wrap -mx-4">
               <div className="w-full px-4">
                 <div className="max-w-full overflow-x-auto">
-                  <ScheduleList trackers={data?.data?.trackers} />
-                  {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+                  {!data ? (
+                    <ScheduleList trackers={data?.data?.trackers} />
+                  ) : (
+                    <div className="flex items-center justify-center py-10">
+                      <Spinner className="w-6 h-6 md:w-8 md:h-8" />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

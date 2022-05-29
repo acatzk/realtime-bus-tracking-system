@@ -10,13 +10,14 @@ type props = {
   isOpen: boolean
   closeModal: any
   track: any
-  onSubmitForm: any
+  actions: any
   selected: any
   setSelected: any
 }
 
 const EditTrackerDialog: React.FC<props> = (props) => {
-  const { isOpen, closeModal, track, onSubmitForm, selected, setSelected } = props
+  const { isOpen, closeModal, track, selected, setSelected, actions } = props
+  const { handleUpdate } = actions
 
   const {
     register,
@@ -38,7 +39,7 @@ const EditTrackerDialog: React.FC<props> = (props) => {
         className="text-lg font-medium leading-6 text-gray-900 py-2 text-center">
         Update Track Record
       </Dialog.Title>
-      <form className="mt-2" onSubmit={handleSubmit(onSubmitForm)}>
+      <form className="mt-2" onSubmit={handleSubmit(handleUpdate)}>
         <div className="mb-6">
           <div className="mb-6">
             <input

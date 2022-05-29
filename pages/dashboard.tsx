@@ -1,10 +1,11 @@
 import useSWR from 'swr'
-import { NextPage } from 'next'
 import React from 'react'
+import { NextPage } from 'next'
 import { classNames } from 'utils'
-import { nhost } from 'lib/nhost-client'
+import { Spinner } from 'utils/Icons'
 import { FiPlus } from 'react-icons/fi'
 import { useRouter } from 'next/router'
+import { nhost } from 'lib/nhost-client'
 import { useUserData } from '@nhost/react'
 import DashboardList from 'components/DashboardList'
 import DashboardLayout from 'layouts/DashboardLayout'
@@ -54,7 +55,13 @@ const Dashboard: NextPage = () => {
               <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                   <div className="overflow-y-auto max-h-[50vh] scrollbar-w-2 scrollbar-thumb-rounded-lg scrollbar-thumb-gray-400 scrollbar-track-gray-100">
-                    <DashboardList myTrackers={driverData?.data?.trackers} />
+                    {driverData ? (
+                      <DashboardList myTrackers={driverData?.data?.trackers} />
+                    ) : (
+                      <div className="flex items-center justify-center py-10">
+                        <Spinner className="w-6 h-6 md:w-8 md:h-8" />
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import Moment from 'moment'
-import { classNames } from 'utils'
-import UpdateTrackerDialog from './EditTrackerDialog'
+import EditTrackerDialog from './EditTrackerDialog'
 import { DELETE_DRIVER_BY_PK_ID, UPDATE_DRIVER_BY_PK_ID } from 'graphql/mutations'
 import { nhost } from 'lib/nhost-client'
 import { direction } from 'mock/object-list'
@@ -28,7 +26,7 @@ const DashboardList: React.FC<props> = (props) => {
     setIsOpen(true)
   }
 
-  const handleSubmitUpdateForm = async ({ id, departure_time, plate_number }) => {
+  const handleUpdate = async ({ id, departure_time, plate_number }) => {
     const {
       data: { update_trackers_by_pk }
     } = await nhost.graphql.request(UPDATE_DRIVER_BY_PK_ID, {
@@ -111,11 +109,11 @@ const DashboardList: React.FC<props> = (props) => {
             openModal={openModal}
           />
         ))}
-        <UpdateTrackerDialog
+        <EditTrackerDialog
           isOpen={isOpen}
           closeModal={closeModal}
           track={trackData}
-          onSubmitForm={handleSubmitUpdateForm}
+          actions={{ handleUpdate }}
           selected={selected}
           setSelected={setSelected}
         />
