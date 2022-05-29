@@ -1,15 +1,15 @@
-import DashboardLayout from 'layouts/DashboardLayout'
+import useSWR from 'swr'
 import { NextPage } from 'next'
 import React from 'react'
-import { useUserData } from '@nhost/react'
-import DashboardTable from 'components/DashboardTable'
-import EmployeeProfile from 'components/EmployeeProfile'
-import useSWR from 'swr'
-import { nhost } from 'lib/nhost-client'
-import { GET_TRACKER_RECORDS_BY_USER_ID } from 'graphql/queries'
 import { classNames } from 'utils'
+import { nhost } from 'lib/nhost-client'
 import { FiPlus } from 'react-icons/fi'
 import { useRouter } from 'next/router'
+import { useUserData } from '@nhost/react'
+import DashboardList from 'components/DashboardList'
+import DashboardLayout from 'layouts/DashboardLayout'
+import EmployeeProfile from 'components/EmployeeProfile'
+import { GET_TRACKER_RECORDS_BY_USER_ID } from 'graphql/queries'
 
 const Dashboard: NextPage = () => {
   const user = useUserData()
@@ -54,7 +54,7 @@ const Dashboard: NextPage = () => {
               <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                   <div className="overflow-y-auto max-h-[50vh] scrollbar-w-2 scrollbar-thumb-rounded-lg scrollbar-thumb-gray-400 scrollbar-track-gray-100">
-                    <DashboardTable driverData={driverData} />
+                    <DashboardList myTrackers={driverData?.data?.trackers} />
                   </div>
                 </div>
               </div>
