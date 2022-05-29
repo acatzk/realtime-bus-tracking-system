@@ -4,6 +4,7 @@ import { Disclosure } from '@headlessui/react'
 import { ChevronUpIcon } from '@heroicons/react/solid'
 import Image from 'next/image'
 import { FaMapMarkedAlt } from 'react-icons/fa'
+import Link from 'next/link'
 
 type props = {
   id: string
@@ -77,10 +78,12 @@ const ScheduleAccordionItem: React.FC<props> = ({
               </li>
               <li className="px-3 py-2 w-full space-x-2 flex items-center">
                 <span>Track Location:</span>
-                <a className="flex  justify-center space-x-2 hover:underline text-blue-500">
-                  <span className="text-md font-medium">View Live Map</span>
-                  <FaMapMarkedAlt className="w-5 h-5" />
-                </a>
+                <Link href={`/map/${id}`}>
+                  <a className="flex justify-center space-x-2 hover:underline text-blue-500">
+                    <span className="text-md font-medium">View Live Map</span>
+                    <FaMapMarkedAlt className="w-5 h-5" />
+                  </a>
+                </Link>
               </li>
             </ul>
           </Disclosure.Panel>
