@@ -79,3 +79,21 @@ export const GET_TRACKER_RECORDS_BY_USER_ID = gql`
     }
   }
 `
+
+export const GET_TRACKERS_IDs = gql`
+  query getAllTracks {
+    trackers {
+      id
+    }
+  }
+`
+
+export const GET_TRACKER_BY_ID = gql`
+  query getTrackerById($id: uuid_comparison_exp!) {
+    trackers(where: { id: $id }) {
+      id
+      longitude
+      latitude
+    }
+  }
+`
