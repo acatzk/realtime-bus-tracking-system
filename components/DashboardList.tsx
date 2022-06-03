@@ -37,15 +37,7 @@ const DashboardList: React.FC<props> = (props) => {
     })
 
     mutate({ ...update_trackers_by_pk })
-    toast.success(`Successfully Updated.`, {
-      position: 'top-right',
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined
-    })
+    toast.success(`Successfully Updated.`)
     closeModal()
   }
 
@@ -56,15 +48,7 @@ const DashboardList: React.FC<props> = (props) => {
         id: track?.id
       })
       if (result) {
-        toast.success(`Successfully Deleted.`, {
-          position: 'top-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined
-        })
+        toast.success(`Successfully Deleted.`)
       }
     }
   }

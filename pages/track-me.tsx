@@ -34,15 +34,7 @@ const TrackMe: NextPage = () => {
     const { departure_time, plate_number } = data
 
     if (latitude === 0 || longitude === 0) {
-      toast.error(`Your location is invalid, open GPS and Location Info`, {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined
-      })
+      toast.error(`Your location is invalid, open GPS and Location Info`)
     } else {
       // Check employee if already been tracked!
       const {
@@ -68,26 +60,10 @@ const TrackMe: NextPage = () => {
         })
 
         reset()
-        toast.success(`Success, keep safe while driving!`, {
-          position: 'top-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined
-        })
+        toast.success(`Success, keep safe while driving!`)
         router.push('/dashboard')
       } else {
-        toast.warning(`You already saved data for today.`, {
-          position: 'top-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined
-        })
+        toast.warning(`You already saved data for today.`)
       }
     }
   }
