@@ -64,7 +64,7 @@ const Schedule: React.FC<props> = ({ id, user, departure_time, plate_number, des
             bg-[#F3F6FF]
             border-b border-[#E8E8E8]
           ">
-        {departure_time}
+        {Moment().format(`${departure_time} A`)}
       </td>
       <td
         className="
