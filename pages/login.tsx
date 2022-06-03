@@ -33,15 +33,7 @@ const Login: NextPage = () => {
     const loginRole = roles[0]?.roles[0]?.role
 
     if (loginRole !== 'employee') {
-      return toast.warning(`Only Bus Driver can login this page!`, {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined
-      })
+      return toast.warning(`Only Bus Driver can login this page!`)
     } else {
       const { session, error } = await nhost.auth.signIn({
         email: email,
@@ -53,28 +45,12 @@ const Login: NextPage = () => {
 
   const isSuccess = (session, error) => {
     if (error) {
-      toast.error(`Invalid credentials!`, {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined
-      })
+      toast.error(`Invalid credentials!`)
     } else {
       const {
         user: { displayName }
       } = session
-      toast.success(`Good day, ${displayName}`, {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined
-      })
+      toast.success(`Good day, ${displayName}`)
       router.push('/dashboard')
     }
   }

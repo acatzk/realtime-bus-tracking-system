@@ -4,7 +4,7 @@ import { Dialog, Transition, Listbox } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { useForm } from 'react-hook-form'
 import { direction } from 'mock/object-list'
-import DialogBox from './Dialog'
+import DialogBox from './DialogBox'
 
 type props = {
   isOpen: boolean

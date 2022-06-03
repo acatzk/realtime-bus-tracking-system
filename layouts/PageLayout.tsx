@@ -107,25 +107,9 @@ const PageLayout: React.FC<props> = (props) => {
     })
 
     if (!isDriverActive && result) {
-      toast.success(`Status: ACTIVE`, {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined
-      })
+      toast.success(`Status: ACTIVE`)
     } else {
-      toast(`Status: INACTIVE`, {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined
-      })
+      toast.success(`Status: INACTIVE`)
     }
   }
 
