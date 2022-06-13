@@ -17,7 +17,12 @@ const Login: NextPage = () => {
     register,
     handleSubmit,
     formState: { isSubmitting, errors }
-  } = useForm()
+  } = useForm({
+    defaultValues: {
+      email: 'demo@gmail.com',
+      password: 'demo123!'
+    }
+  })
 
   const onSubmitForm = async (data) => {
     const { email, password } = data
@@ -144,6 +149,7 @@ const Login: NextPage = () => {
                 <label className="inline-flex items-center w-full cursor-pointer">
                   <input
                     type="checkbox"
+                    checked
                     disabled={isSubmitting}
                     className={classNames(
                       'rounded border-gray-300 text-[#d73f49] shadow-sm focus:border-blue-300 focus:ring',
