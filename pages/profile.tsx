@@ -83,7 +83,7 @@ const Profile: NextPage = () => {
                 <div className="flex flex-col items-center space-y-2">
                   <div className="relative w-[128px] h-[128px] z-10">
                     <Image
-                      src={`${avatar?.toString()}`}
+                      src={`${avatar === null ? 'https://i.stack.imgur.com/l60Hf.png' : avatar}`}
                       layout="fill"
                       className="rounded-full shadown-lg"
                       alt="avatar"

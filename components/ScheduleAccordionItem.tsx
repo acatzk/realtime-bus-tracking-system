@@ -40,7 +40,7 @@ const ScheduleAccordionItem: React.FC<props> = ({
               <div className="flex flex-row items-center space-x-2">
                 <div className="relative">
                   <Image
-                    src={avatarUrl}
+                    src={avatarUrl === null ? 'https://i.stack.imgur.com/l60Hf.png' : avatarUrl}
                     width={38}
                     height={38}
                     className="rounded-full"

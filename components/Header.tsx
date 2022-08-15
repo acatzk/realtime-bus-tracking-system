@@ -1,15 +1,17 @@
-import React, { Fragment } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { RiLoginCircleLine } from 'react-icons/ri'
-import { useAuthenticationStatus, useSignOut, useUserData } from '@nhost/react'
-import { Menu, Transition } from '@headlessui/react'
-import { dashboardLink, userNavigation } from 'mock/object-list'
-import { classNames } from 'utils/classNames'
-import { BsCardChecklist } from 'react-icons/bs'
-import { HiOutlineStatusOffline, HiStatusOnline } from 'react-icons/hi'
-import { useForm } from 'react-hook-form'
+import React, { Fragment } from 'react'
 import { useRouter } from 'next/router'
+import { useForm } from 'react-hook-form'
+import { BsCardChecklist } from 'react-icons/bs'
+import { RiLoginCircleLine } from 'react-icons/ri'
+import { Menu, Transition } from '@headlessui/react'
+import { AiOutlineUsergroupAdd } from 'react-icons/ai'
+import { HiOutlineStatusOffline, HiStatusOnline } from 'react-icons/hi'
+import { useAuthenticationStatus, useSignOut, useUserData } from '@nhost/react'
+
+import { classNames } from 'utils/classNames'
+import { dashboardLink } from 'mock/object-list'
 
 type props = {
   isActive?: boolean
@@ -32,7 +34,7 @@ const Header: React.FC<props> = (props) => {
 
   const isActiveDriverStatus = driverData?.data?.trackers[0]?.isActive
   const isDriverCount = driverData?.data?.trackers_aggregate?.aggregate?.count
-  const isNotAuthenticatedUser = router.pathname !== '/' && router.pathname !== '/login'
+  const isNotAuthenticatedUser = router.pathname !== '/' && (router.pathname !== '/login' && router.pathname !== '/register')
 
   return (
     <React.Fragment>
@@ -70,12 +72,20 @@ const Header: React.FC<props> = (props) => {
           </Link>
           <div>
             {!isAuthenticated && (
-              <Link href="/login">
-                <a className="flex items-center space-x-1 hover:text-gray-300 transition ease-in-out duration-150">
-                  <RiLoginCircleLine className="w-4 lg:w-5 h-4 lg:h-5" />
-                  <span className="text-sm md:text-base font-medium">Login</span>
-                </a>
-              </Link>
+              <div className="flex items-center space-x-4">
+                <Link href="/login">
+                  <a className="flex items-center space-x-1 hover:text-gray-300 transition ease-in-out duration-150">
+                    <RiLoginCircleLine className="w-4 lg:w-5 h-4 lg:h-5" />
+                    <span className="text-sm md:text-base font-medium">Login</span>
+                  </a>
+                </Link>
+                <Link href="/register">
+                  <a className="flex items-center space-x-1 hover:text-gray-300 transition ease-in-out duration-150">
+                    <AiOutlineUsergroupAdd className="w-4 lg:w-5 h-4 lg:h-5" />
+                    <span className="text-sm md:text-base font-medium">Registration</span>
+                  </a>
+                </Link>
+              </div>
             )}
             {isAuthenticated && (
               <div className="flex items-center space-x-4">
@@ -171,7 +181,7 @@ const Header: React.FC<props> = (props) => {
 function UserAvatar({ user }) {
   return (
     <Image
-      src={user?.avatarUrl}
+      src={user?.avatarUrl === null ? 'https://i.stack.imgur.com/l60Hf.png' : user?.avatarUrl}
       width={32}
       height={32}
       className="rounded-full"
