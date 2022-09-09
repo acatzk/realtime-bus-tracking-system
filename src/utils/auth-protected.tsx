@@ -3,8 +3,8 @@ import { useAuthenticationStatus } from '@nhost/nextjs'
 import { Spinner } from './Icons'
 import React from 'react'
 
-export const authProtected = (Comp) => {
-  return function AuthProtected(props) {
+export const authProtected = (Comp: any) => {
+  return function AuthProtected(props: any) {
     const router = useRouter()
     const { isLoading, isAuthenticated } = useAuthenticationStatus()
 
