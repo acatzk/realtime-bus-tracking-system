@@ -4,11 +4,7 @@ module.exports = {
   mode: 'jit',
   purge: [
     "./public/**/*.html", 
-    "./lib/**/*.{js,jsx,ts,tsx}",
-    "./utils/**/*.{js,jsx,ts,tsx}",
-    "./pages/**/*.{js,jsx,ts,tsx}",
-    "./layouts/**/*.{js,jsx,ts,tsx}",
-    "./components/**/*.{js,jsx,ts,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}",
     "./node_modules/tw-elements/dist/js/**/*.js"
   ],
   darkMode: false, // or 'media' or 'class'
