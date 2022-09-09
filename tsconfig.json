@@ -2,9 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "": [
-        "/*"
-      ]
+      "": ["/*"],
+      "~/*": ["src/*"],
+      "@/*": ["src/*"]
     },
     "target": "es5",
     "lib": [
@@ -23,7 +23,6 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "noImplicitAny": false,
     "incremental": true
   },
   "include": [
