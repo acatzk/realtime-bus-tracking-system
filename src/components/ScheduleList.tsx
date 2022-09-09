@@ -19,7 +19,7 @@ const ScheduleList: React.FC<props> = ({ trackers }): JSX.Element => {
 function THead() {
   return (
     <thead>
-      <tr className="bg-[#3f3a83] text-center">
+      <tr className="bg-secondary text-center">
         <th
           className="
       w-1/3
