@@ -117,7 +117,7 @@ const PageLayout: React.FC<props> = (props): JSX.Element => {
   return (
     <React.Fragment>
       <Head>
-        <title>Clementina {metaHead}</title>
+        <title>Clemrose {metaHead}</title>
       </Head>
       <Header driverData={driverData} actions={{ handleStatus }} />
       <div className="antialiased">{children}</div>

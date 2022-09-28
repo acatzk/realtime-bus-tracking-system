@@ -34,7 +34,8 @@ const Header: React.FC<props> = (props): JSX.Element => {
 
   const isActiveDriverStatus = driverData?.data?.trackers[0]?.isActive
   const isDriverCount = driverData?.data?.trackers_aggregate?.aggregate?.count
-  const isNotAuthenticatedUser = router.pathname !== '/' && (router.pathname !== '/login' && router.pathname !== '/register')
+  const isNotAuthenticatedUser =
+    router.pathname !== '/' && router.pathname !== '/login' && router.pathname !== '/register'
 
   return (
     <React.Fragment>
@@ -46,8 +47,7 @@ const Header: React.FC<props> = (props): JSX.Element => {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/images/logo.jpg" className="w-full h-full" alt="Logo" />
               </div>
-              <h1 className="hidden lg:block text-lg font-bold">Long Distance Bus Travel</h1>
-              <h1 className="block lg:hidden text-sm font-bold">Track</h1>
+              <h1 className="text-lg font-bold">ClemRose</h1>
               {isAuthenticated && (
                 <span
                   className={classNames(
@@ -197,25 +197,27 @@ function DashboardSubLinks({ dashboardLink }: { dashboardLink: any }) {
   return (
     <nav>
       <ul className="flex items-center space-x-4 md:space-x-6">
-        {dashboardLink.map(({ name, href, Icon }: { name: string, href: string, Icon: any}, i: number) => (
-          <li key={i}>
-            <Link href={`/${href}`}>
-              <a
-                className={classNames(
-                  'font-medium py-3 md:pb-4',
-                  'hover:text-gray-800 border-b-2',
-                  'transition ease-in-out duration-150',
-                  'text-sm md:text-base flex items-center space-x-1',
-                  router.pathname === `/${href}`
-                    ? 'text-gray-800  border-gray-500'
-                    : 'text-gray-600 border-transparent'
-                )}>
-                <Icon className="w-4 lg:w-5 h-4 lg:h-5" />
-                <span>{name}</span>
-              </a>
-            </Link>
-          </li>
-        ))}
+        {dashboardLink.map(
+          ({ name, href, Icon }: { name: string; href: string; Icon: any }, i: number) => (
+            <li key={i}>
+              <Link href={`/${href}`}>
+                <a
+                  className={classNames(
+                    'font-medium py-3 md:pb-4',
+                    'hover:text-gray-800 border-b-2',
+                    'transition ease-in-out duration-150',
+                    'text-sm md:text-base flex items-center space-x-1',
+                    router.pathname === `/${href}`
+                      ? 'text-gray-800  border-gray-500'
+                      : 'text-gray-600 border-transparent'
+                  )}>
+                  <Icon className="w-4 lg:w-5 h-4 lg:h-5" />
+                  <span>{name}</span>
+                </a>
+              </Link>
+            </li>
+          )
+        )}
       </ul>
     </nav>
   )
