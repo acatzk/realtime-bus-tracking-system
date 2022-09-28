@@ -38,14 +38,15 @@ const Header: React.FC<props> = (props): JSX.Element => {
 
   return (
     <React.Fragment>
-      <header className="border-b-2 py-4 bg-[#1f1b58] text-white">
+      <header className="border-b-2 py-4 bg-primary text-white">
         <div className="flex items-center justify-between px-4 md:px-8 lg:px-16 md:max-w-2xl lg:max-w-7xl mx-auto">
           <Link href="/">
             <a className="flex items-center space-x-2">
-              <div className="flex rounded-full border-2 border-white/90">
-                <Image src="/assets/logo2.png" width={32} height={32} alt="Logo" />
+              <div className="flex rounded-full overflow-hidden w-8 h-8">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/images/logo.jpg" className="w-full h-full" alt="Logo" />
               </div>
-              <h1 className="hidden lg:block text-lg font-bold">Clemrose Bus Tracker</h1>
+              <h1 className="hidden lg:block text-lg font-bold">Long Distance Bus Travel</h1>
               <h1 className="block lg:hidden text-sm font-bold">Track</h1>
               {isAuthenticated && (
                 <span
