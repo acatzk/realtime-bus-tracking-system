@@ -10,10 +10,12 @@ export const userNavigation = [
 export const dashboardLink = [
   { name: 'Dashboard', href: 'dashboard', Icon: BsCardChecklist },
   { name: 'Track Me', href: 'track-me', Icon: MdLocationPin },
-  { name: 'Profile', href: 'profile', Icon: CgProfile },
+  { name: 'Profile', href: 'profile', Icon: CgProfile }
 ]
 
 export const direction = [
-  { name: 'San Ricardo -> Maasin City' },
-  { name: 'Maasin City -> San Ricardo ' }
+  { name: 'Benit -> Sogod' },
+  { name: 'Sogod -> Benit' },
+  { name: 'Sogod -> Maasin' },
+  { name: 'Maasin -> Sogod' }
 ]
