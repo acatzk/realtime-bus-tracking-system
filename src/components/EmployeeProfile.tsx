@@ -29,9 +29,7 @@ const EmployeeProfile: React.FC<props> = (props): JSX.Element => {
             <p className="text-gray-500 font-medium">Bus Driver</p>
           </div>
         </div>
-        <div className="py-3 px-6 border-t border-gray-300 text-sm bg-gray-50">
-          Clementina Bus Corp.
-        </div>
+        <div className="py-3 px-6 border-t border-gray-300 text-sm bg-gray-50">Clemrose</div>
       </div>
     </div>
   )
