@@ -28,28 +28,14 @@ const Login: NextPage = (): JSX.Element => {
   const onSubmitForm = async (data: any) => {
     const { email, password } = data
 
-    const {
-      data: {
-        users: { ...roles }
-      }
-    } = await nhost.graphql.request(GET_USER_ROLE_BY_EMAIL, {
-      email: email.toString()
+    const { session, error } = await nhost.auth.signIn({
+      email: email,
+      password: password
     })
-
-    const loginRole = roles[0]?.roles[0]?.role
-
-    if (loginRole !== 'employee') {
-      return toast.warning(`Only Bus Driver can login this page!`)
-    } else {
-      const { session, error } = await nhost.auth.signIn({
-        email: email,
-        password: password
-      })
-      isSuccess(session, error)
-    }
+    isSuccess(session, error)
   }
 
-  const isSuccess = (session: any, error:any) => {
+  const isSuccess = (session: any, error: any) => {
     if (error) {
       toast.error(error?.message)
     } else {
