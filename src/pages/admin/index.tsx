@@ -1,16 +1,21 @@
 import React from 'react'
 import Link from 'next/link'
+import { NextPage } from 'next'
+import Head from 'next/head'
 
-const AdminLogin = (): JSX.Element => {
+const AdminLogin: NextPage = (): JSX.Element => {
   return (
     <>
+      <Head>
+        <title>Administrator Login</title>
+      </Head>
       <Header />
       <main className="px-4 md:px-8 lg:px-16 md:max-w-2xl lg:max-w-7xl mx-auto">
         <div className="flex items-center justify-center flex-col h-[91vh] flex-1 space-y-6">
           <span className="font-semibold text-gray-600">
             Welcome to ClemRose Bus Tracking System
           </span>
-          <h1 className="text-5xl font-extrabold">Login to Administrator</h1>
+          <h1 className="text-4xl lg:text-5xl font-extrabold">Login to Administrator</h1>
           <div className="relative border-b border-gray-300 w-full max-w-lg flex items-center justify-center">
             <span className="absolute -top-3 bg-white px-1 text-gray-600 text-sm font-light">
               with
@@ -43,7 +48,7 @@ const AdminLogin = (): JSX.Element => {
   )
 }
 
-const Header = () => {
+const Header = (): JSX.Element => {
   return (
     <header className="border-b-2 py-4 bg-primary text-white">
       <div className="flex items-center justify-between px-4 md:px-8 lg:px-16 md:max-w-2xl lg:max-w-7xl mx-auto">
