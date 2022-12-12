@@ -2,11 +2,25 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { NextPage } from 'next'
 import React, { Fragment } from 'react'
+import { useRouter } from 'next/router'
 import { Menu, Transition } from '@headlessui/react'
+import { useAuthenticationStatus, useSignOut, useUserData } from '@nhost/react'
 
 import AdminDashboardList from '~/components/AdminDashboardList'
 
 const Dashboard: NextPage = (): JSX.Element => {
+  const router = useRouter()
+  const user = useUserData()
+
+  const { isAuthenticated } = useAuthenticationStatus()
+
+  // Check if user is authenticated
+  React.useEffect(() => {
+    if (!isAuthenticated || user?.defaultRole !== 'admin') {
+      router.push('/')
+    }
+  }, [isAuthenticated])
+
   return (
     <>
       <Head>
@@ -58,6 +72,8 @@ const Dashboard: NextPage = (): JSX.Element => {
 }
 
 const Header = (): JSX.Element => {
+  const signOut = useSignOut()
+
   return (
     <header className="border-b-2 py-4 bg-primary text-white">
       <div className="flex items-center justify-between px-4 md:px-8 lg:px-16 md:max-w-2xl lg:max-w-7xl mx-auto">
@@ -91,6 +107,7 @@ const Header = (): JSX.Element => {
                 <Menu.Item>
                   <a
                     href="#"
+                    onClick={() => signOut.signOut()}
                     className="w-full hover:bg-gray-100 block px-4 py-2 text-sm text-gray-700">
                     Sign Out
                   </a>
