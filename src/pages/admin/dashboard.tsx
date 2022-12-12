@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import { Menu, Transition } from '@headlessui/react'
 import { useAuthenticationStatus, useSignOut, useUserData } from '@nhost/react'
 
+import handleImageError from '~/helpers/handleImageError'
 import AdminDashboardList from '~/components/AdminDashboardList'
 
 const Dashboard: NextPage = (): JSX.Element => {
@@ -39,6 +40,12 @@ const Dashboard: NextPage = (): JSX.Element => {
                     <img
                       src="https://th.bing.com/th/id/OIP.o5hnVgDkhrAIKPAUMAtzcAHaHa?w=166&h=180&c=7&r=0&o=5&pid=1.7"
                       className="mx-auto mb-4 w-32 rounded-full"
+                      onError={(e) =>
+                        handleImageError(
+                          e,
+                          'https://th.bing.com/th/id/OIP.o5hnVgDkhrAIKPAUMAtzcAHaHa?w=166&h=180&c=7&r=0&o=5&pid=1.7'
+                        )
+                      }
                       alt=""
                     />
                     <h5 className="mb-2 text-xl font-medium leading-tight">Admin</h5>
@@ -92,7 +99,17 @@ const Header = (): JSX.Element => {
               <Menu.Button className="focus:outline-none flex max-w-xs items-center rounded-full bg-indigo-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-800">
                 <span className="sr-only">Open user menu</span>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/images/logo.jpg" className="h-8 w-8 rounded-full" alt="" />
+                <img
+                  src="https://th.bing.com/th/id/OIP.o5hnVgDkhrAIKPAUMAtzcAHaHa?w=166&h=180&c=7&r=0&o=5&pid=1.7"
+                  className="h-8 w-8 rounded-full"
+                  onError={(e) =>
+                    handleImageError(
+                      e,
+                      'https://th.bing.com/th/id/OIP.o5hnVgDkhrAIKPAUMAtzcAHaHa?w=166&h=180&c=7&r=0&o=5&pid=1.7'
+                    )
+                  }
+                  alt=""
+                />
               </Menu.Button>
             </div>
             <Transition

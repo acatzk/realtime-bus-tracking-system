@@ -3,15 +3,13 @@ import Link from 'next/link'
 import React, { Fragment } from 'react'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
-import { BsCardChecklist } from 'react-icons/bs'
-import { RiLoginCircleLine } from 'react-icons/ri'
 import { Menu, Transition } from '@headlessui/react'
-import { AiOutlineUsergroupAdd } from 'react-icons/ai'
 import { HiOutlineStatusOffline, HiStatusOnline } from 'react-icons/hi'
 import { useAuthenticationStatus, useSignOut, useUserData } from '@nhost/react'
 
 import { classNames } from '~/helpers/classNames'
 import { dashboardLink } from '~/mock/object-list'
+import handleImageError from '~/helpers/handleImageError'
 
 type props = {
   isActive?: boolean
@@ -165,6 +163,12 @@ function UserAvatar({ user }: { user: any }) {
       height={32}
       className="rounded-full"
       layout="intrinsic"
+      onError={(e) =>
+        handleImageError(
+          e,
+          'https://th.bing.com/th/id/OIP.o5hnVgDkhrAIKPAUMAtzcAHaHa?w=166&h=180&c=7&r=0&o=5&pid=1.7'
+        )
+      }
       alt="avatar"
     />
   )

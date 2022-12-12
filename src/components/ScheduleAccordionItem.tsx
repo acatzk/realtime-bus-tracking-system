@@ -7,6 +7,7 @@ import { FaMapMarkedAlt } from 'react-icons/fa'
 import { ChevronUpIcon } from '@heroicons/react/solid'
 
 import { classNames } from '~/helpers/classNames'
+import handleImageError from '~/helpers/handleImageError'
 
 type props = {
   id: string
@@ -45,6 +46,12 @@ const ScheduleAccordionItem: React.FC<props> = ({
                     width={38}
                     height={38}
                     className="rounded-full"
+                    onError={(e) =>
+                      handleImageError(
+                        e,
+                        'https://th.bing.com/th/id/OIP.o5hnVgDkhrAIKPAUMAtzcAHaHa?w=166&h=180&c=7&r=0&o=5&pid=1.7'
+                      )
+                    }
                     alt="Avatar"
                   />
                 </div>

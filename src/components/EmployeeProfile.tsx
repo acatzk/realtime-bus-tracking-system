@@ -1,6 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
 
+import handleImageError from '~/helpers/handleImageError'
+
 type props = {
   user: any
 }
@@ -23,6 +25,12 @@ const EmployeeProfile: React.FC<props> = (props): JSX.Element => {
               width={128}
               height={128}
               className="mx-auto mb-4 w-32 rounded-full"
+              onError={(e) =>
+                handleImageError(
+                  e,
+                  'https://th.bing.com/th/id/OIP.o5hnVgDkhrAIKPAUMAtzcAHaHa?w=166&h=180&c=7&r=0&o=5&pid=1.7'
+                )
+              }
               alt={user?.displayName}
             />
             <h5 className="mb-2 text-xl font-medium leading-tight">{user?.displayName}</h5>

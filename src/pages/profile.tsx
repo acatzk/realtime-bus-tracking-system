@@ -11,6 +11,7 @@ import { useAvatarUrl, useDisplayName, useEmail, useUserData } from '@nhost/reac
 import { nhost } from '~/lib/nhost-client'
 import { classNames } from '~/helpers/classNames'
 import DashboardLayout from '~/layouts/DashboardLayout'
+import handleImageError from '~/helpers/handleImageError'
 import { UPDATE_USER_BY_PK_ID } from '~/graphql/mutations'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -87,6 +88,12 @@ const Profile: NextPage = (): JSX.Element => {
                       src={`${avatar === null ? 'https://i.stack.imgur.com/l60Hf.png' : avatar}`}
                       layout="fill"
                       className="shadown-lg rounded-full"
+                      onError={(e) =>
+                        handleImageError(
+                          e,
+                          'https://th.bing.com/th/id/OIP.o5hnVgDkhrAIKPAUMAtzcAHaHa?w=166&h=180&c=7&r=0&o=5&pid=1.7'
+                        )
+                      }
                       alt="avatar"
                     />
                   </div>

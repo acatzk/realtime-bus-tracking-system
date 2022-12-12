@@ -1,16 +1,29 @@
+import useSWR from 'swr'
 import React from 'react'
 import { MapIcon } from '@heroicons/react/solid'
 
+import { nhost } from '~/lib/nhost-client'
 import { classNames } from '~/helpers/classNames'
+import { GET_ALL_TRACKERS_BY_ADMIN } from '~/graphql/queries'
 
 type Props = {}
 
 const AdminDashboardList: React.FC<Props> = (props): JSX.Element => {
+  const address = GET_ALL_TRACKERS_BY_ADMIN
+  const fetcher = async (query: string) => await nhost.graphql.request(query)
+  const options = {
+    refreshInterval: 1000,
+    revalidateOnMount: true
+  }
+
+  const { data: driverData } = useSWR(address, fetcher, options)
+
   return (
     <table className="min-w-full border-b ">
       <THead />
       <tbody>
-        <tr className="border-b bg-white transition duration-300 ease-in-out hover:bg-gray-50">
+        <pre>{JSON.stringify(driverData, null, 2)}</pre>
+        {/* <tr className="border-b bg-white transition duration-300 ease-in-out hover:bg-gray-50">
           <td className="whitespace-nowrap border-r px-6 py-4 text-sm font-medium text-gray-900">
             James Bond
           </td>
@@ -44,7 +57,7 @@ const AdminDashboardList: React.FC<Props> = (props): JSX.Element => {
               </div>
             </div>
           </td>
-        </tr>
+        </tr> */}
       </tbody>
     </table>
   )
@@ -57,7 +70,7 @@ function THead() {
         <th
           scope="col"
           className="border-r px-6 py-4 text-left text-sm font-semibold text-gray-900">
-          Driver Name
+          Driver's Name
         </th>
         <th
           scope="col"

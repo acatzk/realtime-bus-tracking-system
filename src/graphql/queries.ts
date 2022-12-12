@@ -135,3 +135,31 @@ export const GET_TRACKER_BY_ID = gql`
     }
   }
 `
+
+export const GET_ALL_TRACKERS_BY_ADMIN = gql`
+  query getTrackerRecordByUserId {
+    trackers(order_by: { created_at: desc }) {
+      id
+      user {
+        displayName
+        avatarUrl
+      }
+      destination
+      plate_number
+      departure_time
+      date_created
+      passengers {
+        id
+        name
+        amount
+      }
+      passengers_aggregate {
+        aggregate {
+          count
+        }
+      }
+      latitude
+      longitude
+    }
+  }
+`
