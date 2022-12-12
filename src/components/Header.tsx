@@ -90,12 +90,6 @@ const Header: React.FC<props> = (props): JSX.Element => {
             )}
             {isAuthenticated && (
               <div className="flex items-center space-x-4">
-                <Link href="/dashboard">
-                  <a className="flex items-center space-x-1 hover:text-gray-300 transition ease-in-out duration-150">
-                    <BsCardChecklist className="w-4 lg:w-5 h-4 lg:h-5" />
-                    <span className="text-sm md:text-base font-medium">Dashboard</span>
-                  </a>
-                </Link>
                 {/* Profile dropdown */}
                 <Menu as="div" className="ml-3 relative">
                   <div>
