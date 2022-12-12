@@ -71,7 +71,7 @@ const AdminLogin: FC = (): JSX.Element => {
   return (
     <div className="w-full rounded-3xl  px-6 py-4 bg-white shadow-md">
       <label className="block mt-3 text-base text-gray-700 text-center font-semibold">
-        Employee's Login Page
+        Admin's Login Page
       </label>
       <form className="py-10" onSubmit={handleSubmit(onSubmitForm)}>
         <div className="mt-4">
@@ -139,7 +139,7 @@ const AdminLogin: FC = (): JSX.Element => {
               'disabled:cursor-not-allowed disabled:opacity-50',
               'bg-gradient-to-r from-[#1f1b58] via-pink-600 to-[#d73f49]'
             )}>
-            {isSubmitting ? 'Logging in...' : 'Login'}
+            {isSubmitting ? 'Logging in...' : 'Admin Login'}
           </button>
         </div>
       </form>
