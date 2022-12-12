@@ -8,7 +8,7 @@ type props = {
 
 const ScheduleAccordionList: React.FC<props> = ({ trackers }): JSX.Element => {
   return (
-    <div className="mt-2 bg-white border border-gray-200 rounded-lg overflow-hidden divide-y">
+    <div className="mt-2 divide-y overflow-hidden rounded-lg border border-gray-200 bg-white">
       {trackers?.map(ScheduleAccordionItem)}
     </div>
   )

@@ -10,36 +10,36 @@ const AdminDashboardList: React.FC<Props> = (props): JSX.Element => {
     <table className="min-w-full border-b ">
       <THead />
       <tbody>
-        <tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-50">
-          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-r">
+        <tr className="border-b bg-white transition duration-300 ease-in-out hover:bg-gray-50">
+          <td className="whitespace-nowrap border-r px-6 py-4 text-sm font-medium text-gray-900">
             James Bond
           </td>
-          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-r">
+          <td className="whitespace-nowrap border-r px-6 py-4 text-sm font-medium text-gray-900">
             Dec 11, 2022
           </td>
-          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-r">
+          <td className="whitespace-nowrap border-r px-6 py-4 text-sm font-medium text-gray-900">
             {`Sogod -> Benit`}
           </td>
-          <td className="text-sm text-gray-900 font-medium px-6 whitespace-nowrap border-r">
+          <td className="whitespace-nowrap border-r px-6 text-sm font-medium text-gray-900">
             02:36
           </td>
-          <td className="text-sm text-gray-900 font-medium px-6 whitespace-nowrap border-r">
+          <td className="whitespace-nowrap border-r px-6 text-sm font-medium text-gray-900">
             54545
           </td>
-          <td className="text-sm text-gray-900 font-medium px-6 whitespace-nowrap border-r">302</td>
-          <td className="text-sm text-gray-900 font-medium px-6 whitespace-nowrap border-r">
+          <td className="whitespace-nowrap border-r px-6 text-sm font-medium text-gray-900">302</td>
+          <td className="whitespace-nowrap border-r px-6 text-sm font-medium text-gray-900">
             P 21,523
           </td>
-          <td className="mt-text-sm text-gray-900 font-medium px-6 whitespace-nowrap border-r">
+          <td className="mt-text-sm whitespace-nowrap border-r px-6 font-medium text-gray-900">
             <div className="flex items-center justify-start">
               <div className="inline-flex" role="group">
                 <button
                   type="button"
                   className={classNames(
-                    'rounded-full inline-block px-2 py-0.5 text-blue-600 hover:underline font-semibold text-xs leading-tight',
-                    'transition duration-150 ease-in-out flex items-center'
+                    'inline-block rounded-full px-2 py-0.5 text-xs font-semibold leading-tight text-blue-600 hover:underline',
+                    'flex items-center transition duration-150 ease-in-out'
                   )}>
-                  <MapIcon className="mr-2 w-5 h-5" /> View Live Map
+                  <MapIcon className="mr-2 h-5 w-5" /> View Live Map
                 </button>
               </div>
             </div>
@@ -52,46 +52,46 @@ const AdminDashboardList: React.FC<Props> = (props): JSX.Element => {
 
 function THead() {
   return (
-    <thead className="bg-white border-b shadow">
-      <tr className="bg-gray-100 border-blue-20">
+    <thead className="border-b bg-white shadow">
+      <tr className="border-blue-20 bg-gray-100">
         <th
           scope="col"
-          className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
+          className="border-r px-6 py-4 text-left text-sm font-semibold text-gray-900">
           Driver Name
         </th>
         <th
           scope="col"
-          className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
+          className="border-r px-6 py-4 text-left text-sm font-semibold text-gray-900">
           Date
         </th>
         <th
           scope="col"
-          className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
+          className="border-r px-6 py-4 text-left text-sm font-semibold text-gray-900">
           Destination
         </th>
         <th
           scope="col"
-          className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
+          className="border-r px-6 py-4 text-left text-sm font-semibold text-gray-900">
           Departure Time
         </th>
         <th
           scope="col"
-          className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
+          className="border-r px-6 py-4 text-left text-sm font-semibold text-gray-900">
           Plate number
         </th>
         <th
           scope="col"
-          className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
+          className="border-r px-6 py-4 text-left text-sm font-semibold text-gray-900">
           No. Passenger
         </th>
         <th
           scope="col"
-          className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
+          className="border-r px-6 py-4 text-left text-sm font-semibold text-gray-900">
           Total Earnings
         </th>
         <th
           scope="col"
-          className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
+          className="border-r px-6 py-4 text-left text-sm font-semibold text-gray-900">
           Options
         </th>
       </tr>

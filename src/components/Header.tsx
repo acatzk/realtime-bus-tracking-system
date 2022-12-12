@@ -39,20 +39,20 @@ const Header: React.FC<props> = (props): JSX.Element => {
 
   return (
     <React.Fragment>
-      <header className="border-b-2 py-4 bg-primary text-white">
-        <div className="flex items-center justify-between px-4 md:px-8 lg:px-16 md:max-w-2xl lg:max-w-7xl mx-auto">
-          <Link href="/">
+      <header className="border-b-2 bg-primary py-4 text-white">
+        <div className="mx-auto flex items-center justify-between px-4 md:max-w-2xl md:px-8 lg:max-w-7xl lg:px-16">
+          <Link href="/dashboard">
             <a className="flex items-center space-x-2">
-              <div className="flex rounded-full overflow-hidden w-8 h-8">
+              <div className="flex h-8 w-8 overflow-hidden rounded-full">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/images/logo.jpg" className="w-full h-full" alt="Logo" />
+                <img src="/images/logo.jpg" className="h-full w-full" alt="Logo" />
               </div>
               <h1 className="text-lg font-bold">ClemRose</h1>
               {isAuthenticated && (
                 <span
                   className={classNames(
                     'rounded-full text-xs md:text-sm',
-                    'py-0.5 px-1 font-medium flex items-center space-x-1',
+                    'flex items-center space-x-1 py-0.5 px-1 font-medium',
                     isActiveDriverStatus ? 'bg-green-500' : 'bg-gray-500'
                   )}>
                   {isSubmitting ? (
@@ -60,9 +60,9 @@ const Header: React.FC<props> = (props): JSX.Element => {
                   ) : (
                     <>
                       {isActiveDriverStatus ? (
-                        <HiStatusOnline className="w-4 h-4" />
+                        <HiStatusOnline className="h-4 w-4" />
                       ) : (
-                        <HiOutlineStatusOffline className="w-4 h-4" />
+                        <HiOutlineStatusOffline className="h-4 w-4" />
                       )}
                       <span>{isActiveDriverStatus ? 'Active' : 'Inactive'}</span>
                     </>
@@ -75,9 +75,9 @@ const Header: React.FC<props> = (props): JSX.Element => {
             {isAuthenticated && (
               <div className="flex items-center space-x-4">
                 {/* Profile dropdown */}
-                <Menu as="div" className="ml-3 relative">
+                <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="max-w-xs bg-indigo-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-800 focus:ring-white">
+                    <Menu.Button className="focus:outline-none flex max-w-xs items-center rounded-full bg-indigo-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-800">
                       <span className="sr-only">Open user menu</span>
                       <UserAvatar user={user} />
                     </Menu.Button>
@@ -90,10 +90,10 @@ const Header: React.FC<props> = (props): JSX.Element => {
                     leave="transition ease-in duration-75"
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95">
-                    <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="focus:outline-none absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5">
                       <Menu.Item>
                         <Link href="/profile">
-                          <a className="hover:bg-gray-100 block px-4 py-2 text-sm text-gray-700">
+                          <a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                             Profile
                           </a>
                         </Link>
@@ -102,7 +102,7 @@ const Header: React.FC<props> = (props): JSX.Element => {
                         <a
                           href="#"
                           onClick={() => signOut.signOut()}
-                          className="w-full hover:bg-gray-100 block px-4 py-2 text-sm text-gray-700">
+                          className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                           Sign Out
                         </a>
                       </Menu.Item>
@@ -116,7 +116,7 @@ const Header: React.FC<props> = (props): JSX.Element => {
       </header>
       {isNotAuthenticatedUser && (
         <section className="bg-white shadow">
-          <div className="flex items-center flex-wrap justify-between px-4 md:px-8 lg:px-16 md:max-w-2xl lg:max-w-7xl mx-auto">
+          <div className="mx-auto flex flex-wrap items-center justify-between px-4 md:max-w-2xl md:px-8 lg:max-w-7xl lg:px-16">
             <DashboardSubLinks dashboardLink={dashboardLink} />
             {isDriverCount === 1 && (
               <form onSubmit={handleSubmit(handleStatus)}>
@@ -125,12 +125,12 @@ const Header: React.FC<props> = (props): JSX.Element => {
                   data-mdb-ripple="true"
                   data-mdb-ripple-color="light"
                   className={classNames(
-                    'text-white py-0.5 rounded px-2 font-medium flex flex-wrap items-center space-x-1',
-                    'transition ease-in-out duration-150 hover:shadow-lg text-sm md:text-base',
-                    'focus:outline-none focus:ring-0  active:shadow-lg focus:shadow-lg',
+                    'flex flex-wrap items-center space-x-1 rounded py-0.5 px-2 font-medium text-white',
+                    'text-sm transition duration-150 ease-in-out hover:shadow-lg md:text-base',
+                    'focus:outline-none focus:shadow-lg  focus:ring-0 active:shadow-lg',
                     isActiveDriverStatus
                       ? 'bg-green-500 hover:bg-green-600 hover:shadow-lg focus:bg-green-600 active:bg-green-700'
-                      : 'bg-gray-500 hover:bg-gray-600 hover:shadow-lg focus:bg-gray-600 active:bg-gray-700 animate-bounce'
+                      : 'animate-bounce bg-gray-500 hover:bg-gray-600 hover:shadow-lg focus:bg-gray-600 active:bg-gray-700'
                   )}
                   data-bs-toggle="tooltip"
                   data-bs-placement="right"
@@ -140,9 +140,9 @@ const Header: React.FC<props> = (props): JSX.Element => {
                   ) : (
                     <>
                       {isActiveDriverStatus ? (
-                        <HiStatusOnline className="w-4 lg:w-5 h-4 lg:h-5" />
+                        <HiStatusOnline className="h-4 w-4 lg:h-5 lg:w-5" />
                       ) : (
-                        <HiOutlineStatusOffline className="w-4 lg:w-5 h-4 lg:h-5" />
+                        <HiOutlineStatusOffline className="h-4 w-4 lg:h-5 lg:w-5" />
                       )}
                       <span>{isActiveDriverStatus ? 'Active' : 'Inactive'}</span>
                     </>
@@ -181,15 +181,15 @@ function DashboardSubLinks({ dashboardLink }: { dashboardLink: any }) {
               <Link href={`/${href}`}>
                 <a
                   className={classNames(
-                    'font-medium py-3 md:pb-4',
-                    'hover:text-gray-800 border-b-2',
-                    'transition ease-in-out duration-150',
-                    'text-sm md:text-base flex items-center space-x-1',
+                    'py-3 font-medium md:pb-4',
+                    'border-b-2 hover:text-gray-800',
+                    'transition duration-150 ease-in-out',
+                    'flex items-center space-x-1 text-sm md:text-base',
                     router.pathname === `/${href}`
-                      ? 'text-gray-800  border-gray-500'
-                      : 'text-gray-600 border-transparent'
+                      ? 'border-gray-500  text-gray-800'
+                      : 'border-transparent text-gray-600'
                   )}>
-                  <Icon className="w-4 lg:w-5 h-4 lg:h-5" />
+                  <Icon className="h-4 w-4 lg:h-5 lg:w-5" />
                   <span>{name}</span>
                 </a>
               </Link>

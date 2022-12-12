@@ -37,7 +37,7 @@ const EditTrackerDialog: React.FC<props> = (props): JSX.Element => {
     <DialogBox isOpen={isOpen} closeModal={closeModal}>
       <Dialog.Title
         as="h3"
-        className="text-lg font-medium leading-6 text-gray-900 py-2 text-center">
+        className="py-2 text-center text-lg font-medium leading-6 text-gray-900">
         Update Track Record
       </Dialog.Title>
       <form className="mt-2" onSubmit={handleSubmit(handleUpdate)}>
@@ -51,15 +51,15 @@ const EditTrackerDialog: React.FC<props> = (props): JSX.Element => {
               {...register('id', { required: true })}
             />
           </div>
-          <label htmlFor="Destination" className="text-sm font-medium text-gray-900 block mb-2">
+          <label htmlFor="Destination" className="mb-2 block text-sm font-medium text-gray-900">
             Destination
           </label>
           <Listbox value={selected} onChange={setSelected}>
             <div className="relative mt-1">
               <Listbox.Button
                 className={classNames(
-                  'relative border border-gray-300 focus:ring-blue-500 focus:border-blue-500 w-full cursor-default rounded-lg',
-                  'bg-gray-50 py-2 pl-3 pr-10 text-left focus:outline-none sm:text-sm'
+                  'relative w-full cursor-default rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-blue-500',
+                  'focus:outline-none bg-gray-50 py-2 pl-3 pr-10 text-left sm:text-sm'
                 )}>
                 <span className="block truncate">{selected.name}</span>
                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
@@ -74,7 +74,7 @@ const EditTrackerDialog: React.FC<props> = (props): JSX.Element => {
                 <Listbox.Options
                   className={classNames(
                     'absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1',
-                    'ring-black ring-opacity-5 focus:outline-none sm:text-sm'
+                    'focus:outline-none ring-black ring-opacity-5 sm:text-sm'
                   )}>
                   {direction?.map((location, index) => (
                     <Listbox.Option
@@ -108,7 +108,7 @@ const EditTrackerDialog: React.FC<props> = (props): JSX.Element => {
           </Listbox>
         </div>
         <div className="mb-6">
-          <label htmlFor="email" className="text-sm font-medium text-gray-900 block mb-2">
+          <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-900">
             Departure Time
           </label>
           <input
@@ -116,21 +116,21 @@ const EditTrackerDialog: React.FC<props> = (props): JSX.Element => {
             defaultValue={track?.departure_time}
             defaultChecked={track?.departure_time}
             className={classNames(
-              'mt-1 block py-2 w-full shadow-sm sm:text-md rounded-md',
-              'disabled:opacity-50 disabled:cursor-not-allowed',
-              'transition ease-in-out duration-150',
+              'sm:text-md mt-1 block w-full rounded-md py-2 shadow-sm',
+              'disabled:cursor-not-allowed disabled:opacity-50',
+              'transition duration-150 ease-in-out',
               errors.departure_time?.type === 'required'
                 ? 'border-red-500 ring-red-500 focus:border-red-500 focus:ring-red-500'
-                : 'ring-indigo-200 focus:ring-indigo-500 border-gray-300'
+                : 'border-gray-300 ring-indigo-200 focus:ring-indigo-500'
             )}
             {...register('departure_time', { required: true })}
           />
           {errors.departure_time?.type === 'required' && (
-            <span className="text-xs text-red-500 ml-1">Departure Time is required</span>
+            <span className="ml-1 text-xs text-red-500">Departure Time is required</span>
           )}
         </div>
         <div className="mb-6">
-          <label htmlFor="email" className="text-sm font-medium text-gray-900 block mb-2">
+          <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-900">
             Plate Number
           </label>
           <input
@@ -138,30 +138,30 @@ const EditTrackerDialog: React.FC<props> = (props): JSX.Element => {
             defaultValue={track?.plate_number}
             defaultChecked={track?.plate_number}
             className={classNames(
-              'mt-1 block py-2 w-full shadow-sm sm:text-md rounded-md',
-              'disabled:opacity-50 disabled:cursor-not-allowed',
-              'transition ease-in-out duration-150',
+              'sm:text-md mt-1 block w-full rounded-md py-2 shadow-sm',
+              'disabled:cursor-not-allowed disabled:opacity-50',
+              'transition duration-150 ease-in-out',
               errors.plate_number?.type === 'required'
                 ? 'border-red-500 ring-red-500 focus:border-red-500 focus:ring-red-500'
-                : 'ring-indigo-200 focus:ring-indigo-500 border-gray-300'
+                : 'border-gray-300 ring-indigo-200 focus:ring-indigo-500'
             )}
             {...register('plate_number', { required: true })}
             placeholder="Enter bus plate number"
           />
           {errors.plate_number?.type === 'required' && (
-            <span className="text-xs text-red-500 ml-1">Plate number is required</span>
+            <span className="ml-1 text-xs text-red-500">Plate number is required</span>
           )}
         </div>
         <div className="flex justify-end space-x-1">
           <button
             type="button"
             onClick={closeModal}
-            className="text-white bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-2 text-center">
+            className="rounded-lg bg-gray-500 px-3 py-2 text-center text-sm font-medium text-white hover:bg-gray-600 focus:ring-4 focus:ring-gray-300">
             Cancel
           </button>
           <button
             type="submit"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center">
+            className="rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300">
             {isSubmitting ? 'Saving...' : 'Save'}
           </button>
         </div>

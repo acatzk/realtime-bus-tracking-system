@@ -12,11 +12,11 @@ const NotFound: NextPage = (): JSX.Element => {
         <title>Page Not Found</title>
         <meta name="description" content="404 page not found" />
       </Head>
-      <div className="flex items-center justify-center px-4 h-screen min-h-screen bg-white dark:bg-dark-dim text-gray-800 transition ease-in-out duration-700">
+      <div className="dark:bg-dark-dim flex h-screen min-h-screen items-center justify-center bg-white px-4 text-gray-800 transition duration-700 ease-in-out">
         <div className="flex flex-col items-center space-y-4">
           <div className="flex items-center">
-            <h1 className="font-bold text-9xl -mr-6 dark:text-gray-100">4</h1>
-            <div className="flex-shrink-0 z-50">
+            <h1 className="-mr-6 text-9xl font-bold dark:text-gray-100">4</h1>
+            <div className="z-50 flex-shrink-0">
               <Image
                 src="/images/emoji.png"
                 alt="Cry Emoji Image"
@@ -27,14 +27,14 @@ const NotFound: NextPage = (): JSX.Element => {
                 layout="intrinsic"
               />
             </div>
-            <h1 className="font-bold text-9xl -ml-8 dark:text-gray-100">4</h1>
+            <h1 className="-ml-8 text-9xl font-bold dark:text-gray-100">4</h1>
           </div>
           <div className="flex flex-col items-center">
-            <h2 className="text-xl uppercase font-semibold dark:text-gray-200">
+            <h2 className="text-xl font-semibold uppercase dark:text-gray-200">
               Oops! Page not be found
             </h2>
             <div className="max-w-md text-center">
-              <p className="text-gray-500 text-sm dark:text-gray-400">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
                 Sorry but the page you are looking for does not exist, have been removed. name
                 changed or is temporarily unavailable
               </p>
@@ -43,7 +43,7 @@ const NotFound: NextPage = (): JSX.Element => {
           <div>
             <button
               onClick={() => router.push('/')}
-              className="px-6 py-3 rounded-full bg-yellow-500 hover:bg-yellow-400 text-white font-semibold hover:shadow-xl transition ease-in-out duration-150 focus:outline-none">
+              className="focus:outline-none rounded-full bg-yellow-500 px-6 py-3 font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-400 hover:shadow-xl">
               Back to Homepage
             </button>
           </div>

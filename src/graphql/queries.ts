@@ -1,8 +1,8 @@
 import { gql } from 'graphql-request'
 
 export const GET_USER_ROLE_BY_EMAIL = gql`
-  query getUserRoleByEmail($email: citext!){
-    users(where: {email: {_eq: $email}}) {
+  query getUserRoleByEmail($email: citext!) {
+    users(where: { email: { _eq: $email } }) {
       id
       displayName
       roles {
@@ -14,7 +14,13 @@ export const GET_USER_ROLE_BY_EMAIL = gql`
 
 export const CHECK_EMPLOYEE_IF_ALREADY_TRACK = gql`
   query checkIfDriverAlreadyTracked($user_id: uuid!, $date_created: date!) {
-    trackers_aggregate(where: {user_id: {_eq: $user_id}, date_created: {_eq: $date_created}, isDeleted: {_eq: false}}) {
+    trackers_aggregate(
+      where: {
+        user_id: { _eq: $user_id }
+        date_created: { _eq: $date_created }
+        isDeleted: { _eq: false }
+      }
+    ) {
       aggregate {
         count
       }
@@ -24,7 +30,7 @@ export const CHECK_EMPLOYEE_IF_ALREADY_TRACK = gql`
 
 export const GET_TRACKER_STATUS = gql`
   query getTrackerStatus($user_id: uuid!, $created_at: date!) {
-    trackers(where: {user_id: {_eq: $user_id}, created_at: {_eq: $created_at}}) {
+    trackers(where: { user_id: { _eq: $user_id }, created_at: { _eq: $created_at } }) {
       id
       isActive
     }
@@ -33,7 +39,14 @@ export const GET_TRACKER_STATUS = gql`
 
 export const GET_DRIVER_LOCATION_BY_CURRENT_DATE = gql`
   query getDriverLocation($date_created: date!) {
-    trackers(where: {date_created: {_eq: $date_created}, isActive: {_eq: true}, isDeleted: {_eq: false}}, order_by: {departure_time: asc}) {
+    trackers(
+      where: {
+        date_created: { _eq: $date_created }
+        isActive: { _eq: true }
+        isDeleted: { _eq: false }
+      }
+      order_by: { departure_time: asc }
+    ) {
       id
       user_id
       plate_number
@@ -54,13 +67,25 @@ export const GET_DRIVER_LOCATION_BY_CURRENT_DATE = gql`
 
 export const GET_TRACK_IF_EXIST_AND_STATUS = gql`
   query getTracker($user_id: uuid!, $date_created: date!) {
-    trackers(where: {user_id: {_eq: $user_id}, date_created: {_eq: $date_created}, isDeleted: {_eq: false}}) {
+    trackers(
+      where: {
+        user_id: { _eq: $user_id }
+        date_created: { _eq: $date_created }
+        isDeleted: { _eq: false }
+      }
+    ) {
       id
       isActive
       latitude
       longitude
     }
-    trackers_aggregate(where: {user_id: {_eq: $user_id}, date_created: {_eq: $date_created}, isDeleted: {_eq: false}}) {
+    trackers_aggregate(
+      where: {
+        user_id: { _eq: $user_id }
+        date_created: { _eq: $date_created }
+        isDeleted: { _eq: false }
+      }
+    ) {
       aggregate {
         count
       }
@@ -70,7 +95,11 @@ export const GET_TRACK_IF_EXIST_AND_STATUS = gql`
 
 export const GET_TRACKER_RECORDS_BY_USER_ID = gql`
   query getTrackerRecordByUserId($user_id: uuid!) {
-    trackers(where: {isDeleted: {_eq: false}, user_id: {_eq: $user_id}}, order_by: {date_created: desc}, limit: 35) {
+    trackers(
+      where: { isDeleted: { _eq: false }, user_id: { _eq: $user_id } }
+      order_by: { date_created: desc }
+      limit: 35
+    ) {
       id
       destination
       plate_number

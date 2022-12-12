@@ -8,12 +8,12 @@ import { useAuthenticationStatus, useUserData } from '@nhost/react'
 
 import { nhost } from '~/lib/nhost-client'
 import { direction } from '~/mock/object-list'
-import TrackMeForm from '~/components/TrackMeForm'
+import TrackBusForm from '~/components/TrackBusForm'
 import DashboardLayout from '~/layouts/DashboardLayout'
 import { CREATE_BUS_TRACKER_MUTATION } from '~/graphql/mutations'
 import { CHECK_EMPLOYEE_IF_ALREADY_TRACK } from '~/graphql/queries'
 
-const TrackMe: NextPage = (): JSX.Element => {
+const TrackBus: NextPage = (): JSX.Element => {
   const user = useUserData()
   const router = useRouter()
   const [latitude, setLatitude] = useState(0)
@@ -75,10 +75,10 @@ const TrackMe: NextPage = (): JSX.Element => {
 
   return (
     <DashboardLayout metaHead="| Track Me">
-      <main className="min-h-[81vh] px-4 md:px-8 lg:px-16 pb-8 md:max-w-2xl lg:max-w-7xl mx-auto">
-        <div className="mt-8 max-w-lg mx-auto">
-          <h1 className="text-lg font-bold text-center">Track Bus Driver</h1>
-          <TrackMeForm
+      <main className="mx-auto min-h-[81vh] px-4 pb-8 md:max-w-2xl md:px-8 lg:max-w-7xl lg:px-16">
+        <div className="mx-auto mt-8 max-w-lg">
+          <h1 className="text-center text-lg font-bold">Track Bus Driver</h1>
+          <TrackBusForm
             selected={selected}
             setSelected={setSelected}
             onSubmitForm={onSubmitForm}
@@ -93,4 +93,4 @@ const TrackMe: NextPage = (): JSX.Element => {
   )
 }
 
-export default TrackMe
+export default TrackBus

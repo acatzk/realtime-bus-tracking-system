@@ -8,7 +8,7 @@ type props = {
 
 const ScheduleList: React.FC<props> = ({ trackers }): JSX.Element => {
   return (
-    <table className="table-auto w-full relative">
+    <table className="relative w-full table-auto">
       <THead />
       <tbody>{trackers?.map(Schedule)}</tbody>
       {trackers?.length === 0 && <TFoot />}
@@ -24,15 +24,15 @@ function THead() {
           className="
       w-1/3
       min-w-[160px]
+      border-l
+      border-transparent
+      py-4
+      px-3
       text-base
-      md:text-lg
       font-semibold
       text-white
-      py-4
-      lg:py-7
-      px-3
-      lg:px-4
-      border-l border-transparent
+      md:text-lg
+      lg:py-7 lg:px-4
     ">
           Driver
         </th>
@@ -40,15 +40,15 @@ function THead() {
           className="
       w-1/3
       min-w-[160px]
+      border-l
+      border-transparent
+      py-4
+      px-3
       text-base
-      md:text-lg
       font-semibold
       text-white
-      py-4
-      lg:py-7
-      px-3
-      lg:px-4
-      border-l border-transparent
+      md:text-lg
+      lg:py-7 lg:px-4
     ">
           Destination
         </th>
@@ -56,15 +56,15 @@ function THead() {
           className="
       w-1/3
       min-w-[160px]
+      border-l
+      border-transparent
+      py-4
+      px-3
       text-base
-      md:text-lg
       font-semibold
       text-white
-      py-4
-      lg:py-7
-      px-3
-      lg:px-4
-      border-l border-transparent
+      md:text-lg
+      lg:py-7 lg:px-4
     ">
           Departure Time
         </th>
@@ -72,13 +72,13 @@ function THead() {
           className="
       w-1/3
       min-w-[160px]
+      py-4
+      px-3
       text-base
-      md:text-lg
       font-semibold
       text-white
-      py-4
+      md:text-lg
       lg:py-7
-      px-3
       lg:px-4
     ">
           Plate Number
@@ -87,13 +87,13 @@ function THead() {
           className="
       w-1/6
       min-w-[160px]
+      py-4
+      px-3
       text-base
-      md:text-lg
       font-semibold
       text-white
-      py-4
+      md:text-lg
       lg:py-7
-      px-3
       lg:px-4
     ">
           Track Location
@@ -112,10 +112,10 @@ function TFoot() {
         <td
           className="
       w-full
+      py-2
       text-sm
       font-semibold
       text-gray-800
-      py-2
     ">
           No Active Driver
         </td>

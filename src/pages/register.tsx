@@ -54,20 +54,20 @@ const Register: NextPage = (): JSX.Element => {
 
   if (isLoading)
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen">
-        <Spinner className="w-14 h-14" />
-        <p className="text-xs mt-1">Loading...</p>
+      <div className="flex min-h-screen flex-col items-center justify-center">
+        <Spinner className="h-14 w-14" />
+        <p className="mt-1 text-xs">Loading...</p>
       </div>
     )
 
   return (
     <PageLayout metaHead="| Registration">
-      <main className="min-h-[91vh] px-4 md:px-8 lg:px-16 md:max-w-2xl lg:max-w-7xl mx-auto flex justify-center place-items-center">
-        <div className="relative max-w-sm w-full">
-          <div className="card bg-[#1f1b58] shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
-          <div className="card bg-[#d73f49] shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div>
-          <div className="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
-            <label className="block mt-3 text-base text-gray-700 text-center font-semibold">
+      <main className="mx-auto flex min-h-[91vh] place-items-center justify-center px-4 md:max-w-2xl md:px-8 lg:max-w-7xl lg:px-16">
+        <div className="relative w-full max-w-sm">
+          <div className="card absolute h-full  w-full -rotate-6 transform rounded-3xl  bg-[#1f1b58] shadow-lg"></div>
+          <div className="card absolute h-full  w-full rotate-6 transform rounded-3xl  bg-[#d73f49] shadow-lg"></div>
+          <div className="relative w-full rounded-3xl  bg-gray-100 px-6 py-4 shadow-md">
+            <label className="mt-3 block text-center text-base font-semibold text-gray-700">
               Clemrose Registration Page
             </label>
             <form className="py-10" onSubmit={handleSubmit(onSubmitForm)}>
@@ -77,8 +77,8 @@ const Register: NextPage = (): JSX.Element => {
                   disabled={isSubmitting}
                   placeholder="Enter Name"
                   className={classNames(
-                    'mt-1 block w-full border-none h-14 rounded-xl shadow-lg',
-                    'focus:ring-0 transition ease-in-out duration-150',
+                    'mt-1 block h-14 w-full rounded-xl border-none shadow-lg',
+                    'transition duration-150 ease-in-out focus:ring-0',
                     'disabled:cursor-not-allowed disabled:opacity-50',
                     errors?.name ? 'bg-red-100' : 'bg-gray-100 hover:bg-blue-100 focus:bg-blue-100'
                   )}
@@ -86,8 +86,12 @@ const Register: NextPage = (): JSX.Element => {
                     required: 'Name is required'
                   })}
                 />
-                <div className="space-y-0.5 ml-1.5">
-                  {errors.name && <span className="text-xs text-red-500 font-medium">{errors?.name?.message}</span>}
+                <div className="ml-1.5 space-y-0.5">
+                  {errors.name && (
+                    <span className="text-xs font-medium text-red-500">
+                      {errors?.name?.message}
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -97,8 +101,8 @@ const Register: NextPage = (): JSX.Element => {
                   disabled={isSubmitting}
                   placeholder="Enter Email"
                   className={classNames(
-                    'mt-1 block w-full border-none h-14 rounded-xl shadow-lg',
-                    'focus:ring-0 transition ease-in-out duration-150',
+                    'mt-1 block h-14 w-full rounded-xl border-none shadow-lg',
+                    'transition duration-150 ease-in-out focus:ring-0',
                     'disabled:cursor-not-allowed disabled:opacity-50',
                     errors?.email ? 'bg-red-100' : 'bg-gray-100 hover:bg-blue-100 focus:bg-blue-100'
                   )}
@@ -110,9 +114,9 @@ const Register: NextPage = (): JSX.Element => {
                     }
                   })}
                 />
-                <div className="space-y-0.5 ml-1.5">
+                <div className="ml-1.5 space-y-0.5">
                   {errors.email && (
-                    <span className="text-xs text-red-500 font-medium">
+                    <span className="text-xs font-medium text-red-500">
                       {errors.email?.message}
                     </span>
                   )}
@@ -125,8 +129,8 @@ const Register: NextPage = (): JSX.Element => {
                   disabled={isSubmitting}
                   placeholder="Enter Password"
                   className={classNames(
-                    'mt-1 block w-full border-none h-14 rounded-xl shadow-lg',
-                    'focus:ring-0 transition ease-in-out duration-150',
+                    'mt-1 block h-14 w-full rounded-xl border-none shadow-lg',
+                    'transition duration-150 ease-in-out focus:ring-0',
                     'disabled:cursor-not-allowed disabled:opacity-50',
                     errors?.password
                       ? 'bg-red-100'
@@ -140,8 +144,12 @@ const Register: NextPage = (): JSX.Element => {
                     }
                   })}
                 />
-                <div className="space-y-0.5 ml-1.5">
-                  {errors.password && <span className="text-xs text-red-500 font-medium">{errors?.password?.message}</span>}
+                <div className="ml-1.5 space-y-0.5">
+                  {errors.password && (
+                    <span className="text-xs font-medium text-red-500">
+                      {errors?.password?.message}
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -150,8 +158,8 @@ const Register: NextPage = (): JSX.Element => {
                   type="submit"
                   disabled={isSubmitting}
                   className={classNames(
-                    'w-full py-4 rounded-xl text-white shadow-xl hover:shadow-inner',
-                    'focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105',
+                    'w-full rounded-xl py-4 text-white shadow-xl hover:shadow-inner',
+                    'focus:outline-none hover:-translate-x transform transition  duration-500 ease-in-out hover:scale-105',
                     'disabled:cursor-not-allowed disabled:opacity-50',
                     'bg-gradient-to-r from-[#1f1b58] via-pink-600 to-[#d73f49]'
                   )}>
