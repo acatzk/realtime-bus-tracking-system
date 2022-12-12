@@ -2,7 +2,8 @@ import * as Yup from 'yup'
 
 export const PasengersFormSchema = Yup.object().shape({
   name: Yup.string().required('Passengers name is required'),
-  amount: Yup.number().required().label('Amount is required')
+  amount: Yup.number().required().label('Amount is required'),
+  date_created: Yup.string().required('Passengers name is required')
 })
 
 export const TrackBusFormSchema = Yup.object().shape({

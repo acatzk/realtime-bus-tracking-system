@@ -1,3 +1,4 @@
+import Moment from 'moment'
 import { toast } from 'react-toastify'
 import { useForm } from 'react-hook-form'
 import React, { FC, Fragment, useState } from 'react'
@@ -32,10 +33,11 @@ const PassengersForm: FC<Props> = ({ isActiveDriverStatus, track_id }): JSX.Elem
 
   const handleSavePassengers = async (data: PassengerFormValues): Promise<void> => {
     try {
-      const { name, amount } = data
+      const { name, amount, date_created } = data
       const response = await nhost.graphql.request(CREATE_PASSENGER_ONE, {
         track_id,
         name,
+        date_created,
         destination: selected.name,
         amount
       })
@@ -56,6 +58,13 @@ const PassengersForm: FC<Props> = ({ isActiveDriverStatus, track_id }): JSX.Elem
 
   return (
     <form className="mt-2" onSubmit={handleSubmit(handleSavePassengers)}>
+      <input
+        hidden
+        type="date"
+        {...register('date_created')}
+        defaultValue={Moment().format('YYYY-MM-DD')}
+        placeholder="Enter bus plate number"
+      />
       <div className="mb-6">
         <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-900">
           Name

@@ -8,6 +8,7 @@ export type SignInUpFormValues = {
 export type PassengerFormValues = {
   name: string
   amount: number
+  date_created: string
 }
 
 export type TrackBusFormSchema = {

@@ -129,9 +129,16 @@ export const CREATE_PASSENGER_ONE = gql`
     $name: String
     $destination: String!
     $amount: numeric!
+    $date_created: String!
   ) {
     insert_passengers_one(
-      object: { track_id: $track_id, name: $name, destination: $destination, amount: $amount }
+      object: {
+        track_id: $track_id
+        name: $name
+        destination: $destination
+        amount: $amount
+        date_created: $date_created
+      }
     ) {
       id
       name
