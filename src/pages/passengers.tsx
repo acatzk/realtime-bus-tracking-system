@@ -26,7 +26,7 @@ const Passengers: NextPage = (): JSX.Element => {
   const { data: driverData } = useSWR(address, fetcher, options)
 
   const isActiveDriverStatus = driverData?.data?.trackers[0]?.isActive
-  const track_id = driverData?.data?.trackers[0].id
+  const track_id = driverData?.data?.trackers[0]?.id
 
   return (
     <DashboardLayout metaHead="| Track Me">
