@@ -1,5 +1,6 @@
 import useSWR from 'swr'
 import React from 'react'
+import Moment from 'moment'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { FiPlus } from 'react-icons/fi'
@@ -20,7 +21,8 @@ const Dashboard: NextPage = (): JSX.Element => {
   const address = GET_TRACKER_RECORDS_BY_USER_ID
   const fetcher = async (query: string) =>
     await nhost.graphql.request(query, {
-      user_id: user?.id
+      user_id: user?.id,
+      date_created: Moment().format('YYYY-MM-DD')
     })
   const options = {
     refreshInterval: 1000,

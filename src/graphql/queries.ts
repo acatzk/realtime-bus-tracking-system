@@ -94,17 +94,26 @@ export const GET_TRACK_IF_EXIST_AND_STATUS = gql`
 `
 
 export const GET_TRACKER_RECORDS_BY_USER_ID = gql`
-  query getTrackerRecordByUserId($user_id: uuid!) {
+  query getTrackerRecordByUserId($user_id: uuid!, $date_created: String!) {
     trackers(
       where: { isDeleted: { _eq: false }, user_id: { _eq: $user_id } }
       order_by: { date_created: desc }
-      limit: 35
     ) {
       id
       destination
       plate_number
       departure_time
       date_created
+      passengers(where: { date_created: { _eq: $date_created } }) {
+        id
+        name
+        amount
+      }
+      passengers_aggregate {
+        aggregate {
+          count
+        }
+      }
     }
   }
 `

@@ -11,7 +11,22 @@ type props = {
 
 const DashboardItem: React.FC<props> = ({ track, openModal, actions }): JSX.Element => {
   const { handleDelete } = actions
-  const { destination, departure_time, plate_number, date_created } = track
+  const {
+    destination,
+    departure_time,
+    plate_number,
+    date_created,
+    passengers_aggregate: {
+      aggregate: { count: total_number_of_passengers }
+    },
+    passengers
+  } = track
+
+  let sum = 0
+
+  for (const value of passengers) {
+    sum += value.amount
+  }
 
   return (
     <tr className="border-b bg-white transition duration-300 ease-in-out hover:bg-gray-50">
@@ -27,6 +42,10 @@ const DashboardItem: React.FC<props> = ({ track, openModal, actions }): JSX.Elem
       <td className="whitespace-nowrap border-r px-6 text-sm font-medium text-gray-900">
         {plate_number}
       </td>
+      <td className="whitespace-nowrap border-r px-6 text-sm font-medium text-gray-900">
+        {total_number_of_passengers}
+      </td>
+      <td className="whitespace-nowrap border-r px-6 text-sm font-medium text-gray-900">₱{sum}</td>
       <td className="mt-text-sm whitespace-nowrap border-r px-6 font-medium text-gray-900">
         <div className="flex items-center justify-start">
           <div className="inline-flex" role="group">

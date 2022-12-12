@@ -114,6 +114,16 @@ function THead() {
         <th
           scope="col"
           className="border-r px-6 py-4 text-left text-sm font-semibold text-gray-900">
+          No. Passengers
+        </th>
+        <th
+          scope="col"
+          className="border-r px-6 py-4 text-left text-sm font-semibold text-gray-900">
+          Total Earnings
+        </th>
+        <th
+          scope="col"
+          className="border-r px-6 py-4 text-left text-sm font-semibold text-gray-900">
           Options
         </th>
       </tr>

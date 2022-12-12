@@ -42,7 +42,7 @@ const NotFound: NextPage = (): JSX.Element => {
           </div>
           <div>
             <button
-              onClick={() => router.push('/')}
+              onClick={() => router.push('/dashboard')}
               className="focus:outline-none rounded-full bg-yellow-500 px-6 py-3 font-semibold text-white transition duration-150 ease-in-out hover:bg-yellow-400 hover:shadow-xl">
               Back to Homepage
             </button>
