@@ -72,22 +72,6 @@ const Header: React.FC<props> = (props): JSX.Element => {
             </a>
           </Link>
           <div>
-            {!isAuthenticated && (
-              <div className="flex items-center space-x-4">
-                <Link href="/login">
-                  <a className="flex items-center space-x-1 hover:text-gray-300 transition ease-in-out duration-150">
-                    <RiLoginCircleLine className="w-4 lg:w-5 h-4 lg:h-5" />
-                    <span className="text-sm md:text-base font-medium">Login</span>
-                  </a>
-                </Link>
-                <Link href="/register">
-                  <a className="flex items-center space-x-1 hover:text-gray-300 transition ease-in-out duration-150">
-                    <AiOutlineUsergroupAdd className="w-4 lg:w-5 h-4 lg:h-5" />
-                    <span className="text-sm md:text-base font-medium">Registration</span>
-                  </a>
-                </Link>
-              </div>
-            )}
             {isAuthenticated && (
               <div className="flex items-center space-x-4">
                 {/* Profile dropdown */}
