@@ -9,9 +9,9 @@ const EmployeeProfile: React.FC<props> = (props): JSX.Element => {
   const { user } = props
 
   return (
-    <div className="bg-white text-center flex-1">
-      <div className="border rounded-lg overflow-hidden">
-        <div className="py-3 px-6 border-b border-gray-300">Employee</div>
+    <div className="flex-1 bg-white text-center">
+      <div className="overflow-hidden rounded-lg border">
+        <div className="border-b border-gray-300 py-3 px-6">Employee</div>
         <div className="p-6">
           <div className="text-center">
             <Image
@@ -22,14 +22,14 @@ const EmployeeProfile: React.FC<props> = (props): JSX.Element => {
               }
               width={128}
               height={128}
-              className="rounded-full w-32 mb-4 mx-auto"
+              className="mx-auto mb-4 w-32 rounded-full"
               alt={user?.displayName}
             />
-            <h5 className="text-xl font-medium leading-tight mb-2">{user?.displayName}</h5>
-            <p className="text-gray-500 font-medium">Bus Driver</p>
+            <h5 className="mb-2 text-xl font-medium leading-tight">{user?.displayName}</h5>
+            <p className="font-medium text-gray-500">Bus Driver</p>
           </div>
         </div>
-        <div className="py-3 px-6 border-t border-gray-300 text-sm bg-gray-50">Clemrose</div>
+        <div className="border-t border-gray-300 bg-gray-50 py-3 px-6 text-sm">Clemrose</div>
       </div>
     </div>
   )

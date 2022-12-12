@@ -11,7 +11,7 @@ import { nhost } from '~/lib/nhost-client'
 import { classNames } from '~/helpers/classNames'
 import { GET_TRACKER_BY_ID } from '~/graphql/queries'
 
-const Map: NextPage= (): JSX.Element => {
+const Map: NextPage = (): JSX.Element => {
   const router = useRouter()
   const { id, isFallback } = router.query
   const [latitude, setLatitude] = useState(0) // 10.251599
@@ -32,29 +32,31 @@ const Map: NextPage= (): JSX.Element => {
   )
 
   useEffect(() => {
-    data?.data?.trackers?.map(({ longitude, latitude }: { longitude: number, latitude: number }) => {
-      setLatitude(latitude)
-      setLongitude(longitude)
-    })
+    data?.data?.trackers?.map(
+      ({ longitude, latitude }: { longitude: number; latitude: number }) => {
+        setLatitude(latitude)
+        setLongitude(longitude)
+      }
+    )
   })
 
   if (error)
     return (
-      <p className="text-sm font-medium py-2 text-center bg-yellow-300 px-4 rounded">
+      <p className="rounded bg-yellow-300 py-2 px-4 text-center text-sm font-medium">
         Loading failed...
       </p>
     )
 
   if (isFallback)
     return (
-      <div className="flex items-center justify-center py-10 min-h-screen">
-        <Spinner className="w-8 h-8 md:w-10 md:h-10" />
+      <div className="flex min-h-screen items-center justify-center py-10">
+        <Spinner className="h-8 w-8 md:h-10 md:w-10" />
       </div>
     )
 
   if (!isFallback && !data)
     return (
-      <h1 className="text-sm font-medium py-2 text-center bg-yellow-300 px-4 rounded">
+      <h1 className="rounded bg-yellow-300 py-2 px-4 text-center text-sm font-medium">
         No such map found!
       </h1>
     )
@@ -64,15 +66,15 @@ const Map: NextPage= (): JSX.Element => {
       <Head>
         <title>View Live Map</title>
       </Head>
-      <main className="h-screen w-full relative bg-gray-100">
-        <div className="absolute right-0 top-0 left z-10 m-5 animate-bounce">
+      <main className="relative h-screen w-full bg-gray-100">
+        <div className="left absolute right-0 top-0 z-10 m-5 animate-bounce">
           <Link href="/">
             <a
               className={classNames(
-                'animeted px-2 py-2 rounded-lg bg-gray-50 border font-medium hover:bg-gray-100',
-                'active:bg-gray-200 transition ease-in-out duration-150 shadow-xl flex items-center space-x-1'
+                'animeted rounded-lg border bg-gray-50 px-2 py-2 font-medium hover:bg-gray-100',
+                'flex items-center space-x-1 shadow-xl transition duration-150 ease-in-out active:bg-gray-200'
               )}>
-              <IoMdArrowRoundBack className="w-5 h-5" />
+              <IoMdArrowRoundBack className="h-5 w-5" />
               <span>Back</span>
             </a>
           </Link>

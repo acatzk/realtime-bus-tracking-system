@@ -12,22 +12,28 @@ type props = {
   plate_number: string
 }
 
-const Schedule: React.FC<props> = ({ id, user, departure_time, plate_number, destination }): JSX.Element => {
+const Schedule: React.FC<props> = ({
+  id,
+  user,
+  departure_time,
+  plate_number,
+  destination
+}): JSX.Element => {
   const { avatarUrl, displayName } = user
 
   return (
     <tr key={id}>
       <td
         className="
-            text-center text-dark
-            font-medium
-            text-sm
-            md:text-base
-            py-5
-            px-2
-            bg-[#F3F6FF]
-            border-b border-l border-[#E8E8E8]
-            flex flex-col md:flex-row items-center space-x-1 md:space-x-3 justify-center
+            text-dark flex
+            flex-col
+            items-center
+            justify-center
+            space-x-1
+            border-b
+            border-l
+            border-[#E8E8E8] bg-[#F3F6FF] py-5
+            px-2 text-center text-sm font-medium md:flex-row md:space-x-3 md:text-base
           ">
         <div className="relative">
           <Image
@@ -42,57 +48,57 @@ const Schedule: React.FC<props> = ({ id, user, departure_time, plate_number, des
       </td>
       <td
         className="
-            text-center text-dark
-            text-sm
-            md:text-base
-            font-semibold
+            text-dark border-b
+            border-[#E8E8E8]
+            bg-white
             py-5
             px-2
-            bg-white
-            border-b border-[#E8E8E8]
+            text-center
+            text-sm
+            font-semibold md:text-base
           ">
         {destination}
       </td>
       <td
         className="
-            text-center text-dark
-            text-sm
-            md:text-base
-            font-semibold
+            text-dark border-b
+            border-[#E8E8E8]
+            bg-[#F3F6FF]
             py-5
             px-2
-            bg-[#F3F6FF]
-            border-b border-[#E8E8E8]
+            text-center
+            text-sm
+            font-semibold md:text-base
           ">
         {Moment().format(`${departure_time} A`)}
       </td>
       <td
         className="
-            text-center text-dark
-            text-sm
-            md:text-base
-            font-semibold
+            text-dark border-b
+            border-[#E8E8E8]
+            bg-white
             py-5
             px-2
-            bg-white
-            border-b border-[#E8E8E8]
+            text-center
+            text-sm
+            font-semibold md:text-base
           ">
         {plate_number}
       </td>
       <td
         className="
-            text-center
-            text-sm
-            md:text-base
-            font-semibold
+            border-b
+            border-[#E8E8E8]
+            bg-[#F3F6FF]
             py-5
             px-2
-            bg-[#F3F6FF]
-            border-b border-[#E8E8E8]
+            text-center
+            text-sm
+            font-semibold md:text-base
           ">
         <Link href={`/map/${id}`}>
-          <a className="flex  justify-center space-x-2 text-sm hover:underline text-blue-500">
-            <FaMapMarkedAlt className="w-5 h-5" />
+          <a className="flex  justify-center space-x-2 text-sm text-blue-500 hover:underline">
+            <FaMapMarkedAlt className="h-5 w-5" />
             <span>View Live Map</span>
           </a>
         </Link>

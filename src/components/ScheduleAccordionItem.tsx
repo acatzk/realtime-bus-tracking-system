@@ -32,10 +32,10 @@ const ScheduleAccordionItem: React.FC<props> = ({
           <Disclosure.Button
             className={classNames(
               'relative flex items-center',
-              'w-full py-3 px-5 text-base text-gray-800 text-left',
-              'bg-white border-0 rounded-none transition focus:outline-none',
+              'w-full py-3 px-5 text-left text-base text-gray-800',
+              'focus:outline-none rounded-none border-0 bg-white transition',
               'flex justify-between hover:bg-gray-50',
-              'transition ease-in-out duration-150'
+              'transition duration-150 ease-in-out'
             )}>
             <div>
               <div className="flex flex-row items-center space-x-2">
@@ -60,32 +60,32 @@ const ScheduleAccordionItem: React.FC<props> = ({
               className={`${!open ? 'rotate-180 transform' : ''} h-5 w-5 text-blue-500`}
             />
           </Disclosure.Button>
-          <Disclosure.Panel className="bg-white w-full text-gray-600">
+          <Disclosure.Panel className="w-full bg-white text-gray-600">
             <ul className="divide-y">
-              <li className="px-3 py-2 w-full flex flex-wrap">
+              <li className="flex w-full flex-wrap px-3 py-2">
                 <span>Destination:</span>
-                <span className="ml-2  text-blue-500 flex-shrink-0 px-1 text-md rounded-full font-medium border border-blue-500">
+                <span className="text-md  ml-2 flex-shrink-0 rounded-full border border-blue-500 px-1 font-medium text-blue-500">
                   {destination}
                 </span>
               </li>
-              <li className="px-3 py-2 w-full space-x-2">
+              <li className="w-full space-x-2 px-3 py-2">
                 <span>Departure Time:</span>
-                <span className="text-blue-500 px-1 text-md rounded-full font-medium border border-blue-500">
+                <span className="text-md rounded-full border border-blue-500 px-1 font-medium text-blue-500">
                   {departure_time}
                 </span>
               </li>
-              <li className="px-3 py-2 w-full space-x-2">
+              <li className="w-full space-x-2 px-3 py-2">
                 <span>Plate Number:</span>
-                <span className="text-blue-500 px-1 text-md rounded-full font-medium border border-blue-500">
+                <span className="text-md rounded-full border border-blue-500 px-1 font-medium text-blue-500">
                   {plate_number}
                 </span>
               </li>
-              <li className="px-3 py-2 w-full space-x-2 flex items-center">
+              <li className="flex w-full items-center space-x-2 px-3 py-2">
                 <span>Track Location:</span>
                 <Link href={`/map/${id}`}>
-                  <a className="flex justify-center space-x-2 hover:underline text-blue-500">
+                  <a className="flex justify-center space-x-2 text-blue-500 hover:underline">
                     <span className="text-md font-medium">View Live Map</span>
-                    <FaMapMarkedAlt className="w-5 h-5" />
+                    <FaMapMarkedAlt className="h-5 w-5" />
                   </a>
                 </Link>
               </li>

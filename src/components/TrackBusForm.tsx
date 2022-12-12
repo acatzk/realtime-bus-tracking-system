@@ -15,7 +15,7 @@ type props = {
   handleReloadPage: any
 }
 
-const TrackMeForm: React.FC<props> = (props): JSX.Element => {
+const TrackBusForm: React.FC<props> = (props): JSX.Element => {
   const { selected, setSelected, onSubmitForm, direction, latitude, longitude, handleReloadPage } =
     props
 
@@ -176,4 +176,4 @@ const TrackMeForm: React.FC<props> = (props): JSX.Element => {
   )
 }
 
-export default TrackMeForm
+export default TrackBusForm

@@ -1,6 +1,7 @@
-import { BsCardChecklist } from 'react-icons/bs'
-import { MdLocationPin } from 'react-icons/md'
+import { RiBusFill } from 'react-icons/ri'
 import { CgProfile } from 'react-icons/cg'
+import { MdLocationPin } from 'react-icons/md'
+import { BsCardChecklist } from 'react-icons/bs'
 
 export const userNavigation = [
   { name: 'Your Profile', href: '#' },
@@ -9,7 +10,8 @@ export const userNavigation = [
 
 export const dashboardLink = [
   { name: 'Dashboard', href: 'dashboard', Icon: BsCardChecklist },
-  { name: 'Track Me', href: 'track-me', Icon: MdLocationPin },
+  { name: 'Track Bus', href: 'track-bus', Icon: MdLocationPin },
+  { name: 'Passengers', href: 'passengers', Icon: RiBusFill },
   { name: 'Profile', href: 'profile', Icon: CgProfile }
 ]
 

@@ -4,7 +4,7 @@ import { NhostNextProvider } from '@nhost/nextjs'
 import { Slide, ToastContainer } from 'react-toastify'
 import { NhostApolloProvider } from '@nhost/react-apollo'
 
-import '~/styles/global.css'
+import '~/shared/css/global.css'
 import { nhost } from '~/lib/nhost-client'
 import NextProgress from '~/utils/next-progress'
 

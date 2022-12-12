@@ -27,7 +27,15 @@ const DashboardList: React.FC<props> = (props): JSX.Element => {
     setIsOpen(true)
   }
 
-  const handleUpdate = async ({ id, departure_time, plate_number }: { id: number, departure_time: string, plate_number: string }) => {
+  const handleUpdate = async ({
+    id,
+    departure_time,
+    plate_number
+  }: {
+    id: number
+    departure_time: string
+    plate_number: string
+  }) => {
     const {
       data: { update_trackers_by_pk }
     } = await nhost.graphql.request(UPDATE_DRIVER_BY_PK_ID, {
@@ -81,31 +89,31 @@ const DashboardList: React.FC<props> = (props): JSX.Element => {
 
 function THead() {
   return (
-    <thead className="bg-white border-b shadow">
-      <tr className="bg-gray-100 border-blue-20">
+    <thead className="border-b bg-white shadow">
+      <tr className="border-blue-20 bg-gray-100">
         <th
           scope="col"
-          className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
+          className="border-r px-6 py-4 text-left text-sm font-semibold text-gray-900">
           Date
         </th>
         <th
           scope="col"
-          className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
+          className="border-r px-6 py-4 text-left text-sm font-semibold text-gray-900">
           Destination
         </th>
         <th
           scope="col"
-          className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
+          className="border-r px-6 py-4 text-left text-sm font-semibold text-gray-900">
           Departure Time
         </th>
         <th
           scope="col"
-          className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
+          className="border-r px-6 py-4 text-left text-sm font-semibold text-gray-900">
           Plate number
         </th>
         <th
           scope="col"
-          className="text-sm font-semibold text-gray-900 px-6 py-4 text-left border-r">
+          className="border-r px-6 py-4 text-left text-sm font-semibold text-gray-900">
           Options
         </th>
       </tr>

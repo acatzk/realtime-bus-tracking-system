@@ -76,17 +76,17 @@ const Profile: NextPage = (): JSX.Element => {
 
   return (
     <DashboardLayout metaHead="| Profile">
-      <main className="min-h-[81vh] px-4 md:px-8 lg:px-16 pb-8">
-        <div className="mt-5 mx-auto p-6 rounded-lg border bg-white max-w-md">
+      <main className="min-h-[81vh] px-4 pb-8 md:px-8 lg:px-16">
+        <div className="mx-auto mt-5 max-w-md rounded-lg border bg-white p-6">
           <form onSubmit={handleSubmit(onSubmitForm)}>
             <div className="w-full">
               <div>
                 <div className="flex flex-col items-center space-y-2">
-                  <div className="relative w-[128px] h-[128px] z-10">
+                  <div className="relative z-10 h-[128px] w-[128px]">
                     <Image
                       src={`${avatar === null ? 'https://i.stack.imgur.com/l60Hf.png' : avatar}`}
                       layout="fill"
-                      className="rounded-full shadown-lg"
+                      className="shadown-lg rounded-full"
                       alt="avatar"
                     />
                   </div>
@@ -94,7 +94,7 @@ const Profile: NextPage = (): JSX.Element => {
                     type="button"
                     className={classNames(
                       'inline-block px-2 py-1.5 font-medium',
-                      'text-xs leading-tight rounded',
+                      'rounded text-xs leading-tight',
                       'border hover:bg-gray-50',
                       'transition duration-150 ease-in-out',
                       'active:bg-gray-100'
@@ -102,15 +102,15 @@ const Profile: NextPage = (): JSX.Element => {
                     Change Avatar
                   </button>
                 </div>
-                <div className="mt-5 form-floating mb-3 w-full">
+                <div className="form-floating mt-5 mb-3 w-full">
                   <input
                     type="text"
                     disabled={isSubmitting}
                     className={classNames(
                       'form-control w-full px-3 py-1.5 text-base font-normal text-gray-700',
-                      'bg-white bg-clip-padding border border-solid border-gray-300 rounded',
-                      'transition ease-in-out m-0 focus:text-gray-700',
-                      'focus:bg-white focus:border-blue-600 focus:outline-none',
+                      'rounded border border-solid border-gray-300 bg-white bg-clip-padding',
+                      'm-0 transition ease-in-out focus:text-gray-700',
+                      'focus:outline-none focus:border-blue-600 focus:bg-white',
                       'disabled:cursor-not-allowed disabled:opacity-50',
                       errors?.displayName
                         ? 'bg-red-100'
@@ -121,9 +121,9 @@ const Profile: NextPage = (): JSX.Element => {
                     })}
                     defaultValue={displayName}
                   />
-                  <div className="space-y-0.5 ml-1.5">
+                  <div className="ml-1.5 space-y-0.5">
                     {errors.displayName?.type === 'required' && (
-                      <span className="text-xs text-red-500 font-medium">Fullname is required</span>
+                      <span className="text-xs font-medium text-red-500">Fullname is required</span>
                     )}
                   </div>
                   <label className="text-gray-700">Fullname</label>
@@ -134,9 +134,9 @@ const Profile: NextPage = (): JSX.Element => {
                     disabled={isSubmitting}
                     className={classNames(
                       'form-control w-full px-3 py-1.5 text-base font-normal text-gray-700',
-                      'bg-white bg-clip-padding border border-solid border-gray-300 rounded',
-                      'transition ease-in-out m-0 focus:text-gray-700',
-                      'focus:bg-white focus:border-blue-600 focus:outline-none',
+                      'rounded border border-solid border-gray-300 bg-white bg-clip-padding',
+                      'm-0 transition ease-in-out focus:text-gray-700',
+                      'focus:outline-none focus:border-blue-600 focus:bg-white',
                       'disabled:cursor-not-allowed disabled:opacity-50',
                       errors?.email
                         ? 'bg-red-100'
@@ -151,12 +151,12 @@ const Profile: NextPage = (): JSX.Element => {
                     })}
                     defaultValue={email}
                   />
-                  <div className="space-y-0.5 ml-1.5">
+                  <div className="ml-1.5 space-y-0.5">
                     {errors.email?.type === 'required' && (
-                      <span className="text-xs text-red-500 font-medium">Email is required</span>
+                      <span className="text-xs font-medium text-red-500">Email is required</span>
                     )}
                     {errors.email?.message && (
-                      <span className="text-xs text-red-500 font-medium">
+                      <span className="text-xs font-medium text-red-500">
                         {errors.email?.message}
                       </span>
                     )}
@@ -169,9 +169,9 @@ const Profile: NextPage = (): JSX.Element => {
                     disabled={isSubmitting}
                     className={classNames(
                       'form-control w-full px-3 py-1.5 text-base font-normal text-gray-700',
-                      'bg-white bg-clip-padding border border-solid border-gray-300 rounded',
-                      'transition ease-in-out m-0 focus:text-gray-700',
-                      'focus:bg-white focus:border-blue-600 focus:outline-none',
+                      'rounded border border-solid border-gray-300 bg-white bg-clip-padding',
+                      'm-0 transition ease-in-out focus:text-gray-700',
+                      'focus:outline-none focus:border-blue-600 focus:bg-white',
                       'disabled:cursor-not-allowed disabled:opacity-50',
                       errors?.phoneNumber
                         ? 'bg-red-100'
@@ -183,14 +183,14 @@ const Profile: NextPage = (): JSX.Element => {
                     })}
                     defaultValue={`${user?.phoneNumber}`}
                   />
-                  <div className="space-y-0.5 ml-1.5">
+                  <div className="ml-1.5 space-y-0.5">
                     {errors.phoneNumber?.type === 'minLength' && (
-                      <span className="text-xs text-red-500 font-medium">
+                      <span className="text-xs font-medium text-red-500">
                         Phone number must have 11 digits
                       </span>
                     )}
                     {errors.phoneNumber?.type === 'maxLength' && (
-                      <span className="text-xs text-red-500 font-medium">
+                      <span className="text-xs font-medium text-red-500">
                         Phone number must have 11 digits
                       </span>
                     )}
@@ -201,23 +201,23 @@ const Profile: NextPage = (): JSX.Element => {
                   type="submit"
                   disabled={isSubmitting}
                   className="
+                    focus:outline-none
                     w-full
+                    rounded
+                    bg-blue-600
                     px-6
                     py-4
-                    bg-blue-600
-                    text-white
-                    font-medium
                     text-xs
-                    leading-tight
+                    font-medium
                     uppercase
-                    rounded
-                    shadow-md
-                    hover:bg-blue-700 hover:shadow-lg
-                    focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-                    active:bg-blue-800 active:shadow-lg
-                    transition
-                    duration-150
-                    ease-in-out
+                    leading-tight
+                    text-white
+                    shadow-md transition
+                    duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg
+                    focus:bg-blue-700 focus:shadow-lg
+                    focus:ring-0
+                    active:bg-blue-800
+                    active:shadow-lg
                     disabled:cursor-not-allowed disabled:opacity-50">
                   Save
                 </button>
