@@ -10,8 +10,6 @@ export interface ITrack {
   date_created: string
   passengers: IPassenger[]
   passengers_aggregate: IAggregate
-  latitude: number
-  longitude: number
 }
 
 export interface IPassenger {

@@ -158,8 +158,6 @@ export const GET_ALL_TRACKERS_BY_ADMIN = gql`
           count
         }
       }
-      latitude
-      longitude
     }
   }
 `
