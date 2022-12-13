@@ -67,21 +67,19 @@ const PassengersForm: FC<Props> = ({ isActiveDriverStatus, track_id }): JSX.Elem
       />
       <div className="mb-6">
         <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-900">
-          Name
+          Name <small>(Optional)</small>
         </label>
         <input
           type="text"
           className={classNames(
             'sm:text-md mt-1 block w-full rounded-md py-2 shadow-sm',
             'disabled:cursor-not-allowed disabled:opacity-50',
-            'transition duration-150 ease-in-out',
-            errors.name?.message
-              ? 'border-red-500 ring-red-500 focus:border-red-500 focus:ring-red-500'
-              : 'border-gray-300 ring-indigo-200 focus:ring-indigo-500'
+            'border-gray-300 transition duration-150 ease-in-out',
+            'ring-indigo-200 focus:ring-indigo-500'
           )}
           {...register('name')}
           disabled={!isActiveDriverStatus || isSubmitting}
-          placeholder="Enter bus plate number"
+          placeholder="Enter Passenger Name"
         />
         {errors?.name && (
           <span className="ml-1 text-xs text-red-500">{`${errors.name.message}`}</span>
@@ -162,7 +160,7 @@ const PassengersForm: FC<Props> = ({ isActiveDriverStatus, track_id }): JSX.Elem
           )}
           {...register('amount', { required: true })}
           disabled={!isActiveDriverStatus || isSubmitting}
-          placeholder="Enter bus plate number"
+          placeholder="Enter Fare Amount"
         />
         {errors?.amount && (
           <span className="ml-1 text-xs text-red-500">{`${errors.amount.message}`}</span>
