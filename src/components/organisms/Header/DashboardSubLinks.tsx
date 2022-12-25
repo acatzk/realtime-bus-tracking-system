@@ -3,7 +3,11 @@ import { useRouter } from 'next/router'
 
 import { classNames } from '~/helpers/classNames'
 
-export function DashboardSubLinks({ dashboardLink }: { dashboardLink: any }) {
+type props = {
+  dashboardLink: any
+}
+
+export function DashboardSubLinks({ dashboardLink }: props) {
   const router = useRouter()
   return (
     <nav>
