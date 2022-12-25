@@ -1,7 +1,7 @@
 import { RiBusFill } from 'react-icons/ri'
 import { CgProfile } from 'react-icons/cg'
 import { MdLocationPin } from 'react-icons/md'
-import { BsCardChecklist } from 'react-icons/bs'
+import { BsCalendarDate, BsCardChecklist } from 'react-icons/bs'
 
 export const userNavigation = [
   { name: 'Your Profile', href: '#' },
@@ -20,4 +20,9 @@ export const direction = [
   { name: 'Sogod -> Benit' },
   { name: 'Sogod -> Maasin' },
   { name: 'Maasin -> Sogod' }
+]
+
+export const adminSubDashboardLink = [
+  { name: 'Dashboard', href: 'dashboard', Icon: BsCardChecklist },
+  { name: 'Daily Schedules', href: 'schedules', Icon: BsCalendarDate }
 ]
