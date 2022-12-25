@@ -10,9 +10,9 @@ import { useAvatarUrl, useDisplayName, useEmail, useUserData } from '@nhost/reac
 
 import { nhost } from '~/lib/nhost-client'
 import { classNames } from '~/helpers/classNames'
-import DashboardLayout from '~/layouts/DashboardLayout'
 import handleImageError from '~/helpers/handleImageError'
 import { UPDATE_USER_BY_PK_ID } from '~/graphql/mutations'
+import DashboardLayout from '~/components/templates/DashboardLayout'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const nhostSession = await getNhostSession(`${process.env.NEXT_PUBLIC_NHOST_BACKEND}`, context)

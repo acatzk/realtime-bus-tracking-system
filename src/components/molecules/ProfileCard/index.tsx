@@ -7,7 +7,7 @@ type props = {
   user: any
 }
 
-const EmployeeProfile: React.FC<props> = (props): JSX.Element => {
+const ProfileCard: React.FC<props> = (props): JSX.Element => {
   const { user } = props
 
   return (
@@ -43,4 +43,4 @@ const EmployeeProfile: React.FC<props> = (props): JSX.Element => {
   )
 }
 
-export default EmployeeProfile
+export default ProfileCard

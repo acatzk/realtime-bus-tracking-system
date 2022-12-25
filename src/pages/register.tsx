@@ -7,8 +7,8 @@ import { useAuthenticationStatus } from '@nhost/react'
 
 import { Spinner } from '~/utils/Icons'
 import { nhost } from '~/lib/nhost-client'
-import PageLayout from '~/layouts/PageLayout'
 import { classNames } from '~/helpers/classNames'
+import PageLayout from '~/components/templates/PageLayout'
 
 const Register: NextPage = (): JSX.Element => {
   const [error, setError] = useState()

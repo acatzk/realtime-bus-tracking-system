@@ -9,10 +9,10 @@ import { useUserData } from '@nhost/react'
 import { Spinner } from '~/utils/Icons'
 import { nhost } from '~/lib/nhost-client'
 import { classNames } from '~/helpers/classNames'
-import DashboardList from '~/components/DashboardList'
-import DashboardLayout from '~/layouts/DashboardLayout'
-import EmployeeProfile from '~/components/EmployeeProfile'
+import ProfileCard from '~/components/molecules/ProfileCard'
 import { GET_TRACKER_RECORDS_BY_USER_ID } from '~/graphql/queries'
+import DashboardLayout from '~/components/templates/DashboardLayout'
+import DashboardList from '~/components/molecules/CollectorDashboardList'
 
 const Dashboard: NextPage = (): JSX.Element => {
   const user = useUserData()
@@ -36,7 +36,7 @@ const Dashboard: NextPage = (): JSX.Element => {
       <main className="mx-auto min-h-[81vh] px-4 md:max-w-2xl md:px-8 lg:max-w-7xl lg:px-16">
         <div className="mt-5 flex flex-col space-y-3 pb-10 md:flex-row md:space-y-0 md:space-x-2">
           <div className="flex w-full md:w-1/3">
-            <EmployeeProfile user={user} />
+            <ProfileCard user={user} />
           </div>
           <div className="w-full overflow-hidden rounded-lg border bg-white">
             <div className="flex items-center justify-between border-b border-gray-300 py-3 px-5">

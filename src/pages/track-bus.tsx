@@ -8,10 +8,10 @@ import { useAuthenticationStatus, useUserData } from '@nhost/react'
 
 import { nhost } from '~/lib/nhost-client'
 import { direction } from '~/mock/object-list'
-import TrackBusForm from '~/components/TrackBusForm'
-import DashboardLayout from '~/layouts/DashboardLayout'
+import TrackBusForm from '~/components/molecules/TrackBusForm'
 import { CREATE_BUS_TRACKER_MUTATION } from '~/graphql/mutations'
 import { CHECK_EMPLOYEE_IF_ALREADY_TRACK } from '~/graphql/queries'
+import DashboardLayout from '~/components/templates/DashboardLayout'
 
 const TrackBus: NextPage = (): JSX.Element => {
   const user = useUserData()

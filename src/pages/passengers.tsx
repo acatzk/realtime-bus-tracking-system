@@ -5,9 +5,9 @@ import { NextPage } from 'next'
 import { useUserData } from '@nhost/react'
 
 import { nhost } from '~/lib/nhost-client'
-import DashboardLayout from '~/layouts/DashboardLayout'
-import PassengersForm from '~/components/PassengersForm'
 import { GET_TRACK_IF_EXIST_AND_STATUS } from '~/graphql/queries'
+import PassengersForm from '~/components/molecules/PassengersForm'
+import DashboardLayout from '~/components/templates/DashboardLayout'
 
 const Passengers: NextPage = (): JSX.Element => {
   const user = useUserData()
