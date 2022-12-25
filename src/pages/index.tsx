@@ -2,11 +2,11 @@ import React from 'react'
 import type { NextPage } from 'next'
 import { Tab } from '@headlessui/react'
 
-import PageLayout from '~/layouts/PageLayout'
-import AdminLogin from '~/components/AdminLogin'
 import { classNames } from '~/helpers/classNames'
-import EmployeeLogin from '~/components/EmployeeLogin'
-import EmployeeRegister from '~/components/EmployeeRegister'
+import PageLayout from '~/components/templates/PageLayout'
+import AdminLoginForm from '~/components/molecules/AdminLoginForm'
+import CollectorLoginForm from '~/components/molecules/CollectorLoginForm'
+import CollectorRegisterForm from '~/components/molecules/CollectorRegisterForm'
 
 const Index: NextPage = (): JSX.Element => {
   return (
@@ -51,21 +51,21 @@ const Index: NextPage = (): JSX.Element => {
                 'rounded-xl bg-white p-3',
                 'focus:outline-none ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:ring-2'
               )}>
-              <EmployeeLogin />
+              <CollectorLoginForm />
             </Tab.Panel>
             <Tab.Panel
               className={classNames(
                 'rounded-xl bg-white p-3',
                 'focus:outline-none ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:ring-2'
               )}>
-              <EmployeeRegister />
+              <CollectorRegisterForm />
             </Tab.Panel>
             <Tab.Panel
               className={classNames(
                 'rounded-xl bg-white p-3',
                 'focus:outline-none ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:ring-2'
               )}>
-              <AdminLogin />
+              <AdminLoginForm />
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>

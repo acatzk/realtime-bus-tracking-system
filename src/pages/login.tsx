@@ -7,9 +7,8 @@ import { useAuthenticationStatus } from '@nhost/react'
 
 import { Spinner } from '~/utils/Icons'
 import { nhost } from '~/lib/nhost-client'
-import PageLayout from '~/layouts/PageLayout'
 import { classNames } from '~/helpers/classNames'
-import { GET_USER_ROLE_BY_EMAIL } from '~/graphql/queries'
+import PageLayout from '~/components/templates/PageLayout'
 
 const Login: NextPage = (): JSX.Element => {
   const { isAuthenticated, isLoading } = useAuthenticationStatus()

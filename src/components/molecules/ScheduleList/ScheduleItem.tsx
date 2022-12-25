@@ -12,7 +12,7 @@ type props = {
   plate_number: string
 }
 
-const Schedule: React.FC<props> = ({
+const ScheduleItem: React.FC<props> = ({
   id,
   user,
   departure_time,
@@ -107,4 +107,4 @@ const Schedule: React.FC<props> = ({
   )
 }
 
-export default Schedule
+export default ScheduleItem

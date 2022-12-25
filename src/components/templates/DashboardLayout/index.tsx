@@ -1,6 +1,6 @@
 import React from 'react'
 
-import PageLayout from './PageLayout'
+import PageLayout from './../PageLayout'
 import { authProtected } from '~/utils/auth-protected'
 
 type props = {

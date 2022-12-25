@@ -1,22 +1,4 @@
-import React from 'react'
-
-import Schedule from './Schedule'
-
-type props = {
-  trackers: any
-}
-
-const ScheduleList: React.FC<props> = ({ trackers }): JSX.Element => {
-  return (
-    <table className="relative w-full table-auto">
-      <THead />
-      <tbody>{trackers?.map(Schedule)}</tbody>
-      {trackers?.length === 0 && <TFoot />}
-    </table>
-  )
-}
-
-function THead() {
+export function THead() {
   return (
     <thead>
       <tr className="bg-secondary text-center">
@@ -102,28 +84,3 @@ function THead() {
     </thead>
   )
 }
-
-function TFoot() {
-  return (
-    <tfoot className="border">
-      <tr className="bg-gray-200 text-center">
-        <td></td>
-        <td></td>
-        <td
-          className="
-      w-full
-      py-2
-      text-sm
-      font-semibold
-      text-gray-800
-    ">
-          No Active Driver
-        </td>
-        <td></td>
-        <td></td>
-      </tr>
-    </tfoot>
-  )
-}
-
-export default ScheduleList

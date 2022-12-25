@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import React, { Fragment } from 'react'
 import { useRouter } from 'next/router'
@@ -7,9 +6,10 @@ import { Menu, Transition } from '@headlessui/react'
 import { HiOutlineStatusOffline, HiStatusOnline } from 'react-icons/hi'
 import { useAuthenticationStatus, useSignOut, useUserData } from '@nhost/react'
 
+import { UserAvatar } from './UserAvatar'
 import { classNames } from '~/helpers/classNames'
 import { dashboardLink } from '~/mock/object-list'
-import handleImageError from '~/helpers/handleImageError'
+import { DashboardSubLinks } from './DashboardSubLinks'
 
 type props = {
   isActive?: boolean
@@ -152,56 +152,6 @@ const Header: React.FC<props> = (props): JSX.Element => {
         </section>
       )}
     </React.Fragment>
-  )
-}
-
-function UserAvatar({ user }: { user: any }) {
-  return (
-    <Image
-      src={user?.avatarUrl === null ? 'https://i.stack.imgur.com/l60Hf.png' : user?.avatarUrl}
-      width={32}
-      height={32}
-      className="rounded-full"
-      layout="intrinsic"
-      onError={(e) =>
-        handleImageError(
-          e,
-          'https://th.bing.com/th/id/OIP.o5hnVgDkhrAIKPAUMAtzcAHaHa?w=166&h=180&c=7&r=0&o=5&pid=1.7'
-        )
-      }
-      alt="avatar"
-    />
-  )
-}
-
-function DashboardSubLinks({ dashboardLink }: { dashboardLink: any }) {
-  const router = useRouter()
-  return (
-    <nav>
-      <ul className="flex items-center space-x-4 md:space-x-6">
-        {dashboardLink.map(
-          ({ name, href, Icon }: { name: string; href: string; Icon: any }, i: number) => (
-            <li key={i}>
-              <Link href={`/${href}`}>
-                <a
-                  className={classNames(
-                    'py-3 font-medium md:pb-4',
-                    'border-b-2 hover:text-gray-800',
-                    'transition duration-150 ease-in-out',
-                    'flex items-center space-x-1 text-sm md:text-base',
-                    router.pathname === `/${href}`
-                      ? 'border-gray-500  text-gray-800'
-                      : 'border-transparent text-gray-600'
-                  )}>
-                  <Icon className="h-4 w-4 lg:h-5 lg:w-5" />
-                  <span>{name}</span>
-                </a>
-              </Link>
-            </li>
-          )
-        )}
-      </ul>
-    </nav>
   )
 }
 

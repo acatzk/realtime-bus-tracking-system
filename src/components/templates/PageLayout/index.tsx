@@ -7,13 +7,13 @@ import { GetServerSidePropsContext } from 'next'
 import { getNhostSession } from '@nhost/nextjs'
 import { useAuthenticationStatus, useUserData } from '@nhost/react'
 
-import Footer from '~/components/Footer'
-import Header from '~/components/Header'
 import { nhost } from '~/lib/nhost-client'
+import Footer from '~/components/organisms/Footer'
+import Header from '~/components/organisms/Header'
 import { GET_TRACK_IF_EXIST_AND_STATUS } from '~/graphql/queries'
 import { UPDATE_BUS_DRIVER_STATUS_BY_PK, UPDATE_TRACKER_BY_PK_ID } from '~/graphql/mutations'
 
-export type props = {
+type props = {
   children: React.ReactNode
   metaHead?: string
 }

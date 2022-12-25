@@ -3,13 +3,13 @@ import { useForm } from 'react-hook-form'
 import { Dialog, Transition, Listbox } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 
-import DialogBox from './DialogBox'
 import { direction } from '~/mock/object-list'
 import { classNames } from '~/helpers/classNames'
+import DialogBox from '~/components/templates/DialogBox'
 
 type props = {
   isOpen: boolean
-  closeModal: any
+  closeModal: () => void
   track: any
   actions: any
   selected: any

@@ -1,6 +1,6 @@
+import React, { FC } from 'react'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
-import React, { FC, useState } from 'react'
 import { useAuthenticationStatus } from '@nhost/react'
 
 import { Spinner } from '~/utils'
@@ -8,10 +8,9 @@ import { toast } from 'react-toastify'
 import { nhost } from '~/lib/nhost-client'
 import { classNames } from '~/helpers/classNames'
 
-const EmployeeRegister: FC = (): JSX.Element => {
+const CollectorLogin: FC = (): JSX.Element => {
   const router = useRouter()
-  const [error, setError] = useState()
-  const { isLoading, isAuthenticated } = useAuthenticationStatus()
+  const { isAuthenticated, isLoading } = useAuthenticationStatus()
 
   // Check if user is authenticated
   React.useEffect(() => {
@@ -22,26 +21,26 @@ const EmployeeRegister: FC = (): JSX.Element => {
     register,
     handleSubmit,
     formState: { isSubmitting, errors }
-  } = useForm()
+  } = useForm({
+    defaultValues: {
+      email: '',
+      password: ''
+    }
+  })
 
   const onSubmitForm = async (data: any) => {
-    const { name, email, password } = data
+    const { email, password } = data
 
-    const { session, error } = await nhost.auth.signUp({
+    const { session, error } = await nhost.auth.signIn({
       email: email,
-      password: password,
-      options: {
-        displayName: name
-      }
+      password: password
     })
-    console.log(error)
     isSuccess(session, error)
   }
 
   const isSuccess = (session: any, error: any) => {
     if (error) {
-      setError(error)
-      toast.error(`${error?.message}`)
+      toast.error(error?.message)
     } else {
       const {
         user: { displayName }
@@ -60,33 +59,11 @@ const EmployeeRegister: FC = (): JSX.Element => {
     )
 
   return (
-    <div className="w-full rounded-3xl  bg-gray-100 px-6 py-4 shadow-md">
+    <div className="w-full rounded-3xl  bg-white px-6 py-4 shadow-md">
       <label className="mt-3 block text-center text-base font-semibold text-gray-700">
-        Clemrose Registration Page
+        Employee's Login Page
       </label>
       <form className="py-10" onSubmit={handleSubmit(onSubmitForm)}>
-        <div className="mt-4">
-          <input
-            type="text"
-            disabled={isSubmitting}
-            placeholder="Enter Name"
-            className={classNames(
-              'mt-1 block h-14 w-full rounded-xl border-none shadow-lg',
-              'transition duration-150 ease-in-out focus:ring-0',
-              'disabled:cursor-not-allowed disabled:opacity-50',
-              errors?.name ? 'bg-red-100' : 'bg-gray-100 hover:bg-blue-100 focus:bg-blue-100'
-            )}
-            {...register('name', {
-              required: 'Name is required'
-            })}
-          />
-          <div className="ml-1.5 space-y-0.5">
-            {errors.name && (
-              <span className="text-xs font-medium text-red-500">{errors?.name?.message}</span>
-            )}
-          </div>
-        </div>
-
         <div className="mt-4">
           <input
             type="email"
@@ -99,7 +76,7 @@ const EmployeeRegister: FC = (): JSX.Element => {
               errors?.email ? 'bg-red-100' : 'bg-gray-100 hover:bg-blue-100 focus:bg-blue-100'
             )}
             {...register('email', {
-              required: 'Email is required',
+              required: true,
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                 message: 'Invalid email address'
@@ -107,7 +84,10 @@ const EmployeeRegister: FC = (): JSX.Element => {
             })}
           />
           <div className="ml-1.5 space-y-0.5">
-            {errors.email && (
+            {errors.email?.type === 'required' && (
+              <span className="text-xs font-medium text-red-500">Email is required</span>
+            )}
+            {errors.email?.message && (
               <span className="text-xs font-medium text-red-500">{errors.email?.message}</span>
             )}
           </div>
@@ -125,16 +105,16 @@ const EmployeeRegister: FC = (): JSX.Element => {
               errors?.password ? 'bg-red-100' : 'bg-gray-100 hover:bg-blue-100 focus:bg-blue-100'
             )}
             {...register('password', {
-              required: 'Password is required',
-              minLength: {
-                value: 4,
-                message: 'Must have atleast 4 characters'
-              }
+              required: true,
+              minLength: 4
             })}
           />
           <div className="ml-1.5 space-y-0.5">
-            {errors.password && (
-              <span className="text-xs font-medium text-red-500">{errors?.password?.message}</span>
+            {errors.password?.type === 'required' && (
+              <span className="text-xs font-medium text-red-500">Password is required</span>
+            )}
+            {errors.password?.type === 'minLength' && (
+              <span className="text-xs font-medium text-red-500">Minimum password length of 4</span>
             )}
           </div>
         </div>
@@ -149,7 +129,7 @@ const EmployeeRegister: FC = (): JSX.Element => {
               'disabled:cursor-not-allowed disabled:opacity-50',
               'bg-gradient-to-r from-[#1f1b58] via-pink-600 to-[#d73f49]'
             )}>
-            {isSubmitting ? 'Registering...' : 'Register'}
+            {isSubmitting ? 'Logging in...' : 'Login'}
           </button>
         </div>
       </form>
@@ -157,4 +137,4 @@ const EmployeeRegister: FC = (): JSX.Element => {
   )
 }
 
-export default EmployeeRegister
+export default CollectorLogin

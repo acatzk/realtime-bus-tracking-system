@@ -7,7 +7,7 @@ import { Menu, Transition } from '@headlessui/react'
 import { useAuthenticationStatus, useSignOut, useUserData } from '@nhost/react'
 
 import handleImageError from '~/helpers/handleImageError'
-import AdminDashboardList from '~/components/AdminDashboardList'
+import AdminDashboardList from '~/components/molecules/AdminDashboardList'
 
 const Dashboard: NextPage = (): JSX.Element => {
   const router = useRouter()
