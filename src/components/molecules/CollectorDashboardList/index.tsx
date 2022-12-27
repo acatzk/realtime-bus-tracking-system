@@ -67,14 +67,27 @@ const DashboardList: React.FC<props> = (props): JSX.Element => {
     <table className="min-w-full border-b ">
       <THead />
       <tbody>
-        {myTrackers?.map((track: any) => (
-          <DashboardItem
-            key={track?.id}
-            track={track}
-            actions={{ handleDelete }}
-            openModal={openModal}
-          />
-        ))}
+        <>
+          {!myTrackers?.length ? (
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td className="w-full py-2 text-center text-sm text-gray-600">No Data Available</td>
+            </tr>
+          ) : (
+            <>
+              {myTrackers?.map((track: any) => (
+                <DashboardItem
+                  key={track?.id}
+                  track={track}
+                  actions={{ handleDelete }}
+                  openModal={openModal}
+                />
+              ))}
+            </>
+          )}
+        </>
         <EditTrackerDialog
           isOpen={isOpen}
           closeModal={closeModal}

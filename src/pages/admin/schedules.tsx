@@ -54,7 +54,7 @@ const Schedules: NextPage<props> = ({ initialData }): JSX.Element => {
     )
 
   return (
-    <AdminLayout metaTitle="Dashboard">
+    <AdminLayout metaTitle="Schedules">
       <main className="mx-auto min-h-[81vh] px-4 md:max-w-2xl md:px-8 lg:max-w-7xl lg:px-16">
         <section className="py-2 md:py-8 lg:py-14">
           <div className="container">

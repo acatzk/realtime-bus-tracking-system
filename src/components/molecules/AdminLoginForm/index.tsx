@@ -19,8 +19,8 @@ const AdminLogin: FC = (): JSX.Element => {
     formState: { isSubmitting, errors }
   } = useForm({
     defaultValues: {
-      email: '',
-      password: ''
+      email: 'airahernan08@gmail.com',
+      password: 'lamaira'
     }
   })
 

@@ -10,3 +10,8 @@ export const TrackBusFormSchema = Yup.object().shape({
   departure: Yup.string().required('Departure is required'),
   plate_number: Yup.number().required().label('Plate number is required')
 })
+
+export const DestinationFormSchema = Yup.object().shape({
+  id: Yup.string(),
+  destination: Yup.string().required('Destination is required')
+})

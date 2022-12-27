@@ -161,3 +161,12 @@ export const GET_ALL_TRACKERS_BY_ADMIN = gql`
     }
   }
 `
+
+export const GET_ALL_BUSSES = gql`
+  query {
+    busses(order_by: { created_at: desc }) {
+      id
+      name
+    }
+  }
+`

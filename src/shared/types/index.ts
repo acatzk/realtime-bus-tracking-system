@@ -16,3 +16,8 @@ export type TrackBusFormSchema = {
   departure: string
   plate_number: string
 }
+
+export type DestinationFormValues = {
+  id: string
+  destination: string
+}

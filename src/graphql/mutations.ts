@@ -148,3 +148,30 @@ export const CREATE_PASSENGER_ONE = gql`
     }
   }
 `
+
+export const CREATE_BUSS_ONE = gql`
+  mutation CreateBussOne($name: String!) {
+    insert_busses_one(object: { name: $name }) {
+      id
+      name
+    }
+  }
+`
+
+export const DELETE_BUSS_BY_PK_ID = gql`
+  mutation RemoveBussByPK($id: uuid!) {
+    delete_busses_by_pk(id: $id) {
+      id
+      name
+    }
+  }
+`
+
+export const UPDATE_BUSS_BY_PK_ID = gql`
+  mutation UpdateBussByPKId($id: uuid!, $name: String!) {
+    update_busses_by_pk(pk_columns: { id: $id }, _set: { name: $name }) {
+      id
+      name
+    }
+  }
+`

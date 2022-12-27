@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 
 type props = {
   isOpen: boolean
-  closeModal: any
+  closeModal: () => void
   children: React.ReactNode
 }
 
