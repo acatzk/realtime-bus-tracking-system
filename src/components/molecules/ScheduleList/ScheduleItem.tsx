@@ -10,15 +10,12 @@ type props = {
   departure_time: string
   destination: string
   plate_number: string
+  from: string
 }
 
-const ScheduleItem: React.FC<props> = ({
-  id,
-  user,
-  departure_time,
-  plate_number,
-  destination
-}): JSX.Element => {
+const ScheduleItem: React.FC<props> = (props): JSX.Element => {
+  const { id, user, departure_time, plate_number, destination, from } = props
+
   const { avatarUrl, displayName } = user
 
   return (
@@ -96,7 +93,7 @@ const ScheduleItem: React.FC<props> = ({
             text-sm
             font-semibold md:text-base
           ">
-        <Link href={`/map/${id}`}>
+        <Link href={`/map/${id}?from=${from}`}>
           <a className="flex  justify-center space-x-2 text-sm text-blue-500 hover:underline">
             <FaMapMarkedAlt className="h-5 w-5" />
             <span>View Live Map</span>

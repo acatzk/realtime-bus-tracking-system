@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React, { Fragment } from 'react'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
+import { RiLoginCircleLine } from 'react-icons/ri'
 import { Menu, Transition } from '@headlessui/react'
 import { HiOutlineStatusOffline, HiStatusOnline } from 'react-icons/hi'
 import { useAuthenticationStatus, useSignOut, useUserData } from '@nhost/react'
@@ -39,7 +40,7 @@ const Header: React.FC<props> = (props): JSX.Element => {
     <React.Fragment>
       <header className="border-b-2 bg-primary py-4 text-white">
         <div className="mx-auto flex items-center justify-between px-4 md:max-w-2xl md:px-8 lg:max-w-7xl lg:px-16">
-          <Link href="/dashboard">
+          <Link href={isAuthenticated ? '/dashboard' : '/'}>
             <a className="flex items-center space-x-2">
               <div className="flex h-8 w-8 overflow-hidden rounded-full">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -108,6 +109,14 @@ const Header: React.FC<props> = (props): JSX.Element => {
                   </Transition>
                 </Menu>
               </div>
+            )}
+            {!isAuthenticated && (
+              <Link href="/login">
+                <a className="flex items-center space-x-1 transition duration-150 ease-in-out hover:text-gray-300">
+                  <RiLoginCircleLine className="h-4 w-4 lg:h-5 lg:w-5" />
+                  <span className="text-sm font-medium md:text-base">Login</span>
+                </a>
+              </Link>
             )}
           </div>
         </div>

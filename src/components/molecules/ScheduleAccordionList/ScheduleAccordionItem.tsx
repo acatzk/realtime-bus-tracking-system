@@ -15,6 +15,7 @@ type props = {
   departure_time: string
   destination: string
   plate_number: string
+  from: string
 }
 
 const ScheduleAccordionItem: React.FC<props> = ({
@@ -22,7 +23,8 @@ const ScheduleAccordionItem: React.FC<props> = ({
   user,
   departure_time,
   plate_number,
-  destination
+  destination,
+  from
 }): JSX.Element => {
   const { avatarUrl, displayName, lastSeen } = user
 
@@ -89,7 +91,7 @@ const ScheduleAccordionItem: React.FC<props> = ({
               </li>
               <li className="flex w-full items-center space-x-2 px-3 py-2">
                 <span>Track Location:</span>
-                <Link href={`/map/${id}`}>
+                <Link href={`/map/${id}?from=${from}`}>
                   <a className="flex justify-center space-x-2 text-blue-500 hover:underline">
                     <span className="text-md font-medium">View Live Map</span>
                     <FaMapMarkedAlt className="h-5 w-5" />
