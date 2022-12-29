@@ -1,75 +1,86 @@
+import useSWR from 'swr'
 import React from 'react'
+import moment from 'moment'
+import { Spinner } from '~/utils'
 import type { NextPage } from 'next'
-import { Tab } from '@headlessui/react'
+import { AiOutlineSchedule } from 'react-icons/ai'
 
-import { classNames } from '~/helpers/classNames'
+import { nhost } from '~/lib/nhost-client'
 import PageLayout from '~/components/templates/PageLayout'
-import AdminLoginForm from '~/components/molecules/AdminLoginForm'
-import CollectorLoginForm from '~/components/molecules/CollectorLoginForm'
-import CollectorRegisterForm from '~/components/molecules/CollectorRegisterForm'
+import ScheduleList from '~/components/molecules/ScheduleList'
+import { GET_DRIVER_LOCATION_BY_CURRENT_DATE } from '~/graphql/queries'
+import ScheduleAccordionList from '~/components/molecules/ScheduleAccordionList'
 
 const Index: NextPage = (): JSX.Element => {
+  const address = GET_DRIVER_LOCATION_BY_CURRENT_DATE
+  const fetcher = async (query: string) =>
+    await nhost.graphql.request(query, {
+      date_created: moment().format('YYYY-MM-DD')
+    })
+  const options = {
+    refreshInterval: 1000,
+    revalidateOnMount: true
+  }
+
+  const { data, error } = useSWR(address, fetcher, options)
+
+  if (error)
+    return (
+      <p className="rounded bg-yellow-300 py-2 px-4 text-center text-sm font-medium">
+        Loading failed...
+      </p>
+    )
+
   return (
     <PageLayout>
-      <div className="mx-auto flex h-[90vh] w-full max-w-2xl flex-col items-center justify-center px-2 sm:px-0">
-        <Tab.Group>
-          <Tab.List className="flex w-full space-x-1 rounded-xl bg-blue-900/20 p-1">
-            <Tab
-              className={({ selected }) =>
-                classNames(
-                  'w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700',
-                  'focus:outline-none ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:ring-2',
-                  selected ? 'bg-white shadow' : 'text-blue-500'
-                )
-              }>
-              Employee's Login
-            </Tab>
-            <Tab
-              className={({ selected }) =>
-                classNames(
-                  'w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700',
-                  'focus:outline-none ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:ring-2',
-                  selected ? 'bg-white shadow' : 'text-blue-500'
-                )
-              }>
-              Employee's Registration
-            </Tab>
-            <Tab
-              className={({ selected }) =>
-                classNames(
-                  'w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700',
-                  'focus:outline-none ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:ring-2',
-                  selected ? 'bg-white shadow' : 'text-blue-500'
-                )
-              }>
-              Admin Login
-            </Tab>
-          </Tab.List>
-          <Tab.Panels className="mt-2 w-full">
-            <Tab.Panel
-              className={classNames(
-                'rounded-xl bg-white p-3',
-                'focus:outline-none ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:ring-2'
-              )}>
-              <CollectorLoginForm />
-            </Tab.Panel>
-            <Tab.Panel
-              className={classNames(
-                'rounded-xl bg-white p-3',
-                'focus:outline-none ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:ring-2'
-              )}>
-              <CollectorRegisterForm />
-            </Tab.Panel>
-            <Tab.Panel
-              className={classNames(
-                'rounded-xl bg-white p-3',
-                'focus:outline-none ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:ring-2'
-              )}>
-              <AdminLoginForm />
-            </Tab.Panel>
-          </Tab.Panels>
-        </Tab.Group>
-      </div>
+      <main className="mx-auto min-h-[81vh] px-4 md:max-w-2xl md:px-8 lg:max-w-7xl lg:px-16">
+        <section className="py-2 md:py-8 lg:py-14">
+          <div className="container">
+            <div className="flex items-center space-x-2">
+              <AiOutlineSchedule className="h-6 w-6 text-gray-700 md:h-8 md:w-8" />
+              <h1 className="py-3 text-base font-bold text-gray-700 md:text-xl">
+                Daily Bus Schedules
+              </h1>
+            </div>
+            <div className="flex flex-wrap">
+              <div className="w-full">
+                <div className="max-w-full overflow-x-auto">
+                  {data ? (
+                    <>
+                      <div className="hidden md:block">
+                        <ScheduleList
+                          {...{
+                            trackers: data?.data?.trackers,
+                            from: 'public'
+                          }}
+                        />
+                      </div>
+                      <div className="block md:hidden">
+                        {data?.data?.trackers?.length !== 0 ? (
+                          <ScheduleAccordionList
+                            {...{
+                              trackers: data?.data?.trackers,
+                              from: 'public'
+                            }}
+                          />
+                        ) : (
+                          <h1 className="rounded bg-yellow-300 py-2 px-4 text-center text-sm font-medium">
+                            No Active Driver
+                          </h1>
+                        )}
+                      </div>
+                    </>
+                  ) : (
+                    <div className="flex items-center justify-center py-10">
+                      <Spinner className="h-6 w-6 md:h-8 md:w-8" />
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
     </PageLayout>
   )
 }

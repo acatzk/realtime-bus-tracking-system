@@ -68,7 +68,10 @@ const Map: NextPage = (): JSX.Element => {
       </Head>
       <main className="relative h-screen w-full bg-gray-100">
         <div className="left absolute right-0 top-0 z-10 m-5 animate-bounce">
-          <Link href={from === 'admin' ? '/admin/dashboard' : '/dashboard'}>
+          <Link
+            href={
+              from === 'admin' ? '/admin/dashboard' : '/dashboard' || (from === 'public' && '/')
+            }>
             <a
               className={classNames(
                 'animeted rounded-lg border bg-gray-50 px-2 py-2 font-medium hover:bg-gray-100',

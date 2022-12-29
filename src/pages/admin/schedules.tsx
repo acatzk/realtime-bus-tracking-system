@@ -14,6 +14,7 @@ import ScheduleAccordionList from '~/components/molecules/ScheduleAccordionList'
 
 type props = {
   initialData: any
+  from: string
 }
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -32,7 +33,7 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-const Schedules: NextPage<props> = ({ initialData }): JSX.Element => {
+const Schedules: NextPage<props> = ({ initialData, from }): JSX.Element => {
   const address = GET_DRIVER_LOCATION_BY_CURRENT_DATE
   const fetcher = async (query: string) =>
     await nhost.graphql.request(query, {
@@ -70,11 +71,21 @@ const Schedules: NextPage<props> = ({ initialData }): JSX.Element => {
                   {data ? (
                     <>
                       <div className="hidden md:block">
-                        <ScheduleList trackers={data?.data?.trackers} />
+                        <ScheduleList
+                          {...{
+                            trackers: data?.data?.trackers,
+                            from: 'admin'
+                          }}
+                        />
                       </div>
                       <div className="block md:hidden">
                         {data?.data?.trackers?.length !== 0 ? (
-                          <ScheduleAccordionList trackers={data?.data?.trackers} />
+                          <ScheduleAccordionList
+                            {...{
+                              trackers: data?.data?.trackers,
+                              from: 'admin'
+                            }}
+                          />
                         ) : (
                           <h1 className="rounded bg-yellow-300 py-2 px-4 text-center text-sm font-medium">
                             No Active Driver
