@@ -40,6 +40,7 @@ const AdminLayout: FC<Props> = ({ children, metaTitle }): JSX.Element => {
 }
 
 const Header = (): JSX.Element => {
+  const user = useUserData()
   const signOut = useSignOut()
 
   return (
@@ -61,7 +62,7 @@ const Header = (): JSX.Element => {
                 <span className="sr-only">Open user menu</span>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="https://th.bing.com/th/id/OIP.o5hnVgDkhrAIKPAUMAtzcAHaHa?w=166&h=180&c=7&r=0&o=5&pid=1.7"
+                  src={user?.avatarUrl}
                   className="h-8 w-8 rounded-full"
                   onError={(e) =>
                     handleImageError(

@@ -1,11 +1,14 @@
 import React from 'react'
 import { NextPage } from 'next'
+import { useUserData } from '@nhost/react'
 
 import handleImageError from '~/helpers/handleImageError'
 import AdminDashboardList from '~/components/molecules/AdminDashboardList'
 import AdminLayout from '~/components/templates/AdminLayout'
 
 const Dashboard: NextPage = (): JSX.Element => {
+  const user = useUserData()
+
   return (
     <AdminLayout metaTitle="Dashboard">
       <main className="mx-auto min-h-[81vh] px-4 md:max-w-2xl md:px-8 lg:max-w-7xl lg:px-16">
@@ -18,7 +21,7 @@ const Dashboard: NextPage = (): JSX.Element => {
                   <div className="text-center">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src="https://th.bing.com/th/id/OIP.o5hnVgDkhrAIKPAUMAtzcAHaHa?w=166&h=180&c=7&r=0&o=5&pid=1.7"
+                      src={user?.avatarUrl}
                       className="mx-auto mb-4 w-32 rounded-full"
                       onError={(e) =>
                         handleImageError(
@@ -29,7 +32,7 @@ const Dashboard: NextPage = (): JSX.Element => {
                       alt=""
                     />
                     <h5 className="mb-2 text-xl font-medium leading-tight">Admin</h5>
-                    <p className="font-medium text-gray-500">Administrator</p>
+                    <p className="font-medium text-gray-500">{user?.displayName}</p>
                   </div>
                 </div>
                 <div className="border-t border-gray-300 bg-gray-50 py-3 px-6 text-sm">
