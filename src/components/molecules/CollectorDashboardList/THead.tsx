@@ -37,6 +37,11 @@ export function THead() {
           className="border-r px-6 py-4 text-left text-sm font-semibold text-gray-900">
           Options
         </th>
+        <th
+          scope="col"
+          className="border-r px-6 py-4 text-left text-sm font-semibold text-gray-900">
+          Live Map
+        </th>
       </tr>
     </thead>
   )

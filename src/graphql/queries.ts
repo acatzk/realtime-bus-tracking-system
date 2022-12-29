@@ -104,6 +104,8 @@ export const GET_TRACKER_RECORDS_BY_USER_ID = gql`
       plate_number
       departure_time
       date_created
+      latitude
+      longitude
       passengers(where: { date_created: { _eq: $date_created } }) {
         id
         name
