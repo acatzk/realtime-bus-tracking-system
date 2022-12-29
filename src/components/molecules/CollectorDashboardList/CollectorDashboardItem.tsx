@@ -1,6 +1,8 @@
 import React from 'react'
 import Moment from 'moment'
+import { useRouter } from 'next/router'
 
+import { MapIcon } from '@heroicons/react/solid'
 import { classNames } from '~/helpers/classNames'
 
 type props = {
@@ -10,6 +12,7 @@ type props = {
 }
 
 const DashboardItem: React.FC<props> = ({ track, openModal, actions }): JSX.Element => {
+  const router = useRouter()
   const { handleDelete } = actions
   const {
     destination,
@@ -68,6 +71,21 @@ const DashboardItem: React.FC<props> = ({ track, openModal, actions }): JSX.Elem
                 'transition duration-150 ease-in-out'
               )}>
               Delete
+            </button>
+          </div>
+        </div>
+      </td>
+      <td className="mt-text-sm whitespace-nowrap border-r px-6 font-medium text-gray-900">
+        <div className="flex items-center justify-start">
+          <div className="inline-flex" role="group">
+            <button
+              type="button"
+              onClick={() => router.push(`/map/${track?.id}?from=collector`)}
+              className={classNames(
+                'inline-block rounded-full px-2 py-0.5 text-xs font-semibold leading-tight text-blue-600 hover:underline',
+                'flex items-center transition duration-150 ease-in-out'
+              )}>
+              <MapIcon className="mr-2 h-5 w-5" /> View Live Map
             </button>
           </div>
         </div>

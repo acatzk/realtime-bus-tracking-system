@@ -13,7 +13,7 @@ import { GET_TRACKER_BY_ID } from '~/graphql/queries'
 
 const Map: NextPage = (): JSX.Element => {
   const router = useRouter()
-  const { id, isFallback } = router.query
+  const { id, isFallback, from } = router.query
   const [latitude, setLatitude] = useState(0) // 10.251599
   const [longitude, setLongitude] = useState(0) // 124.985562
 
@@ -68,7 +68,7 @@ const Map: NextPage = (): JSX.Element => {
       </Head>
       <main className="relative h-screen w-full bg-gray-100">
         <div className="left absolute right-0 top-0 z-10 m-5 animate-bounce">
-          <Link href="/admin/dashboard">
+          <Link href={from === 'admin' ? '/admin/dashboard' : '/dashboard'}>
             <a
               className={classNames(
                 'animeted rounded-lg border bg-gray-50 px-2 py-2 font-medium hover:bg-gray-100',

@@ -82,7 +82,7 @@ const AdminDashboardList: React.FC<Props> = (props): JSX.Element => {
                   <div className="inline-flex" role="group">
                     <button
                       type="button"
-                      onClick={() => router.push(`/map/${track?.id}`)}
+                      onClick={() => router.push(`/map/${track?.id}?from=admin`)}
                       className={classNames(
                         'inline-block rounded-full px-2 py-0.5 text-xs font-semibold leading-tight text-blue-600 hover:underline',
                         'flex items-center transition duration-150 ease-in-out'
