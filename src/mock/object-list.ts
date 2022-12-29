@@ -24,5 +24,6 @@ export const direction = [
 
 export const adminSubDashboardLink = [
   { name: 'Dashboard', href: 'dashboard', Icon: BsCardChecklist },
-  { name: 'Daily Schedules', href: 'schedules', Icon: BsCalendarDate }
+  { name: 'Daily Schedules', href: 'schedules', Icon: BsCalendarDate },
+  { name: 'Destinations', href: 'destinations', Icon: MdLocationPin }
 ]

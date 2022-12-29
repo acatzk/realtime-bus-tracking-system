@@ -23,3 +23,8 @@ export interface IAggregate {
     count: number
   }
 }
+
+export interface IDestination {
+  id: number
+  name: string
+}
