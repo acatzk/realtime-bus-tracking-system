@@ -1,3 +1,4 @@
+import useSWR from 'swr'
 import Moment from 'moment'
 import { toast } from 'react-toastify'
 import { useForm } from 'react-hook-form'
@@ -9,6 +10,7 @@ import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { nhost } from '~/lib/nhost-client'
 import { direction } from '~/mock/object-list'
 import { classNames } from '~/helpers/classNames'
+import { GET_ALL_BUSSES } from '~/graphql/queries'
 import { PassengerFormValues } from '~/shared/types'
 import { PasengersFormSchema } from '~/shared/validation'
 import { CREATE_PASSENGER_ONE } from '~/graphql/mutations'
@@ -19,7 +21,16 @@ type Props = {
 }
 
 const PassengersForm: FC<Props> = ({ isActiveDriverStatus, track_id }): JSX.Element => {
-  const [selected, setSelected] = useState(direction[0])
+  const { data } = useSWR(
+    GET_ALL_BUSSES,
+    async (query: string) => await nhost.graphql.request(query),
+    {
+      refreshInterval: 1000,
+      revalidateOnMount: true
+    }
+  )
+
+  const [selected, setSelected] = useState(data?.data?.busses[0])
 
   const {
     reset,

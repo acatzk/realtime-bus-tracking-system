@@ -1,9 +1,13 @@
+import useSWR from 'swr'
 import React, { Fragment } from 'react'
 import { useForm } from 'react-hook-form'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 
+import { nhost } from '~/lib/nhost-client'
 import { classNames } from '~/helpers/classNames'
+import { GET_ALL_BUSSES } from '~/graphql/queries'
+import { IDestination } from '~/shared/interfaces'
 
 type props = {
   selected: any
@@ -16,6 +20,15 @@ type props = {
 }
 
 const TrackBusForm: React.FC<props> = (props): JSX.Element => {
+  const { data, error } = useSWR(
+    GET_ALL_BUSSES,
+    async (query: string) => await nhost.graphql.request(query),
+    {
+      refreshInterval: 1000,
+      revalidateOnMount: true
+    }
+  )
+
   const { selected, setSelected, onSubmitForm, direction, latitude, longitude, handleReloadPage } =
     props
 
@@ -59,7 +72,7 @@ const TrackBusForm: React.FC<props> = (props): JSX.Element => {
                   'absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1',
                   'focus:outline-none ring-black ring-opacity-5 sm:text-sm'
                 )}>
-                {direction?.map((location: any, index: number) => (
+                {data?.data?.busses?.map((location: IDestination, index: number) => (
                   <Listbox.Option
                     key={index}
                     className={({ active }) =>
