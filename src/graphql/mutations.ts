@@ -76,10 +76,6 @@ export const DELETE_DRIVER_BY_PK_ID = gql`
     update_trackers_by_pk(pk_columns: { id: $id }, _set: { isDeleted: true }) {
       id
       user_id
-      user {
-        id
-        email
-      }
     }
   }
 `
