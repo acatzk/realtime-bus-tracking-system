@@ -5,8 +5,8 @@ module.exports = {
     NEXT_PUBLIC_NHOST_BACKEND: process.env.NEXT_PUBLIC_NHOST_BACKEND
   },
   webp: {
-    preset: "default",
-    quality: 100,
+    preset: 'default',
+    quality: 100
   },
   images: {
     domains: [
@@ -16,7 +16,8 @@ module.exports = {
       's.gravatar.com',
       'scontent.fceb1-1.fna.fbcdn.net',
       'scontent.fceb1-3.fna.fbcdn.net',
-      'i.stack.imgur.com'
+      'i.stack.imgur.com',
+      'tse2.mm.bing.net'
     ]
   }
 }
