@@ -86,7 +86,9 @@ const Header = (): JSX.Element => {
                 <Menu.Item>
                   <a
                     href="#"
-                    onClick={() => signOut.signOut()}
+                    onClick={() => {
+                      signOut.signOut()
+                    }}
                     className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                     Sign Out
                   </a>
