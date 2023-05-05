@@ -22,6 +22,19 @@ const ScheduleItem: React.FC<props> = (props): JSX.Element => {
     <tr key={id}>
       <td
         className="
+            text-dark border-b
+            border-[#E8E8E8]
+            bg-white
+            py-5
+            px-2
+            text-center
+            text-sm
+            font-semibold md:text-base
+          ">
+        {destination}
+      </td>
+      <td
+        className="
             text-dark flex
             flex-col
             items-center
@@ -42,19 +55,6 @@ const ScheduleItem: React.FC<props> = (props): JSX.Element => {
           />
         </div>
         <span>{displayName}</span>
-      </td>
-      <td
-        className="
-            text-dark border-b
-            border-[#E8E8E8]
-            bg-white
-            py-5
-            px-2
-            text-center
-            text-sm
-            font-semibold md:text-base
-          ">
-        {destination}
       </td>
       <td
         className="

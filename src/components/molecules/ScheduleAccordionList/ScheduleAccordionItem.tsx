@@ -41,28 +41,11 @@ const ScheduleAccordionItem: React.FC<props> = ({
               'transition duration-150 ease-in-out'
             )}>
             <div>
-              <div className="flex flex-row items-center space-x-2">
-                <div className="relative">
-                  <Image
-                    src={avatarUrl === null ? 'https://i.stack.imgur.com/l60Hf.png' : avatarUrl}
-                    width={38}
-                    height={38}
-                    className="rounded-full"
-                    onError={(e) =>
-                      handleImageError(
-                        e,
-                        'https://th.bing.com/th/id/OIP.o5hnVgDkhrAIKPAUMAtzcAHaHa?w=166&h=180&c=7&r=0&o=5&pid=1.7'
-                      )
-                    }
-                    alt="Avatar"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <h4 className="text-md font-medium">{displayName}</h4>
-                  <span className="text-xs font-normal">
-                    Active &bull; {Moment(lastSeen).fromNow()}
-                  </span>
-                </div>
+              <div className="flex flex-col">
+                <h4 className="text-md font-medium">{destination}</h4>
+                <span className="text-xs font-normal">
+                  Active &bull; {Moment(lastSeen).fromNow()}
+                </span>
               </div>
             </div>
             <ChevronUpIcon
@@ -71,11 +54,26 @@ const ScheduleAccordionItem: React.FC<props> = ({
           </Disclosure.Button>
           <Disclosure.Panel className="w-full bg-white text-gray-600">
             <ul className="divide-y">
-              <li className="flex w-full flex-wrap px-3 py-2">
-                <span>Destination:</span>
-                <span className="text-md  ml-2 flex-shrink-0 rounded-full border border-blue-500 px-1 font-medium text-blue-500">
-                  {destination}
-                </span>
+              <li className="flex w-full flex-wrap items-center space-x-2 px-3 py-2">
+                <span>Driver:</span>
+                <div className="flex flex-row items-center space-x-2">
+                  <div className="relative">
+                    <Image
+                      src={avatarUrl === null ? 'https://i.stack.imgur.com/l60Hf.png' : avatarUrl}
+                      width={38}
+                      height={38}
+                      className="rounded-full"
+                      onError={(e) =>
+                        handleImageError(
+                          e,
+                          'https://th.bing.com/th/id/OIP.o5hnVgDkhrAIKPAUMAtzcAHaHa?w=166&h=180&c=7&r=0&o=5&pid=1.7'
+                        )
+                      }
+                      alt="Avatar"
+                    />
+                  </div>
+                  <h4 className="text-sm font-medium">{displayName}</h4>
+                </div>
               </li>
               <li className="w-full space-x-2 px-3 py-2">
                 <span>Departure Time:</span>
