@@ -1,11 +1,11 @@
 import useSWR from 'swr'
+import React from 'react'
 import moment from 'moment'
 import { Spinner } from '~/utils'
 import classNames from 'classnames'
 import type { NextPage } from 'next'
 import { FaLocationArrow } from 'react-icons/fa'
 import { AiOutlineSchedule } from 'react-icons/ai'
-import React, { useEffect, useState } from 'react'
 
 import { nhost } from '~/lib/nhost-client'
 import PageLayout from '~/components/templates/PageLayout'
@@ -15,9 +15,6 @@ import ScheduleAccordionList from '~/components/molecules/ScheduleAccordionList'
 import { RefreshCcw } from 'react-feather'
 
 const Index: NextPage = (): JSX.Element => {
-  const [latitude, setLatitude] = useState<number>(0)
-  const [longitude, setLongitude] = useState<number>(0)
-
   const address = GET_DRIVER_LOCATION_BY_CURRENT_DATE
   const fetcher = async (query: string) =>
     await nhost.graphql.request(query, {
@@ -36,13 +33,6 @@ const Index: NextPage = (): JSX.Element => {
         Loading failed...
       </p>
     )
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setLatitude(position.coords.latitude)
-      setLongitude(position.coords.longitude)
-    })
-  }, [])
 
   return (
     <PageLayout>
@@ -93,39 +83,27 @@ const Index: NextPage = (): JSX.Element => {
             </div>
           </div>
         </section>
-        {longitude === 0 && latitude === 0 && (
-          <div
-            className={classNames(
-              'relative flex items-center justify-center',
-              'shadow-slate-200 rounded-md border py-2.5 px-4 shadow-md',
-              'border-yellow-600 bg-yellow-500 text-yellow-50'
-            )}>
-            <FaLocationArrow className="absolute left-5 bg-yellow-500" />
-            <p className={classNames('text-base font-medium text-white')}>
-              Please Open Your GPS Location. Please Refresh!
-            </p>
-            <button className="absolute right-5" onClick={() => location.reload()}>
-              <RefreshCcw className="h-5 w-5" />
-            </button>
-          </div>
+        {data?.data?.trackers.length !== 0 && (
+          <section className="py-8">
+            <h2 className="text-lg font-semibold">
+              First Active Bus Schedule - <b>{data?.data?.trackers[0]?.destination}</b>
+            </h2>
+            <iframe
+              src={classNames(
+                'https://www.google.com/maps/embed?pb=!1m63!1m12!1m3!1d211336.5274202848!2d124.9564999608942!3d10.18712418942519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m48!3e0!4m5!1s0x3306d64c5cbfa0c9%3A0x9e2dfff5921bd759!2s',
+                'Kinachawa%2C%20Southern%20Leyte!3m2!1d10.0188847!2d125.2450647!4m5!1s0x3306d67df873560f%3A0xbc4397c55f417f36!2s',
+                'San%20Ricardo%2C%20Southern%20Leyte!3m2!1d9.9769939!2d125.2738186!4m5!1s0x3306d5debfcc7733%3A0x61c9d9a09d6edbd7!2s',
+                'Pintuyan%2C%20Southern%20Leyte!3m2!1d9.99513!2d125.2258365!4m5!1s0x330711c59ca30769%3A0x2a3fd238fb08613c!2sDr.%20Gonzalo%20Yong%20Memorial%20Bus%20Terminal%2C%20Osme%C3%B1a%20Street%2C%20Sogod%2C%206606%2',
+                'Southern%20Leyte!3m2!1d10.384186!2d124.9829407!4m5!1s0x33073b7eb054d58f%3A0x41f4184f8f60812e!2s',
+                'Malitbog%20Main%20Road%2C%20Malitbog%2C%20Southern%20Leyte!3m2!1d10.162197899999999!2d125.0005163!4m5!1s0x330737408e166a35%3A0xb9e417ece889c1f!2s',
+                'Macrohon%2C%20Southern%20Leyte!3m2!1d10.0643286!2d124.9513384!4m5!1s0x330747b952d49157%3A0x6fd01a85085e4285!2sTerminal%2C%20Capt.%20Iyano%20St.%2C%20',
+                `Maasin%20City%2C%20Southern%20Leyte!3m2!1d10.132173!2d124.83481409999999!4m4!2s${data?.data?.trackers[0]?.latitude}%2C${data?.data?.trackers[0]?.longitude}!3m2!1d${data?.data?.trackers[0]?.latitude}!2d${data?.data?.trackers[0]?.longitude}!5e0!3m2!1sen!2sph!4v1652595733458!5m2!1sen!2sph`
+              )}
+              width="100%"
+              loading="lazy"
+              style={{ border: '0', height: '100vh' }}></iframe>
+          </section>
         )}
-        <section className="py-8">
-          <h2 className="text-lg font-semibold">Your Location</h2>
-          <iframe
-            src={classNames(
-              'https://www.google.com/maps/embed?pb=!1m63!1m12!1m3!1d211336.5274202848!2d124.9564999608942!3d10.18712418942519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m48!3e0!4m5!1s0x3306d64c5cbfa0c9%3A0x9e2dfff5921bd759!2s',
-              'Kinachawa%2C%20Southern%20Leyte!3m2!1d10.0188847!2d125.2450647!4m5!1s0x3306d67df873560f%3A0xbc4397c55f417f36!2s',
-              'San%20Ricardo%2C%20Southern%20Leyte!3m2!1d9.9769939!2d125.2738186!4m5!1s0x3306d5debfcc7733%3A0x61c9d9a09d6edbd7!2s',
-              'Pintuyan%2C%20Southern%20Leyte!3m2!1d9.99513!2d125.2258365!4m5!1s0x330711c59ca30769%3A0x2a3fd238fb08613c!2sDr.%20Gonzalo%20Yong%20Memorial%20Bus%20Terminal%2C%20Osme%C3%B1a%20Street%2C%20Sogod%2C%206606%2',
-              'Southern%20Leyte!3m2!1d10.384186!2d124.9829407!4m5!1s0x33073b7eb054d58f%3A0x41f4184f8f60812e!2s',
-              'Malitbog%20Main%20Road%2C%20Malitbog%2C%20Southern%20Leyte!3m2!1d10.162197899999999!2d125.0005163!4m5!1s0x330737408e166a35%3A0xb9e417ece889c1f!2s',
-              'Macrohon%2C%20Southern%20Leyte!3m2!1d10.0643286!2d124.9513384!4m5!1s0x330747b952d49157%3A0x6fd01a85085e4285!2sTerminal%2C%20Capt.%20Iyano%20St.%2C%20',
-              `Maasin%20City%2C%20Southern%20Leyte!3m2!1d10.132173!2d124.83481409999999!4m4!2s${latitude}%2C${longitude}!3m2!1d${latitude}!2d${longitude}!5e0!3m2!1sen!2sph!4v1652595733458!5m2!1sen!2sph`
-            )}
-            width="100%"
-            loading="lazy"
-            style={{ border: '0', height: '100vh' }}></iframe>
-        </section>
       </main>
     </PageLayout>
   )
