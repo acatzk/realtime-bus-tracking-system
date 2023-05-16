@@ -45,7 +45,7 @@ export const GET_DRIVER_LOCATION_BY_CURRENT_DATE = gql`
         isActive: { _eq: true }
         isDeleted: { _eq: false }
       }
-      order_by: { departure_time: asc }
+      order_by: { departure_time: asc, created_at: desc }
     ) {
       id
       user_id
